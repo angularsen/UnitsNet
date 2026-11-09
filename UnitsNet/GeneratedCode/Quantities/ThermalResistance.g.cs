@@ -117,10 +117,13 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalResistanceUnit}"/> representing the default unit mappings for ThermalResistance.</returns>
             public static IEnumerable<UnitDefinition<ThermalResistanceUnit>> GetDefaultMappings()
             {
-                yield return new (ThermalResistanceUnit.DegreeCelsiusPerWatt, "DegreeCelsiusPerWatt", "DegreesCelsiusPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     1
-                );
-                yield return new (ThermalResistanceUnit.KelvinPerWatt, "KelvinPerWatt", "KelvinsPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+                return new UnitDefinition<ThermalResistanceUnit>[]
+                {
+                    new (ThermalResistanceUnit.DegreeCelsiusPerWatt, "DegreeCelsiusPerWatt", "DegreesCelsiusPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                         1
+                    ),
+                    new (ThermalResistanceUnit.KelvinPerWatt, "KelvinPerWatt", "KelvinsPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin)),
+                };
             }
         }
 

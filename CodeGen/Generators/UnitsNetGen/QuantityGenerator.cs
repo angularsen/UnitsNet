@@ -227,7 +227,9 @@ namespace UnitsNet
             /// </summary>
             /// <returns>An <see cref=""IEnumerable{{T}}""/> of <see cref=""UnitDefinition{{{_unitEnumName}}}""/> representing the default unit mappings for {_quantity.Name}.</returns>
             public static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
-            {{");
+            {{
+                return new UnitDefinition<{_unitEnumName}>[]
+                {{");
 
             foreach (Unit unit in _quantity.Units)
             {
@@ -259,7 +261,7 @@ namespace UnitsNet
                 if (unit.SingularName == _quantity.BaseUnit)
                 {
                     Writer.WL($@"
-                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat});");
+                    new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat}),");
                 }
                 else
                 {
@@ -268,22 +270,23 @@ namespace UnitsNet
                     if (expressionFromBaseToUnit.Terms.Count == 1 && expressionFromBaseToUnit.Degree == Fraction.One)
                     {
                         Writer.WL($@"
-                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
-                     {expressionFromBaseToUnit.GetConversionExpressionFormat()}
-                );");
+                    new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
+                         {expressionFromBaseToUnit.GetConversionExpressionFormat()}
+                    ),");
                     }
                     else
                     {
                         Writer.WL($@"
-                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
-                     {expressionFromBaseToUnit.GetConversionExpressionFormat()},
-                     {unit.GetUnitToBaseConversionExpressionFormat()}
-                );");
+                    new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
+                         {expressionFromBaseToUnit.GetConversionExpressionFormat()},
+                         {unit.GetUnitToBaseConversionExpressionFormat()}
+                    ),");
                     }
                 }
             }
 
             Writer.WL($@"
+                }};
             }}
         }}
 ");

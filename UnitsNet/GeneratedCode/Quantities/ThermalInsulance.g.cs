@@ -117,25 +117,28 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalInsulanceUnit}"/> representing the default unit mappings for ThermalInsulance.</returns>
             public static IEnumerable<UnitDefinition<ThermalInsulanceUnit>> GetDefaultMappings()
             {
-                yield return new (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreeFahrenheitPerBtu", "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined,
-                     new QuantityValue(52752792631, 9290304000000)
-                );
-                yield return new (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreeCelsiusPerKilocalorie", "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined,
-                     new QuantityValue(523, 45)
-                );
-                yield return new (ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinPerWatt", "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreeCelsiusPerWatt", "SquareMeterDegreesCelsiusPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinPerKilowatt", "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined);
-                yield return new (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinPerWatt", "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "SquareMillimeterKelvinPerWatt", "SquareMillimeterKelvinsPerWatt", BaseUnits.Undefined,
-                     1000
-                );
+                return new UnitDefinition<ThermalInsulanceUnit>[]
+                {
+                    new (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreeFahrenheitPerBtu", "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined,
+                         new QuantityValue(52752792631, 9290304000000)
+                    ),
+                    new (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreeCelsiusPerKilocalorie", "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined,
+                         new QuantityValue(523, 45)
+                    ),
+                    new (ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinPerWatt", "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined,
+                         10
+                    ),
+                    new (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreeCelsiusPerWatt", "SquareMeterDegreesCelsiusPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinPerKilowatt", "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined),
+                    new (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinPerWatt", "SquareMeterKelvinsPerWatt", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "SquareMillimeterKelvinPerWatt", "SquareMillimeterKelvinsPerWatt", BaseUnits.Undefined,
+                         1000
+                    ),
+                };
             }
         }
 

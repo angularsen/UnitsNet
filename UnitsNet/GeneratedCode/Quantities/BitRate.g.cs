@@ -122,121 +122,124 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{BitRateUnit}"/> representing the default unit mappings for BitRate.</returns>
             public static IEnumerable<UnitDefinition<BitRateUnit>> GetDefaultMappings()
             {
-                yield return new (BitRateUnit.BitPerSecond, "BitPerSecond", "BitsPerSecond", new BaseUnits(time: DurationUnit.Second));
-                yield return new (BitRateUnit.BytePerSecond, "BytePerSecond", "BytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8)
-                );
-                yield return new (BitRateUnit.ExabitPerSecond, "ExabitPerSecond", "ExabitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000000)
-                );
-                yield return new (BitRateUnit.ExabytePerSecond, "ExabytePerSecond", "ExabytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000000000000)
-                );
-                yield return new (BitRateUnit.ExaoctetPerSecond, "ExaoctetPerSecond", "ExaoctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000000000000)
-                );
-                yield return new (BitRateUnit.ExbibitPerSecond, "ExbibitPerSecond", "ExbibitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1152921504606846976)
-                );
-                yield return new (BitRateUnit.ExbibytePerSecond, "ExbibytePerSecond", "ExbibytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, BigInteger.Pow(2, 63))
-                );
-                yield return new (BitRateUnit.ExbioctetPerSecond, "ExbioctetPerSecond", "ExbioctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, BigInteger.Pow(2, 63))
-                );
-                yield return new (BitRateUnit.GibibitPerSecond, "GibibitPerSecond", "GibibitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1073741824)
-                );
-                yield return new (BitRateUnit.GibibytePerSecond, "GibibytePerSecond", "GibibytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8589934592)
-                );
-                yield return new (BitRateUnit.GibioctetPerSecond, "GibioctetPerSecond", "GibioctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8589934592)
-                );
-                yield return new (BitRateUnit.GigabitPerSecond, "GigabitPerSecond", "GigabitsPerSecond", new BaseUnits(time: DurationUnit.Nanosecond),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (BitRateUnit.GigabytePerSecond, "GigabytePerSecond", "GigabytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000)
-                );
-                yield return new (BitRateUnit.GigaoctetPerSecond, "GigaoctetPerSecond", "GigaoctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000)
-                );
-                yield return new (BitRateUnit.KibibitPerSecond, "KibibitPerSecond", "KibibitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1024)
-                );
-                yield return new (BitRateUnit.KibibytePerSecond, "KibibytePerSecond", "KibibytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8192)
-                );
-                yield return new (BitRateUnit.KibioctetPerSecond, "KibioctetPerSecond", "KibioctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8192)
-                );
-                yield return new (BitRateUnit.KilobitPerSecond, "KilobitPerSecond", "KilobitsPerSecond", new BaseUnits(time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (BitRateUnit.KilobytePerSecond, "KilobytePerSecond", "KilobytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000)
-                );
-                yield return new (BitRateUnit.KilooctetPerSecond, "KilooctetPerSecond", "KilooctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000)
-                );
-                yield return new (BitRateUnit.MebibitPerSecond, "MebibitPerSecond", "MebibitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1048576)
-                );
-                yield return new (BitRateUnit.MebibytePerSecond, "MebibytePerSecond", "MebibytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8388608)
-                );
-                yield return new (BitRateUnit.MebioctetPerSecond, "MebioctetPerSecond", "MebioctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8388608)
-                );
-                yield return new (BitRateUnit.MegabitPerSecond, "MegabitPerSecond", "MegabitsPerSecond", new BaseUnits(time: DurationUnit.Microsecond),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (BitRateUnit.MegabytePerSecond, "MegabytePerSecond", "MegabytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000)
-                );
-                yield return new (BitRateUnit.MegaoctetPerSecond, "MegaoctetPerSecond", "MegaoctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000)
-                );
-                yield return new (BitRateUnit.OctetPerSecond, "OctetPerSecond", "OctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8)
-                );
-                yield return new (BitRateUnit.PebibitPerSecond, "PebibitPerSecond", "PebibitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1125899906842624)
-                );
-                yield return new (BitRateUnit.PebibytePerSecond, "PebibytePerSecond", "PebibytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 9007199254740992)
-                );
-                yield return new (BitRateUnit.PebioctetPerSecond, "PebioctetPerSecond", "PebioctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 9007199254740992)
-                );
-                yield return new (BitRateUnit.PetabitPerSecond, "PetabitPerSecond", "PetabitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000)
-                );
-                yield return new (BitRateUnit.PetabytePerSecond, "PetabytePerSecond", "PetabytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000000000)
-                );
-                yield return new (BitRateUnit.PetaoctetPerSecond, "PetaoctetPerSecond", "PetaoctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000000000)
-                );
-                yield return new (BitRateUnit.TebibitPerSecond, "TebibitPerSecond", "TebibitsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 1099511627776)
-                );
-                yield return new (BitRateUnit.TebibytePerSecond, "TebibytePerSecond", "TebibytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8796093022208)
-                );
-                yield return new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8796093022208)
-                );
-                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond),
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000000)
-                );
-                yield return new (BitRateUnit.TeraoctetPerSecond, "TeraoctetPerSecond", "TeraoctetsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(1, 8000000000000)
-                );
+                return new UnitDefinition<BitRateUnit>[]
+                {
+                    new (BitRateUnit.BitPerSecond, "BitPerSecond", "BitsPerSecond", new BaseUnits(time: DurationUnit.Second)),
+                    new (BitRateUnit.BytePerSecond, "BytePerSecond", "BytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8)
+                    ),
+                    new (BitRateUnit.ExabitPerSecond, "ExabitPerSecond", "ExabitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000000000000)
+                    ),
+                    new (BitRateUnit.ExabytePerSecond, "ExabytePerSecond", "ExabytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000000000000)
+                    ),
+                    new (BitRateUnit.ExaoctetPerSecond, "ExaoctetPerSecond", "ExaoctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000000000000)
+                    ),
+                    new (BitRateUnit.ExbibitPerSecond, "ExbibitPerSecond", "ExbibitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1152921504606846976)
+                    ),
+                    new (BitRateUnit.ExbibytePerSecond, "ExbibytePerSecond", "ExbibytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, BigInteger.Pow(2, 63))
+                    ),
+                    new (BitRateUnit.ExbioctetPerSecond, "ExbioctetPerSecond", "ExbioctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, BigInteger.Pow(2, 63))
+                    ),
+                    new (BitRateUnit.GibibitPerSecond, "GibibitPerSecond", "GibibitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1073741824)
+                    ),
+                    new (BitRateUnit.GibibytePerSecond, "GibibytePerSecond", "GibibytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8589934592)
+                    ),
+                    new (BitRateUnit.GibioctetPerSecond, "GibioctetPerSecond", "GibioctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8589934592)
+                    ),
+                    new (BitRateUnit.GigabitPerSecond, "GigabitPerSecond", "GigabitsPerSecond", new BaseUnits(time: DurationUnit.Nanosecond),
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (BitRateUnit.GigabytePerSecond, "GigabytePerSecond", "GigabytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000)
+                    ),
+                    new (BitRateUnit.GigaoctetPerSecond, "GigaoctetPerSecond", "GigaoctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000)
+                    ),
+                    new (BitRateUnit.KibibitPerSecond, "KibibitPerSecond", "KibibitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1024)
+                    ),
+                    new (BitRateUnit.KibibytePerSecond, "KibibytePerSecond", "KibibytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8192)
+                    ),
+                    new (BitRateUnit.KibioctetPerSecond, "KibioctetPerSecond", "KibioctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8192)
+                    ),
+                    new (BitRateUnit.KilobitPerSecond, "KilobitPerSecond", "KilobitsPerSecond", new BaseUnits(time: DurationUnit.Millisecond),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (BitRateUnit.KilobytePerSecond, "KilobytePerSecond", "KilobytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000)
+                    ),
+                    new (BitRateUnit.KilooctetPerSecond, "KilooctetPerSecond", "KilooctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000)
+                    ),
+                    new (BitRateUnit.MebibitPerSecond, "MebibitPerSecond", "MebibitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1048576)
+                    ),
+                    new (BitRateUnit.MebibytePerSecond, "MebibytePerSecond", "MebibytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8388608)
+                    ),
+                    new (BitRateUnit.MebioctetPerSecond, "MebioctetPerSecond", "MebioctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8388608)
+                    ),
+                    new (BitRateUnit.MegabitPerSecond, "MegabitPerSecond", "MegabitsPerSecond", new BaseUnits(time: DurationUnit.Microsecond),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (BitRateUnit.MegabytePerSecond, "MegabytePerSecond", "MegabytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000)
+                    ),
+                    new (BitRateUnit.MegaoctetPerSecond, "MegaoctetPerSecond", "MegaoctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000)
+                    ),
+                    new (BitRateUnit.OctetPerSecond, "OctetPerSecond", "OctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8)
+                    ),
+                    new (BitRateUnit.PebibitPerSecond, "PebibitPerSecond", "PebibitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1125899906842624)
+                    ),
+                    new (BitRateUnit.PebibytePerSecond, "PebibytePerSecond", "PebibytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 9007199254740992)
+                    ),
+                    new (BitRateUnit.PebioctetPerSecond, "PebioctetPerSecond", "PebioctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 9007199254740992)
+                    ),
+                    new (BitRateUnit.PetabitPerSecond, "PetabitPerSecond", "PetabitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000000000)
+                    ),
+                    new (BitRateUnit.PetabytePerSecond, "PetabytePerSecond", "PetabytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000000000)
+                    ),
+                    new (BitRateUnit.PetaoctetPerSecond, "PetaoctetPerSecond", "PetaoctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000000000)
+                    ),
+                    new (BitRateUnit.TebibitPerSecond, "TebibitPerSecond", "TebibitsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 1099511627776)
+                    ),
+                    new (BitRateUnit.TebibytePerSecond, "TebibytePerSecond", "TebibytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8796093022208)
+                    ),
+                    new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8796093022208)
+                    ),
+                    new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond),
+                         new QuantityValue(1, 1000000000000)
+                    ),
+                    new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000000)
+                    ),
+                    new (BitRateUnit.TeraoctetPerSecond, "TeraoctetPerSecond", "TeraoctetsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(1, 8000000000000)
+                    ),
+                };
             }
         }
 

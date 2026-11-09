@@ -117,37 +117,40 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{JerkUnit}"/> representing the default unit mappings for Jerk.</returns>
             public static IEnumerable<UnitDefinition<JerkUnit>> GetDefaultMappings()
             {
-                yield return new (JerkUnit.CentimeterPerSecondCubed, "CentimeterPerSecondCubed", "CentimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second),
-                     100
-                );
-                yield return new (JerkUnit.DecimeterPerSecondCubed, "DecimeterPerSecondCubed", "DecimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second),
-                     10
-                );
-                yield return new (JerkUnit.FootPerSecondCubed, "FootPerSecondCubed", "FeetPerSecondCubed", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
-                     new QuantityValue(1250, 381)
-                );
-                yield return new (JerkUnit.InchPerSecondCubed, "InchPerSecondCubed", "InchesPerSecondCubed", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second),
-                     new QuantityValue(5000, 127)
-                );
-                yield return new (JerkUnit.KilometerPerSecondCubed, "KilometerPerSecondCubed", "KilometersPerSecondCubed", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (JerkUnit.MeterPerSecondCubed, "MeterPerSecondCubed", "MetersPerSecondCubed", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                yield return new (JerkUnit.MicrometerPerSecondCubed, "MicrometerPerSecondCubed", "MicrometersPerSecondCubed", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (JerkUnit.MillimeterPerSecondCubed, "MillimeterPerSecondCubed", "MillimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", "MillistandardGravitiesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(20000000, 196133)
-                );
-                yield return new (JerkUnit.NanometerPerSecondCubed, "NanometerPerSecondCubed", "NanometersPerSecondCubed", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second),
-                     1000000000
-                );
-                yield return new (JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", "StandardGravitiesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
+                return new UnitDefinition<JerkUnit>[]
+                {
+                    new (JerkUnit.CentimeterPerSecondCubed, "CentimeterPerSecondCubed", "CentimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second),
+                         100
+                    ),
+                    new (JerkUnit.DecimeterPerSecondCubed, "DecimeterPerSecondCubed", "DecimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second),
+                         10
+                    ),
+                    new (JerkUnit.FootPerSecondCubed, "FootPerSecondCubed", "FeetPerSecondCubed", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
+                         new QuantityValue(1250, 381)
+                    ),
+                    new (JerkUnit.InchPerSecondCubed, "InchPerSecondCubed", "InchesPerSecondCubed", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second),
+                         new QuantityValue(5000, 127)
+                    ),
+                    new (JerkUnit.KilometerPerSecondCubed, "KilometerPerSecondCubed", "KilometersPerSecondCubed", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (JerkUnit.MeterPerSecondCubed, "MeterPerSecondCubed", "MetersPerSecondCubed", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new (JerkUnit.MicrometerPerSecondCubed, "MicrometerPerSecondCubed", "MicrometersPerSecondCubed", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second),
+                         1000000
+                    ),
+                    new (JerkUnit.MillimeterPerSecondCubed, "MillimeterPerSecondCubed", "MillimetersPerSecondCubed", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
+                         1000
+                    ),
+                    new (JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", "MillistandardGravitiesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(20000000, 196133)
+                    ),
+                    new (JerkUnit.NanometerPerSecondCubed, "NanometerPerSecondCubed", "NanometersPerSecondCubed", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second),
+                         1000000000
+                    ),
+                    new (JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", "StandardGravitiesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(20000, 196133)
+                    ),
+                };
             }
         }
 

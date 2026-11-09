@@ -119,7 +119,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagnetizationUnit}"/> representing the default unit mappings for Magnetization.</returns>
             public static IEnumerable<UnitDefinition<MagnetizationUnit>> GetDefaultMappings()
             {
-                yield return new (MagnetizationUnit.AmperePerMeter, "AmperePerMeter", "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<MagnetizationUnit>[]
+                {
+                    new (MagnetizationUnit.AmperePerMeter, "AmperePerMeter", "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

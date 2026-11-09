@@ -125,58 +125,61 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LinearDensityUnit}"/> representing the default unit mappings for LinearDensity.</returns>
             public static IEnumerable<UnitDefinition<LinearDensityUnit>> GetDefaultMappings()
             {
-                yield return new (LinearDensityUnit.GramPerCentimeter, "GramPerCentimeter", "GramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
-                     10
-                );
-                yield return new (LinearDensityUnit.GramPerFoot, "GramPerFoot", "GramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram),
-                     new QuantityValue(1524, 5)
-                );
-                yield return new (LinearDensityUnit.GramPerMeter, "GramPerMeter", "GramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
-                     1000
-                );
-                yield return new (LinearDensityUnit.GramPerMillimeter, "GramPerMillimeter", "GramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram),
-                     1
-                );
-                yield return new (LinearDensityUnit.KilogramPerCentimeter, "KilogramPerCentimeter", "KilogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 100)
-                );
-                yield return new (LinearDensityUnit.KilogramPerFoot, "KilogramPerFoot", "KilogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilogram),
-                     new QuantityValue(381, 1250)
-                );
-                yield return new (LinearDensityUnit.KilogramPerMeter, "KilogramPerMeter", "KilogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (LinearDensityUnit.KilogramPerMillimeter, "KilogramPerMillimeter", "KilogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (LinearDensityUnit.MicrogramPerCentimeter, "MicrogramPerCentimeter", "MicrogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram),
-                     10000000
-                );
-                yield return new (LinearDensityUnit.MicrogramPerFoot, "MicrogramPerFoot", "MicrogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Microgram),
-                     304800000
-                );
-                yield return new (LinearDensityUnit.MicrogramPerMeter, "MicrogramPerMeter", "MicrogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram),
-                     1000000000
-                );
-                yield return new (LinearDensityUnit.MicrogramPerMillimeter, "MicrogramPerMillimeter", "MicrogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Microgram),
-                     1000000
-                );
-                yield return new (LinearDensityUnit.MilligramPerCentimeter, "MilligramPerCentimeter", "MilligramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram),
-                     10000
-                );
-                yield return new (LinearDensityUnit.MilligramPerFoot, "MilligramPerFoot", "MilligramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Milligram),
-                     304800
-                );
-                yield return new (LinearDensityUnit.MilligramPerMeter, "MilligramPerMeter", "MilligramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
-                     1000000
-                );
-                yield return new (LinearDensityUnit.MilligramPerMillimeter, "MilligramPerMillimeter", "MilligramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Milligram),
-                     1000
-                );
-                yield return new (LinearDensityUnit.PoundPerFoot, "PoundPerFoot", "PoundsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(30480000, 45359237)
-                );
-                yield return new (LinearDensityUnit.PoundPerInch, "PoundPerInch", "PoundsPerInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound),
-                     new QuantityValue(2540000, 45359237)
-                );
+                return new UnitDefinition<LinearDensityUnit>[]
+                {
+                    new (LinearDensityUnit.GramPerCentimeter, "GramPerCentimeter", "GramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
+                         10
+                    ),
+                    new (LinearDensityUnit.GramPerFoot, "GramPerFoot", "GramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram),
+                         new QuantityValue(1524, 5)
+                    ),
+                    new (LinearDensityUnit.GramPerMeter, "GramPerMeter", "GramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
+                         1000
+                    ),
+                    new (LinearDensityUnit.GramPerMillimeter, "GramPerMillimeter", "GramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram),
+                         1
+                    ),
+                    new (LinearDensityUnit.KilogramPerCentimeter, "KilogramPerCentimeter", "KilogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram),
+                         new QuantityValue(1, 100)
+                    ),
+                    new (LinearDensityUnit.KilogramPerFoot, "KilogramPerFoot", "KilogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilogram),
+                         new QuantityValue(381, 1250)
+                    ),
+                    new (LinearDensityUnit.KilogramPerMeter, "KilogramPerMeter", "KilogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
+                    new (LinearDensityUnit.KilogramPerMillimeter, "KilogramPerMillimeter", "KilogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (LinearDensityUnit.MicrogramPerCentimeter, "MicrogramPerCentimeter", "MicrogramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram),
+                         10000000
+                    ),
+                    new (LinearDensityUnit.MicrogramPerFoot, "MicrogramPerFoot", "MicrogramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Microgram),
+                         304800000
+                    ),
+                    new (LinearDensityUnit.MicrogramPerMeter, "MicrogramPerMeter", "MicrogramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram),
+                         1000000000
+                    ),
+                    new (LinearDensityUnit.MicrogramPerMillimeter, "MicrogramPerMillimeter", "MicrogramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Microgram),
+                         1000000
+                    ),
+                    new (LinearDensityUnit.MilligramPerCentimeter, "MilligramPerCentimeter", "MilligramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram),
+                         10000
+                    ),
+                    new (LinearDensityUnit.MilligramPerFoot, "MilligramPerFoot", "MilligramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Milligram),
+                         304800
+                    ),
+                    new (LinearDensityUnit.MilligramPerMeter, "MilligramPerMeter", "MilligramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
+                         1000000
+                    ),
+                    new (LinearDensityUnit.MilligramPerMillimeter, "MilligramPerMillimeter", "MilligramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Milligram),
+                         1000
+                    ),
+                    new (LinearDensityUnit.PoundPerFoot, "PoundPerFoot", "PoundsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                         new QuantityValue(30480000, 45359237)
+                    ),
+                    new (LinearDensityUnit.PoundPerInch, "PoundPerInch", "PoundsPerInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound),
+                         new QuantityValue(2540000, 45359237)
+                    ),
+                };
             }
         }
 

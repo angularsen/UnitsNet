@@ -116,22 +116,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{WarpingMomentOfInertiaUnit}"/> representing the default unit mappings for WarpingMomentOfInertia.</returns>
             public static IEnumerable<UnitDefinition<WarpingMomentOfInertiaUnit>> GetDefaultMappings()
             {
-                yield return new (WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimeterToTheSixth", "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter),
-                     1000000000000
-                );
-                yield return new (WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimeterToTheSixth", "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter),
-                     1000000
-                );
-                yield return new (WarpingMomentOfInertiaUnit.FootToTheSixth, "FootToTheSixth", "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(3814697265625000000, 3058791354808281)
-                );
-                yield return new (WarpingMomentOfInertiaUnit.InchToTheSixth, "InchToTheSixth", "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(new BigInteger(15625) * QuantityValue.PowerOfTen(18), 4195872914689)
-                );
-                yield return new (WarpingMomentOfInertiaUnit.MeterToTheSixth, "MeterToTheSixth", "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimeterToTheSixth", "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000000000000000
-                );
+                return new UnitDefinition<WarpingMomentOfInertiaUnit>[]
+                {
+                    new (WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimeterToTheSixth", "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter),
+                         1000000000000
+                    ),
+                    new (WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimeterToTheSixth", "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter),
+                         1000000
+                    ),
+                    new (WarpingMomentOfInertiaUnit.FootToTheSixth, "FootToTheSixth", "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot),
+                         new QuantityValue(3814697265625000000, 3058791354808281)
+                    ),
+                    new (WarpingMomentOfInertiaUnit.InchToTheSixth, "InchToTheSixth", "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch),
+                         new QuantityValue(new BigInteger(15625) * QuantityValue.PowerOfTen(18), 4195872914689)
+                    ),
+                    new (WarpingMomentOfInertiaUnit.MeterToTheSixth, "MeterToTheSixth", "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter)),
+                    new (WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimeterToTheSixth", "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter),
+                         1000000000000000000
+                    ),
+                };
             }
         }
 

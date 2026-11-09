@@ -118,40 +118,43 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FrequencyUnit}"/> representing the default unit mappings for Frequency.</returns>
             public static IEnumerable<UnitDefinition<FrequencyUnit>> GetDefaultMappings()
             {
-                yield return new (FrequencyUnit.BeatPerMinute, "BeatPerMinute", "BeatsPerMinute", new BaseUnits(time: DurationUnit.Minute),
-                     60
-                );
-                yield return new (FrequencyUnit.CyclePerHour, "CyclePerHour", "CyclesPerHour", new BaseUnits(time: DurationUnit.Hour),
-                     3600
-                );
-                yield return new (FrequencyUnit.CyclePerMinute, "CyclePerMinute", "CyclesPerMinute", new BaseUnits(time: DurationUnit.Minute),
-                     60
-                );
-                yield return new (FrequencyUnit.Gigahertz, "Gigahertz", "Gigahertz", new BaseUnits(time: DurationUnit.Nanosecond),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (FrequencyUnit.Hertz, "Hertz", "Hertz", new BaseUnits(time: DurationUnit.Second));
-                yield return new (FrequencyUnit.Kilohertz, "Kilohertz", "Kilohertz", new BaseUnits(time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (FrequencyUnit.Megahertz, "Megahertz", "Megahertz", new BaseUnits(time: DurationUnit.Microsecond),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (FrequencyUnit.Microhertz, "Microhertz", "Microhertz", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (FrequencyUnit.Millihertz, "Millihertz", "Millihertz", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (FrequencyUnit.PerSecond, "PerSecond", "PerSecond", new BaseUnits(time: DurationUnit.Second),
-                     1
-                );
-                yield return new (FrequencyUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(3141592653589793, 500000000000000)
-                );
-                yield return new (FrequencyUnit.Terahertz, "Terahertz", "Terahertz", new BaseUnits(time: DurationUnit.Picosecond),
-                     new QuantityValue(1, 1000000000000)
-                );
+                return new UnitDefinition<FrequencyUnit>[]
+                {
+                    new (FrequencyUnit.BeatPerMinute, "BeatPerMinute", "BeatsPerMinute", new BaseUnits(time: DurationUnit.Minute),
+                         60
+                    ),
+                    new (FrequencyUnit.CyclePerHour, "CyclePerHour", "CyclesPerHour", new BaseUnits(time: DurationUnit.Hour),
+                         3600
+                    ),
+                    new (FrequencyUnit.CyclePerMinute, "CyclePerMinute", "CyclesPerMinute", new BaseUnits(time: DurationUnit.Minute),
+                         60
+                    ),
+                    new (FrequencyUnit.Gigahertz, "Gigahertz", "Gigahertz", new BaseUnits(time: DurationUnit.Nanosecond),
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (FrequencyUnit.Hertz, "Hertz", "Hertz", new BaseUnits(time: DurationUnit.Second)),
+                    new (FrequencyUnit.Kilohertz, "Kilohertz", "Kilohertz", new BaseUnits(time: DurationUnit.Millisecond),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (FrequencyUnit.Megahertz, "Megahertz", "Megahertz", new BaseUnits(time: DurationUnit.Microsecond),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (FrequencyUnit.Microhertz, "Microhertz", "Microhertz", BaseUnits.Undefined,
+                         1000000
+                    ),
+                    new (FrequencyUnit.Millihertz, "Millihertz", "Millihertz", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (FrequencyUnit.PerSecond, "PerSecond", "PerSecond", new BaseUnits(time: DurationUnit.Second),
+                         1
+                    ),
+                    new (FrequencyUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(3141592653589793, 500000000000000)
+                    ),
+                    new (FrequencyUnit.Terahertz, "Terahertz", "Terahertz", new BaseUnits(time: DurationUnit.Picosecond),
+                         new QuantityValue(1, 1000000000000)
+                    ),
+                };
             }
         }
 

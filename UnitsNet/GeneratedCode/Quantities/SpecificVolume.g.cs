@@ -117,13 +117,16 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificVolumeUnit}"/> representing the default unit mappings for SpecificVolume.</returns>
             public static IEnumerable<UnitDefinition<SpecificVolumeUnit>> GetDefaultMappings()
             {
-                yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(28349523125, 1769802912)
-                );
-                yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (SpecificVolumeUnit.CubicMillimeterPerKilogram, "CubicMillimeterPerKilogram", "CubicMillimetersPerKilogram", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
-                     1000000000
-                );
+                return new UnitDefinition<SpecificVolumeUnit>[]
+                {
+                    new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                         new QuantityValue(28349523125, 1769802912)
+                    ),
+                    new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
+                    new (SpecificVolumeUnit.CubicMillimeterPerKilogram, "CubicMillimeterPerKilogram", "CubicMillimetersPerKilogram", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
+                         1000000000
+                    ),
+                };
             }
         }
 

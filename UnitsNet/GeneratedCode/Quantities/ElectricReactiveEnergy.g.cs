@@ -118,13 +118,16 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricReactiveEnergyUnit}"/> representing the default unit mappings for ElectricReactiveEnergy.</returns>
             public static IEnumerable<UnitDefinition<ElectricReactiveEnergyUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHour", "KilovoltampereReactiveHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHour", "MegavoltampereReactiveHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHour", "VoltampereReactiveHours", BaseUnits.Undefined);
+                return new UnitDefinition<ElectricReactiveEnergyUnit>[]
+                {
+                    new (ElectricReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHour", "KilovoltampereReactiveHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (ElectricReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHour", "MegavoltampereReactiveHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (ElectricReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHour", "VoltampereReactiveHours", BaseUnits.Undefined),
+                };
             }
         }
 

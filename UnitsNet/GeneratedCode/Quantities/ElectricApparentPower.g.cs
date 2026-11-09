@@ -120,22 +120,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricApparentPowerUnit}"/> representing the default unit mappings for ElectricApparentPower.</returns>
             public static IEnumerable<UnitDefinition<ElectricApparentPowerUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricApparentPowerUnit.Gigavoltampere, "Gigavoltampere", "Gigavoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (ElectricApparentPowerUnit.Kilovoltampere, "Kilovoltampere", "Kilovoltamperes", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricApparentPowerUnit.Megavoltampere, "Megavoltampere", "Megavoltamperes", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricApparentPowerUnit.Microvoltampere, "Microvoltampere", "Microvoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (ElectricApparentPowerUnit.Millivoltampere, "Millivoltampere", "Millivoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (ElectricApparentPowerUnit.Voltampere, "Voltampere", "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                return new UnitDefinition<ElectricApparentPowerUnit>[]
+                {
+                    new (ElectricApparentPowerUnit.Gigavoltampere, "Gigavoltampere", "Gigavoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond),
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (ElectricApparentPowerUnit.Kilovoltampere, "Kilovoltampere", "Kilovoltamperes", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (ElectricApparentPowerUnit.Megavoltampere, "Megavoltampere", "Megavoltamperes", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (ElectricApparentPowerUnit.Microvoltampere, "Microvoltampere", "Microvoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
+                         1000000
+                    ),
+                    new (ElectricApparentPowerUnit.Millivoltampere, "Millivoltampere", "Millivoltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                         1000
+                    ),
+                    new (ElectricApparentPowerUnit.Voltampere, "Voltampere", "Voltamperes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                };
             }
         }
 

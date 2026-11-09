@@ -135,85 +135,88 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerUnit}"/> representing the default unit mappings for Power.</returns>
             public static IEnumerable<UnitDefinition<PowerUnit>> GetDefaultMappings()
             {
-                yield return new (PowerUnit.BoilerHorsepower, "BoilerHorsepower", "BoilerHorsepower", BaseUnits.Undefined,
-                     new QuantityValue(2, 19625)
-                );
-                yield return new (PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitPerHour", "BritishThermalUnitsPerHour", BaseUnits.Undefined,
-                     new QuantityValue(180000000000, 52752792631)
-                );
-                yield return new (PowerUnit.Decawatt, "Decawatt", "Decawatts", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)
-                );
-                yield return new (PowerUnit.Deciwatt, "Deciwatt", "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second),
-                     10
-                );
-                yield return new (PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", "ElectricalHorsepower", BaseUnits.Undefined,
-                     new QuantityValue(1, 746)
-                );
-                yield return new (PowerUnit.Femtowatt, "Femtowatt", "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second),
-                     1000000000000000
-                );
-                yield return new (PowerUnit.GigajoulePerHour, "GigajoulePerHour", "GigajoulesPerHour", BaseUnits.Undefined,
-                     new QuantityValue(9, 2500000)
-                );
-                yield return new (PowerUnit.Gigawatt, "Gigawatt", "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", "HydraulicHorsepower", BaseUnits.Undefined,
-                     new QuantityValue(50000000000000, 37284993579113511)
-                );
-                yield return new (PowerUnit.JoulePerHour, "JoulePerHour", "JoulesPerHour", BaseUnits.Undefined,
-                     3600
-                );
-                yield return new (PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitPerHour", "KilobritishThermalUnitsPerHour", BaseUnits.Undefined,
-                     new QuantityValue(180000000, 52752792631)
-                );
-                yield return new (PowerUnit.KilojoulePerHour, "KilojoulePerHour", "KilojoulesPerHour", BaseUnits.Undefined,
-                     new QuantityValue(18, 5)
-                );
-                yield return new (PowerUnit.Kilowatt, "Kilowatt", "Kilowatts", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", "MechanicalHorsepower", BaseUnits.Undefined,
-                     new QuantityValue(200000000000, 149139974303117)
-                );
-                yield return new (PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitPerHour", "MegabritishThermalUnitsPerHour", BaseUnits.Undefined,
-                     new QuantityValue(180000, 52752792631)
-                );
-                yield return new (PowerUnit.MegajoulePerHour, "MegajoulePerHour", "MegajoulesPerHour", BaseUnits.Undefined,
-                     new QuantityValue(9, 2500)
-                );
-                yield return new (PowerUnit.Megawatt, "Megawatt", "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (PowerUnit.MetricHorsepower, "MetricHorsepower", "MetricHorsepower", BaseUnits.Undefined,
-                     new QuantityValue(800, 588399)
-                );
-                yield return new (PowerUnit.Microwatt, "Microwatt", "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (PowerUnit.MillijoulePerHour, "MillijoulePerHour", "MillijoulesPerHour", BaseUnits.Undefined,
-                     3600000
-                );
-                yield return new (PowerUnit.Milliwatt, "Milliwatt", "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (PowerUnit.Nanowatt, "Nanowatt", "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second),
-                     1000000000
-                );
-                yield return new (PowerUnit.Petawatt, "Petawatt", "Petawatts", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000)
-                );
-                yield return new (PowerUnit.Picowatt, "Picowatt", "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second),
-                     1000000000000
-                );
-                yield return new (PowerUnit.Terawatt, "Terawatt", "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (PowerUnit.TonOfRefrigeration, "TonOfRefrigeration", "TonsOfRefrigeration", BaseUnits.Undefined,
-                     new QuantityValue(1000, 3516853)
-                );
-                yield return new (PowerUnit.Watt, "Watt", "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                return new UnitDefinition<PowerUnit>[]
+                {
+                    new (PowerUnit.BoilerHorsepower, "BoilerHorsepower", "BoilerHorsepower", BaseUnits.Undefined,
+                         new QuantityValue(2, 19625)
+                    ),
+                    new (PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitPerHour", "BritishThermalUnitsPerHour", BaseUnits.Undefined,
+                         new QuantityValue(180000000000, 52752792631)
+                    ),
+                    new (PowerUnit.Decawatt, "Decawatt", "Decawatts", BaseUnits.Undefined,
+                         new QuantityValue(1, 10)
+                    ),
+                    new (PowerUnit.Deciwatt, "Deciwatt", "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second),
+                         10
+                    ),
+                    new (PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", "ElectricalHorsepower", BaseUnits.Undefined,
+                         new QuantityValue(1, 746)
+                    ),
+                    new (PowerUnit.Femtowatt, "Femtowatt", "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second),
+                         1000000000000000
+                    ),
+                    new (PowerUnit.GigajoulePerHour, "GigajoulePerHour", "GigajoulesPerHour", BaseUnits.Undefined,
+                         new QuantityValue(9, 2500000)
+                    ),
+                    new (PowerUnit.Gigawatt, "Gigawatt", "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond),
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", "HydraulicHorsepower", BaseUnits.Undefined,
+                         new QuantityValue(50000000000000, 37284993579113511)
+                    ),
+                    new (PowerUnit.JoulePerHour, "JoulePerHour", "JoulesPerHour", BaseUnits.Undefined,
+                         3600
+                    ),
+                    new (PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitPerHour", "KilobritishThermalUnitsPerHour", BaseUnits.Undefined,
+                         new QuantityValue(180000000, 52752792631)
+                    ),
+                    new (PowerUnit.KilojoulePerHour, "KilojoulePerHour", "KilojoulesPerHour", BaseUnits.Undefined,
+                         new QuantityValue(18, 5)
+                    ),
+                    new (PowerUnit.Kilowatt, "Kilowatt", "Kilowatts", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", "MechanicalHorsepower", BaseUnits.Undefined,
+                         new QuantityValue(200000000000, 149139974303117)
+                    ),
+                    new (PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitPerHour", "MegabritishThermalUnitsPerHour", BaseUnits.Undefined,
+                         new QuantityValue(180000, 52752792631)
+                    ),
+                    new (PowerUnit.MegajoulePerHour, "MegajoulePerHour", "MegajoulesPerHour", BaseUnits.Undefined,
+                         new QuantityValue(9, 2500)
+                    ),
+                    new (PowerUnit.Megawatt, "Megawatt", "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (PowerUnit.MetricHorsepower, "MetricHorsepower", "MetricHorsepower", BaseUnits.Undefined,
+                         new QuantityValue(800, 588399)
+                    ),
+                    new (PowerUnit.Microwatt, "Microwatt", "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
+                         1000000
+                    ),
+                    new (PowerUnit.MillijoulePerHour, "MillijoulePerHour", "MillijoulesPerHour", BaseUnits.Undefined,
+                         3600000
+                    ),
+                    new (PowerUnit.Milliwatt, "Milliwatt", "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                         1000
+                    ),
+                    new (PowerUnit.Nanowatt, "Nanowatt", "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second),
+                         1000000000
+                    ),
+                    new (PowerUnit.Petawatt, "Petawatt", "Petawatts", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000000000)
+                    ),
+                    new (PowerUnit.Picowatt, "Picowatt", "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second),
+                         1000000000000
+                    ),
+                    new (PowerUnit.Terawatt, "Terawatt", "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000000000)
+                    ),
+                    new (PowerUnit.TonOfRefrigeration, "TonOfRefrigeration", "TonsOfRefrigeration", BaseUnits.Undefined,
+                         new QuantityValue(1000, 3516853)
+                    ),
+                    new (PowerUnit.Watt, "Watt", "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                };
             }
         }
 

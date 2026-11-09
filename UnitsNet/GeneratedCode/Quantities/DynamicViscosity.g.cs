@@ -121,34 +121,37 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DynamicViscosityUnit}"/> representing the default unit mappings for DynamicViscosity.</returns>
             public static IEnumerable<UnitDefinition<DynamicViscosityUnit>> GetDefaultMappings()
             {
-                yield return new (DynamicViscosityUnit.Centipoise, "Centipoise", "Centipoise", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (DynamicViscosityUnit.MicropascalSecond, "MicropascalSecond", "MicropascalSeconds", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (DynamicViscosityUnit.MillipascalSecond, "MillipascalSecond", "MillipascalSeconds", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondPerMeterSquared", "NewtonSecondsPerMeterSquared", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (DynamicViscosityUnit.PascalSecond, "PascalSecond", "PascalSeconds", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (DynamicViscosityUnit.Poise, "Poise", "Poise", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundForceSecondPerSquareFoot", "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(185806080000, 8896443230521)
-                );
-                yield return new (DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundForceSecondPerSquareInch", "PoundsForceSecondPerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1290320000, 8896443230521)
-                );
-                yield return new (DynamicViscosityUnit.PoundPerFootSecond, "PoundPerFootSecond", "PoundsPerFootSecond", BaseUnits.Undefined,
-                     new QuantityValue(30480000, 45359237)
-                );
-                yield return new (DynamicViscosityUnit.Reyn, "Reyn", "Reyns", BaseUnits.Undefined,
-                     new QuantityValue(1290320000, 8896443230521)
-                );
+                return new UnitDefinition<DynamicViscosityUnit>[]
+                {
+                    new (DynamicViscosityUnit.Centipoise, "Centipoise", "Centipoise", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (DynamicViscosityUnit.MicropascalSecond, "MicropascalSecond", "MicropascalSeconds", BaseUnits.Undefined,
+                         1000000
+                    ),
+                    new (DynamicViscosityUnit.MillipascalSecond, "MillipascalSecond", "MillipascalSeconds", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondPerMeterSquared", "NewtonSecondsPerMeterSquared", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (DynamicViscosityUnit.PascalSecond, "PascalSecond", "PascalSeconds", BaseUnits.Undefined,
+                         1
+                    ),
+                    new (DynamicViscosityUnit.Poise, "Poise", "Poise", BaseUnits.Undefined,
+                         10
+                    ),
+                    new (DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundForceSecondPerSquareFoot", "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined,
+                         new QuantityValue(185806080000, 8896443230521)
+                    ),
+                    new (DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundForceSecondPerSquareInch", "PoundsForceSecondPerSquareInch", BaseUnits.Undefined,
+                         new QuantityValue(1290320000, 8896443230521)
+                    ),
+                    new (DynamicViscosityUnit.PoundPerFootSecond, "PoundPerFootSecond", "PoundsPerFootSecond", BaseUnits.Undefined,
+                         new QuantityValue(30480000, 45359237)
+                    ),
+                    new (DynamicViscosityUnit.Reyn, "Reyn", "Reyns", BaseUnits.Undefined,
+                         new QuantityValue(1290320000, 8896443230521)
+                    ),
+                };
             }
         }
 

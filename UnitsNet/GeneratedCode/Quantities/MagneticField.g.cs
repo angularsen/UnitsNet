@@ -120,22 +120,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagneticFieldUnit}"/> representing the default unit mappings for MagneticField.</returns>
             public static IEnumerable<UnitDefinition<MagneticFieldUnit>> GetDefaultMappings()
             {
-                yield return new (MagneticFieldUnit.Gauss, "Gauss", "Gausses", BaseUnits.Undefined,
-                     10000
-                );
-                yield return new (MagneticFieldUnit.Microtesla, "Microtesla", "Microteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, current: ElectricCurrentUnit.Ampere),
-                     1000000
-                );
-                yield return new (MagneticFieldUnit.Milligauss, "Milligauss", "Milligausses", BaseUnits.Undefined,
-                     10000000
-                );
-                yield return new (MagneticFieldUnit.Millitesla, "Millitesla", "Milliteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, current: ElectricCurrentUnit.Ampere),
-                     1000
-                );
-                yield return new (MagneticFieldUnit.Nanotesla, "Nanotesla", "Nanoteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, current: ElectricCurrentUnit.Ampere),
-                     1000000000
-                );
-                yield return new (MagneticFieldUnit.Tesla, "Tesla", "Teslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<MagneticFieldUnit>[]
+                {
+                    new (MagneticFieldUnit.Gauss, "Gauss", "Gausses", BaseUnits.Undefined,
+                         10000
+                    ),
+                    new (MagneticFieldUnit.Microtesla, "Microtesla", "Microteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, current: ElectricCurrentUnit.Ampere),
+                         1000000
+                    ),
+                    new (MagneticFieldUnit.Milligauss, "Milligauss", "Milligausses", BaseUnits.Undefined,
+                         10000000
+                    ),
+                    new (MagneticFieldUnit.Millitesla, "Millitesla", "Milliteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, current: ElectricCurrentUnit.Ampere),
+                         1000
+                    ),
+                    new (MagneticFieldUnit.Nanotesla, "Nanotesla", "Nanoteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, current: ElectricCurrentUnit.Ampere),
+                         1000000000
+                    ),
+                    new (MagneticFieldUnit.Tesla, "Tesla", "Teslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

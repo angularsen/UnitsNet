@@ -121,16 +121,19 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LeakRateUnit}"/> representing the default unit mappings for LeakRate.</returns>
             public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
             {
-                yield return new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(40000, 4053)
-                );
-                yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(15, 2)
-                );
+                return new UnitDefinition<LeakRateUnit>[]
+                {
+                    new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(40000, 4053)
+                    ),
+                    new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined,
+                         10
+                    ),
+                    new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(15, 2)
+                    ),
+                };
             }
         }
 

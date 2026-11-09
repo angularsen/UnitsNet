@@ -117,31 +117,34 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumePerLengthUnit}"/> representing the default unit mappings for VolumePerLength.</returns>
             public static IEnumerable<UnitDefinition<VolumePerLengthUnit>> GetDefaultMappings()
             {
-                yield return new (VolumePerLengthUnit.CubicMeterPerMeter, "CubicMeterPerMeter", "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (VolumePerLengthUnit.CubicYardPerFoot, "CubicYardPerFoot", "CubicYardsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(1562500, 3919347)
-                );
-                yield return new (VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "CubicYardPerUsSurveyFoot", "CubicYardsPerUsSurveyFoot", BaseUnits.Undefined,
-                     new QuantityValue(781250000000, 1959669580653)
-                );
-                yield return new (VolumePerLengthUnit.ImperialGallonPerMile, "ImperialGallonPerMile", "ImperialGallonsPerMile", BaseUnits.Undefined,
-                     new QuantityValue(160934400000, 454609)
-                );
-                yield return new (VolumePerLengthUnit.LiterPerKilometer, "LiterPerKilometer", "LitersPerKilometer", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (VolumePerLengthUnit.LiterPerMeter, "LiterPerMeter", "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter),
-                     1000
-                );
-                yield return new (VolumePerLengthUnit.LiterPerMillimeter, "LiterPerMillimeter", "LitersPerMillimeter", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelPerFoot", "OilBarrelsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(50000000, 26080593)
-                );
-                yield return new (VolumePerLengthUnit.UsGallonPerMile, "UsGallonPerMile", "UsGallonsPerMile", BaseUnits.Undefined,
-                     new QuantityValue(48000000000, 112903)
-                );
+                return new UnitDefinition<VolumePerLengthUnit>[]
+                {
+                    new (VolumePerLengthUnit.CubicMeterPerMeter, "CubicMeterPerMeter", "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter)),
+                    new (VolumePerLengthUnit.CubicYardPerFoot, "CubicYardPerFoot", "CubicYardsPerFoot", BaseUnits.Undefined,
+                         new QuantityValue(1562500, 3919347)
+                    ),
+                    new (VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "CubicYardPerUsSurveyFoot", "CubicYardsPerUsSurveyFoot", BaseUnits.Undefined,
+                         new QuantityValue(781250000000, 1959669580653)
+                    ),
+                    new (VolumePerLengthUnit.ImperialGallonPerMile, "ImperialGallonPerMile", "ImperialGallonsPerMile", BaseUnits.Undefined,
+                         new QuantityValue(160934400000, 454609)
+                    ),
+                    new (VolumePerLengthUnit.LiterPerKilometer, "LiterPerKilometer", "LitersPerKilometer", BaseUnits.Undefined,
+                         1000000
+                    ),
+                    new (VolumePerLengthUnit.LiterPerMeter, "LiterPerMeter", "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter),
+                         1000
+                    ),
+                    new (VolumePerLengthUnit.LiterPerMillimeter, "LiterPerMillimeter", "LitersPerMillimeter", BaseUnits.Undefined,
+                         1
+                    ),
+                    new (VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelPerFoot", "OilBarrelsPerFoot", BaseUnits.Undefined,
+                         new QuantityValue(50000000, 26080593)
+                    ),
+                    new (VolumePerLengthUnit.UsGallonPerMile, "UsGallonPerMile", "UsGallonsPerMile", BaseUnits.Undefined,
+                         new QuantityValue(48000000000, 112903)
+                    ),
+                };
             }
         }
 

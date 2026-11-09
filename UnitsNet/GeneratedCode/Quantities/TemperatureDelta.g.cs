@@ -129,31 +129,34 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureDeltaUnit}"/> representing the default unit mappings for TemperatureDelta.</returns>
             public static IEnumerable<UnitDefinition<TemperatureDeltaUnit>> GetDefaultMappings()
             {
-                yield return new (TemperatureDeltaUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius),
-                     1
-                );
-                yield return new (TemperatureDeltaUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle),
-                     new QuantityValue(-3, 2)
-                );
-                yield return new (TemperatureDeltaUnit.DegreeFahrenheit, "DegreeFahrenheit", "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit),
-                     new QuantityValue(9, 5)
-                );
-                yield return new (TemperatureDeltaUnit.DegreeNewton, "DegreeNewton", "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton),
-                     new QuantityValue(33, 100)
-                );
-                yield return new (TemperatureDeltaUnit.DegreeRankine, "DegreeRankine", "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine),
-                     new QuantityValue(9, 5)
-                );
-                yield return new (TemperatureDeltaUnit.DegreeReaumur, "DegreeReaumur", "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur),
-                     new QuantityValue(4, 5)
-                );
-                yield return new (TemperatureDeltaUnit.DegreeRoemer, "DegreeRoemer", "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer),
-                     new QuantityValue(21, 40)
-                );
-                yield return new (TemperatureDeltaUnit.Kelvin, "Kelvin", "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
-                yield return new (TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreeCelsius", "MillidegreesCelsius", BaseUnits.Undefined,
-                     1000
-                );
+                return new UnitDefinition<TemperatureDeltaUnit>[]
+                {
+                    new (TemperatureDeltaUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius),
+                         1
+                    ),
+                    new (TemperatureDeltaUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle),
+                         new QuantityValue(-3, 2)
+                    ),
+                    new (TemperatureDeltaUnit.DegreeFahrenheit, "DegreeFahrenheit", "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit),
+                         new QuantityValue(9, 5)
+                    ),
+                    new (TemperatureDeltaUnit.DegreeNewton, "DegreeNewton", "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton),
+                         new QuantityValue(33, 100)
+                    ),
+                    new (TemperatureDeltaUnit.DegreeRankine, "DegreeRankine", "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine),
+                         new QuantityValue(9, 5)
+                    ),
+                    new (TemperatureDeltaUnit.DegreeReaumur, "DegreeReaumur", "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur),
+                         new QuantityValue(4, 5)
+                    ),
+                    new (TemperatureDeltaUnit.DegreeRoemer, "DegreeRoemer", "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer),
+                         new QuantityValue(21, 40)
+                    ),
+                    new (TemperatureDeltaUnit.Kelvin, "Kelvin", "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
+                    new (TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreeCelsius", "MillidegreesCelsius", BaseUnits.Undefined,
+                         1000
+                    ),
+                };
             }
         }
 

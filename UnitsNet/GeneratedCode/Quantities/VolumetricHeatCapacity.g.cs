@@ -120,31 +120,34 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumetricHeatCapacityUnit}"/> representing the default unit mappings for VolumetricHeatCapacity.</returns>
             public static IEnumerable<UnitDefinition<VolumetricHeatCapacityUnit>> GetDefaultMappings()
             {
-                yield return new (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtuPerCubicFootDegreeFahrenheit", "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(98322384, 6594099078875)
-                );
-                yield return new (VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriePerCubicCentimeterDegreeCelsius", "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184000)
-                );
-                yield return new (VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulePerCubicMeterDegreeCelsius", "JoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     1
-                );
-                yield return new (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, "JoulePerCubicMeterKelvin", "JoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
-                yield return new (VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriePerCubicCentimeterDegreeCelsius", "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184000000)
-                );
-                yield return new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulePerCubicMeterDegreeCelsius", "KilojoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulePerCubicMeterKelvin", "KilojoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulePerCubicMeterDegreeCelsius", "MegajoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulePerCubicMeterKelvin", "MegajoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
-                     new QuantityValue(1, 1000000)
-                );
+                return new UnitDefinition<VolumetricHeatCapacityUnit>[]
+                {
+                    new (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtuPerCubicFootDegreeFahrenheit", "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined,
+                         new QuantityValue(98322384, 6594099078875)
+                    ),
+                    new (VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriePerCubicCentimeterDegreeCelsius", "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined,
+                         new QuantityValue(1, 4184000)
+                    ),
+                    new (VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulePerCubicMeterDegreeCelsius", "JoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                         1
+                    ),
+                    new (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, "JoulePerCubicMeterKelvin", "JoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin)),
+                    new (VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriePerCubicCentimeterDegreeCelsius", "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined,
+                         new QuantityValue(1, 4184000000)
+                    ),
+                    new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulePerCubicMeterDegreeCelsius", "KilojoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulePerCubicMeterKelvin", "KilojoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulePerCubicMeterDegreeCelsius", "MegajoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulePerCubicMeterKelvin", "MegajoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
+                         new QuantityValue(1, 1000000)
+                    ),
+                };
             }
         }
 

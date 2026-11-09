@@ -117,22 +117,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{HeatTransferCoefficientUnit}"/> representing the default unit mappings for HeatTransferCoefficient.</returns>
             public static IEnumerable<UnitDefinition<HeatTransferCoefficientUnit>> GetDefaultMappings()
             {
-                yield return new (HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtuPerHourSquareFootDegreeFahrenheit", "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(9290304000, 52752792631)
-                );
-                yield return new (HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, "BtuPerSecondSquareInchDegreeFahrenheit", "BtusPerSecondSquareInchDegreeFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(161290, 474775133679)
-                );
-                yield return new (HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriePerHourSquareMeterDegreeCelsius", "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(450000, 523)
-                );
-                yield return new (HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "KilocaloriePerHourSquareMeterDegreeCelsius", "KilocaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(450, 523)
-                );
-                yield return new (HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattPerSquareMeterCelsius", "WattsPerSquareMeterCelsius", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     1
-                );
-                yield return new (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattPerSquareMeterKelvin", "WattsPerSquareMeterKelvin", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+                return new UnitDefinition<HeatTransferCoefficientUnit>[]
+                {
+                    new (HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtuPerHourSquareFootDegreeFahrenheit", "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined,
+                         new QuantityValue(9290304000, 52752792631)
+                    ),
+                    new (HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, "BtuPerSecondSquareInchDegreeFahrenheit", "BtusPerSecondSquareInchDegreeFahrenheit", BaseUnits.Undefined,
+                         new QuantityValue(161290, 474775133679)
+                    ),
+                    new (HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriePerHourSquareMeterDegreeCelsius", "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
+                         new QuantityValue(450000, 523)
+                    ),
+                    new (HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "KilocaloriePerHourSquareMeterDegreeCelsius", "KilocaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
+                         new QuantityValue(450, 523)
+                    ),
+                    new (HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattPerSquareMeterCelsius", "WattsPerSquareMeterCelsius", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                         1
+                    ),
+                    new (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattPerSquareMeterKelvin", "WattsPerSquareMeterKelvin", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin)),
+                };
             }
         }
 

@@ -119,22 +119,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaMomentOfInertiaUnit}"/> representing the default unit mappings for AreaMomentOfInertia.</returns>
             public static IEnumerable<UnitDefinition<AreaMomentOfInertiaUnit>> GetDefaultMappings()
             {
-                yield return new (AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimeterToTheFourth", "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter),
-                     100000000
-                );
-                yield return new (AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimeterToTheFourth", "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter),
-                     10000
-                );
-                yield return new (AreaMomentOfInertiaUnit.FootToTheFourth, "FootToTheFourth", "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(2441406250000, 21071715921)
-                );
-                yield return new (AreaMomentOfInertiaUnit.InchToTheFourth, "InchToTheFourth", "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(625000000000000, 260144641)
-                );
-                yield return new (AreaMomentOfInertiaUnit.MeterToTheFourth, "MeterToTheFourth", "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimeterToTheFourth", "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000000000
-                );
+                return new UnitDefinition<AreaMomentOfInertiaUnit>[]
+                {
+                    new (AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimeterToTheFourth", "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter),
+                         100000000
+                    ),
+                    new (AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimeterToTheFourth", "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter),
+                         10000
+                    ),
+                    new (AreaMomentOfInertiaUnit.FootToTheFourth, "FootToTheFourth", "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot),
+                         new QuantityValue(2441406250000, 21071715921)
+                    ),
+                    new (AreaMomentOfInertiaUnit.InchToTheFourth, "InchToTheFourth", "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch),
+                         new QuantityValue(625000000000000, 260144641)
+                    ),
+                    new (AreaMomentOfInertiaUnit.MeterToTheFourth, "MeterToTheFourth", "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter)),
+                    new (AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimeterToTheFourth", "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter),
+                         1000000000000
+                    ),
+                };
             }
         }
 
