@@ -45,5 +45,12 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(temperatureDelta, expected / thermalConductance);
             Assert.Equal(thermalConductance, expected / temperatureDelta);
         }
+
+        [Fact]
+        public static void InverseThermalConductanceEqualsThermalResistance()
+        {
+            ThermalResistance thermalResistance = ThermalConductance.FromKilowattsPerKelvin(4).Inverse();
+            Assert.Equal(thermalResistance, ThermalResistance.FromKelvinsPerWatt(0.00025));
+        }
     }
 }
