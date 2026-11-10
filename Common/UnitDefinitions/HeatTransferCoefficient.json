@@ -75,7 +75,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kcal/(h·m²·°C)", "kcal/(m²·h·°C)", "kcal/(hr·m²·°C)", "kcal/(m²·hr·°C)" ]
+          "Abbreviations": [ "cal/(h·m²·°C)", "cal/(m²·h·°C)", "cal/(hr·m²·°C)", "cal/(m²·hr·°C)" ]
         }
       ]
     }
