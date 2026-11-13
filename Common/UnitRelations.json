@@ -112,6 +112,8 @@
   "TemperatureDelta.DegreeCelsius = TemperatureGradient.DegreeCelsiusPerKilometer * Length.Kilometer",
   "TemperatureDelta.Kelvin = ThermalInsulance.SquareMeterKelvinPerWatt * HeatFlux.WattPerSquareMeter",
   "TemperatureDelta.Kelvin = ThermalResistance.KelvinPerWatt * Power.Watt",
+  "ThermalConductance.WattPerKelvin = HeatTransferCoefficient.WattPerSquareMeterKelvin * Area.SquareMeter",
+  "ThermalConductance.WattPerKelvin = ThermalConductivity.WattPerMeterKelvin * Length.Meter",
   "Torque.NewtonMeter = ForcePerLength.NewtonPerMeter * Area.SquareMeter",
   "Torque.NewtonMeter = Length.Meter * Force.Newton",
   "Torque.NewtonMeter = RotationalStiffness.NewtonMeterPerRadian * Angle.Radian",

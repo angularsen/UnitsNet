@@ -1,4 +1,4 @@
-BtuPerHourDegreeFahrenheit=Btu/(h·°F),Btu/h·°F
+BtusPerHourDegreeFahrenheit=Btu/(h·°F),Btu/(hr·°F)
 KilowattsPerDegreeCelsius=kW/°C
 KilowattsPerKelvin=kW/K
 WattsPerDegreeCelsius=W/°C

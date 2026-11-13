@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ThermalConductance.FromBtuPerHourDegreeFahrenheit(QuantityValue)" />
-            public ThermalConductance BtuPerHourDegreeFahrenheit
+            /// <inheritdoc cref="ThermalConductance.FromBtusPerHourDegreeFahrenheit(QuantityValue)" />
+            public ThermalConductance BtusPerHourDegreeFahrenheit
 #if NET7_0_OR_GREATER
-                => ThermalConductance.FromBtuPerHourDegreeFahrenheit(QuantityValue.CreateChecked(value));
+                => ThermalConductance.FromBtusPerHourDegreeFahrenheit(QuantityValue.CreateChecked(value));
 #else
-                => ThermalConductance.FromBtuPerHourDegreeFahrenheit(value.ToQuantityValue());
+                => ThermalConductance.FromBtusPerHourDegreeFahrenheit(value.ToQuantityValue());
 #endif
 
             /// <inheritdoc cref="ThermalConductance.FromKilowattsPerDegreeCelsius(QuantityValue)" />

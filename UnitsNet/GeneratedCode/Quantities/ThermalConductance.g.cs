@@ -39,7 +39,11 @@ namespace UnitsNet
         ILinearQuantity<ThermalConductance, ThermalConductanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalConductance, ThermalConductance, QuantityValue>,
+        IDivisionOperators<ThermalConductance, HeatTransferCoefficient, Area>,
+        IDivisionOperators<ThermalConductance, Area, HeatTransferCoefficient>,
+        IDivisionOperators<ThermalConductance, ThermalConductivity, Length>,
         IMultiplyOperators<ThermalConductance, TemperatureDelta, Power>,
+        IDivisionOperators<ThermalConductance, Length, ThermalConductivity>,
         IComparisonOperators<ThermalConductance, ThermalConductance, bool>,
         IParsable<ThermalConductance>,
 #endif
@@ -117,7 +121,7 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalConductanceUnit}"/> representing the default unit mappings for ThermalConductance.</returns>
             public static IEnumerable<UnitDefinition<ThermalConductanceUnit>> GetDefaultMappings()
             {
-                yield return new (ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, "BtuPerHourDegreeFahrenheit", "BtuPerHourDegreeFahrenheit", BaseUnits.Undefined,
+                yield return new (ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, "BtuPerHourDegreeFahrenheit", "BtusPerHourDegreeFahrenheit", BaseUnits.Undefined,
                      new QuantityValue(100000000000, 52752792631)
                 );
                 yield return new (ThermalConductanceUnit.KilowattPerDegreeCelsius, "KilowattPerDegreeCelsius", "KilowattsPerDegreeCelsius", BaseUnits.Undefined,
@@ -235,7 +239,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductanceUnit.BtuPerHourDegreeFahrenheit"/>
         /// </summary>
-        public QuantityValue BtuPerHourDegreeFahrenheit => this.As(ThermalConductanceUnit.BtuPerHourDegreeFahrenheit);
+        public QuantityValue BtusPerHourDegreeFahrenheit => this.As(ThermalConductanceUnit.BtuPerHourDegreeFahrenheit);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductanceUnit.KilowattPerDegreeCelsius"/>
@@ -289,7 +293,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalConductance"/> from <see cref="ThermalConductanceUnit.BtuPerHourDegreeFahrenheit"/>.
         /// </summary>
-        public static ThermalConductance FromBtuPerHourDegreeFahrenheit(QuantityValue value)
+        public static ThermalConductance FromBtusPerHourDegreeFahrenheit(QuantityValue value)
         {
             return new ThermalConductance(value, ThermalConductanceUnit.BtuPerHourDegreeFahrenheit);
         }
@@ -531,10 +535,34 @@ namespace UnitsNet
             return UnitConverter.Default.ConvertTo(Value, Unit, ThermalResistance.Info);
         }
 
+        /// <summary>Get <see cref="Area"/> from <see cref="ThermalConductance"/> / <see cref="HeatTransferCoefficient"/>.</summary>
+        public static Area operator /(ThermalConductance thermalConductance, HeatTransferCoefficient heatTransferCoefficient)
+        {
+            return Area.FromSquareMeters(thermalConductance.WattsPerKelvin / heatTransferCoefficient.WattsPerSquareMeterKelvin);
+        }
+
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from <see cref="ThermalConductance"/> / <see cref="Area"/>.</summary>
+        public static HeatTransferCoefficient operator /(ThermalConductance thermalConductance, Area area)
+        {
+            return HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(thermalConductance.WattsPerKelvin / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="ThermalConductance"/> / <see cref="ThermalConductivity"/>.</summary>
+        public static Length operator /(ThermalConductance thermalConductance, ThermalConductivity thermalConductivity)
+        {
+            return Length.FromMeters(thermalConductance.WattsPerKelvin / thermalConductivity.WattsPerMeterKelvin);
+        }
+
         /// <summary>Get <see cref="Power"/> from <see cref="ThermalConductance"/> * <see cref="TemperatureDelta"/>.</summary>
         public static Power operator *(ThermalConductance thermalConductance, TemperatureDelta temperatureDelta)
         {
             return Power.FromWatts(thermalConductance.WattsPerKelvin * temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="ThermalConductivity"/> from <see cref="ThermalConductance"/> / <see cref="Length"/>.</summary>
+        public static ThermalConductivity operator /(ThermalConductance thermalConductance, Length length)
+        {
+            return ThermalConductivity.FromWattsPerMeterKelvin(thermalConductance.WattsPerKelvin / length.Meters);
         }
 
         #endregion

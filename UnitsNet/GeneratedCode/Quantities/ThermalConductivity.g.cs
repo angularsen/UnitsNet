@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<ThermalConductivity, ThermalConductivityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalConductivity, ThermalConductivity, QuantityValue>,
+        IMultiplyOperators<ThermalConductivity, Length, ThermalConductance>,
         IComparisonOperators<ThermalConductivity, ThermalConductivity, bool>,
         IParsable<ThermalConductivity>,
 #endif
@@ -488,6 +489,16 @@ namespace UnitsNet
         public static QuantityValue operator /(ThermalConductivity left, ThermalConductivity right)
         {
             return left.WattsPerMeterKelvin / right.WattsPerMeterKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ThermalConductance"/> from <see cref="ThermalConductivity"/> * <see cref="Length"/>.</summary>
+        public static ThermalConductance operator *(ThermalConductivity thermalConductivity, Length length)
+        {
+            return ThermalConductance.FromWattsPerKelvin(thermalConductivity.WattsPerMeterKelvin * length.Meters);
         }
 
         #endregion
