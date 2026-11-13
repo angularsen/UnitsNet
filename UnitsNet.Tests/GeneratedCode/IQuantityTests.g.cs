@@ -90,6 +90,7 @@ namespace UnitsNet.Tests
             Assertion(3, InformationUnit.Teraoctet, Quantity.From(3, InformationUnit.Teraoctet));
             Assertion(3, IrradianceUnit.WattPerSquareMeter, Quantity.From(3, IrradianceUnit.WattPerSquareMeter));
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
+            Assertion(3, JapaneseHydrometerScaleUnit.SakeMeterValue, Quantity.From(3, JapaneseHydrometerScaleUnit.SakeMeterValue));
             Assertion(3, JerkUnit.StandardGravitiesPerSecond, Quantity.From(3, JerkUnit.StandardGravitiesPerSecond));
             Assertion(3, KinematicViscosityUnit.Stokes, Quantity.From(3, KinematicViscosityUnit.Stokes));
             Assertion(3, LeakRateUnit.TorrLiterPerSecond, Quantity.From(3, LeakRateUnit.TorrLiterPerSecond));
@@ -227,6 +228,7 @@ namespace UnitsNet.Tests
             Assertion(Information.Info, Information.Zero);
             Assertion(Irradiance.Info, Irradiance.Zero);
             Assertion(Irradiation.Info, Irradiation.Zero);
+            Assertion(JapaneseHydrometerScale.Info, JapaneseHydrometerScale.Zero);
             Assertion(Jerk.Info, Jerk.Zero);
             Assertion(KinematicViscosity.Info, KinematicViscosity.Zero);
             Assertion(LeakRate.Info, LeakRate.Zero);

@@ -1,0 +1,67 @@
+{
+  "Name": "JapaneseHydrometerScale",
+  "BaseUnit": "ReciprocalSpecificGravity",
+  "XmlDocSummary": "A dimensionless quantity representing hydrometer scale readings derived from reciprocal specific gravity, including degrees Baumé and Sake Meter Value.",
+  "Units": [
+    {
+      "SingularName": "ReciprocalSpecificGravity",
+      "PluralName": "ReciprocalSpecificGravities",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/SG" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeBaumeHeavy",
+      "PluralName": "DegreesBaumeHeavy",
+      "FromUnitToBaseFunc": "1 - {x} / 144.3",
+      "FromBaseToUnitFunc": "144.3 * (1 - {x})",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°Bé heavy" ]
+        },
+        {
+          "Culture": "ja-JP",
+          "Abbreviations": [ "°Bh" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeBaumeLight",
+      "PluralName": "DegreesBaumeLight",
+      "FromUnitToBaseFunc": "({x} + 134.3) / 144.3",
+      "FromBaseToUnitFunc": "144.3 * {x} - 134.3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°Bé light" ]
+        },
+        {
+          "Culture": "ja-JP",
+          "Abbreviations": [ "°Bl" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SakeMeterValue",
+      "PluralName": "SakeMeterValues",
+      "FromUnitToBaseFunc": "1 + {x} / 1443",
+      "FromBaseToUnitFunc": "1443 * ({x} - 1)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "SMV" ]
+        },
+        {
+          "Culture": "ja-JP",
+          "Abbreviations": [ "日本酒度" ]
+        }
+      ]
+    }
+  ]
+}

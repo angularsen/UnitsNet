@@ -92,6 +92,7 @@ public partial class Quantity
             Information.Info,
             Irradiance.Info,
             Irradiation.Info,
+            JapaneseHydrometerScale.Info,
             Jerk.Info,
             KinematicViscosity.Info,
             LeakRate.Info,
