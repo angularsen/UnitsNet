@@ -40,7 +40,7 @@ public sealed class FullCatalogGeneratorTests
             .OrderBy(source => source.HintName, StringComparer.Ordinal)
             .ToArray();
         Assert.Equal(
-            129,
+            130,
             firstSources.Count(source =>
                 source.SourceText.ToString().Contains("public readonly partial struct", StringComparison.Ordinal)));
         Assert.Contains(firstSources, source => source.HintName.EndsWith("_Registry.g.cs", StringComparison.Ordinal));

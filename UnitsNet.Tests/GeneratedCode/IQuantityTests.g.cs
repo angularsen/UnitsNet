@@ -150,6 +150,7 @@ namespace UnitsNet.Tests
             Assertion(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, Quantity.From(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
             Assertion(3, TemperatureDeltaUnit.MillidegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.MillidegreeCelsius));
             Assertion(3, TemperatureGradientUnit.KelvinPerMeter, Quantity.From(3, TemperatureGradientUnit.KelvinPerMeter));
+            Assertion(3, ThermalConductanceUnit.WattPerKelvin, Quantity.From(3, ThermalConductanceUnit.WattPerKelvin));
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
             Assertion(3, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, Quantity.From(3, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt));
             Assertion(3, ThermalResistanceUnit.KelvinPerWatt, Quantity.From(3, ThermalResistanceUnit.KelvinPerWatt));
@@ -286,6 +287,7 @@ namespace UnitsNet.Tests
             Assertion(TemperatureChangeRate.Info, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.Info, TemperatureDelta.Zero);
             Assertion(TemperatureGradient.Info, TemperatureGradient.Zero);
+            Assertion(ThermalConductance.Info, ThermalConductance.Zero);
             Assertion(ThermalConductivity.Info, ThermalConductivity.Zero);
             Assertion(ThermalInsulance.Info, ThermalInsulance.Zero);
             Assertion(ThermalResistance.Info, ThermalResistance.Zero);

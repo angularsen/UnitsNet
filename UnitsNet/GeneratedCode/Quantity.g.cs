@@ -152,6 +152,7 @@ public partial class Quantity
             TemperatureChangeRate.Info,
             TemperatureDelta.Info,
             TemperatureGradient.Info,
+            ThermalConductance.Info,
             ThermalConductivity.Info,
             ThermalInsulance.Info,
             ThermalResistance.Info,
@@ -177,6 +178,7 @@ public partial class Quantity
             new (typeof(Duration), typeof(Frequency)),
             new (typeof(ElectricConductivity), typeof(ElectricResistivity)),
             new (typeof(Length), typeof(ReciprocalLength)),
+            new (typeof(ThermalConductance), typeof(ThermalResistance)),
         };
     }
 }

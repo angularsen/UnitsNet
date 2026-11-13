@@ -1508,6 +1508,13 @@
     "WattPerMeterKelvin": 2,
     "BtuPerSecondInchFahrenheit": 6
   },
+  "ThermalConductance": {
+    "WattPerDegreeCelsius": 1,
+    "WattPerKelvin": 2,
+    "BtuPerHourDegreeFahrenheit": 8,
+    "KilowattPerDegreeCelsius": 9,
+    "KilowattPerKelvin": 5
+  },
   "ThermalResistance": {
     "DegreeCelsiusPerWatt": 10,
     "KelvinPerWatt": 11
