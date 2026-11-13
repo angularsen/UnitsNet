@@ -292,10 +292,10 @@ public readonly partial struct QuantityValue
         return value.Denominator.IsZero && value.Numerator.IsZero;
     }
 
-    /// <summary>Determines if a value represents a negative real number.</summary>
+    /// <summary>Determines if a value represents a negative number.</summary>
     /// <param name="value">The value to be checked.</param>
     /// <returns>
-    ///     <see langword="true" /> if <paramref name="value" /> represents negative zero or a negative real number; otherwise,
+    ///     <see langword="true" /> if <paramref name="value" /> represents a negative number; otherwise,
     ///     <see langword="false" />.
     /// </returns>
     public static bool IsNegative(QuantityValue value)
@@ -336,10 +336,10 @@ public readonly partial struct QuantityValue
         return remainder.IsZero && !quotient.IsEven;
     }
 
-    /// <summary>Determines if a value represents zero or a positive real number.</summary>
+    /// <summary>Determines if a value represents a positive number.</summary>
     /// <param name="value">The value to be checked.</param>
     /// <returns>
-    ///     <see langword="true" /> if <paramref name="value" /> represents (positive) zero or a positive real number;
+    ///     <see langword="true" /> if <paramref name="value" /> represents a positive number;
     ///     otherwise, <see langword="false" />.
     /// </returns>
     public static bool IsPositive(QuantityValue value)
