@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductance
     /// </summary>
     public static class NumberToThermalConductanceExtensions
     {
-        /// <inheritdoc cref="ThermalConductance.FromBtuPerHourDegreeFahrenheit(QuantityValue)" />
-        public static ThermalConductance BtuPerHourDegreeFahrenheit<T>(this T value)
+        /// <inheritdoc cref="ThermalConductance.FromBtusPerHourDegreeFahrenheit(QuantityValue)" />
+        public static ThermalConductance BtusPerHourDegreeFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalConductance.FromBtuPerHourDegreeFahrenheit(QuantityValue.CreateChecked(value));
+            => ThermalConductance.FromBtusPerHourDegreeFahrenheit(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalConductance.FromBtuPerHourDegreeFahrenheit(value.ToQuantityValue());
+            => ThermalConductance.FromBtusPerHourDegreeFahrenheit(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="ThermalConductance.FromKilowattsPerDegreeCelsius(QuantityValue)" />

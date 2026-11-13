@@ -25,8 +25,8 @@ namespace UnitsNet.Tests
     public class NumberToThermalConductanceExtensionsTests
     {
         [Fact]
-        public void NumberToBtuPerHourDegreeFahrenheitTest() =>
-            Assert.Equal(ThermalConductance.FromBtuPerHourDegreeFahrenheit(2), 2.BtuPerHourDegreeFahrenheit());
+        public void NumberToBtusPerHourDegreeFahrenheitTest() =>
+            Assert.Equal(ThermalConductance.FromBtusPerHourDegreeFahrenheit(2), 2.BtusPerHourDegreeFahrenheit());
 
         [Fact]
         public void NumberToKilowattsPerDegreeCelsiusTest() =>

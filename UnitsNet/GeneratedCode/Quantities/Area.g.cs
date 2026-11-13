@@ -56,6 +56,7 @@ namespace UnitsNet
         IMultiplyOperators<Area, HeatFlux, Power>,
         IMultiplyOperators<Area, ReciprocalArea, Ratio>,
         IDivisionOperators<Area, Volume, ReciprocalLength>,
+        IMultiplyOperators<Area, HeatTransferCoefficient, ThermalConductance>,
         IMultiplyOperators<Area, ForcePerLength, Torque>,
         IMultiplyOperators<Area, Length, Volume>,
         IDivisionOperators<Area, ReciprocalLength, Volume>,
@@ -796,6 +797,12 @@ namespace UnitsNet
         public static ReciprocalLength operator /(Area area, Volume volume)
         {
             return ReciprocalLength.FromInverseMeters(area.SquareMeters / volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="ThermalConductance"/> from <see cref="Area"/> * <see cref="HeatTransferCoefficient"/>.</summary>
+        public static ThermalConductance operator *(Area area, HeatTransferCoefficient heatTransferCoefficient)
+        {
+            return ThermalConductance.FromWattsPerKelvin(area.SquareMeters * heatTransferCoefficient.WattsPerSquareMeterKelvin);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Area"/> * <see cref="ForcePerLength"/>.</summary>

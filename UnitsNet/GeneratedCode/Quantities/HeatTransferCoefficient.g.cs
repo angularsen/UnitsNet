@@ -40,6 +40,7 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatTransferCoefficient, HeatTransferCoefficient, QuantityValue>,
         IMultiplyOperators<HeatTransferCoefficient, TemperatureDelta, HeatFlux>,
+        IMultiplyOperators<HeatTransferCoefficient, Area, ThermalConductance>,
         IComparisonOperators<HeatTransferCoefficient, HeatTransferCoefficient, bool>,
         IParsable<HeatTransferCoefficient>,
 #endif
@@ -544,6 +545,12 @@ namespace UnitsNet
         public static HeatFlux operator *(HeatTransferCoefficient heatTransferCoefficient, TemperatureDelta temperatureDelta)
         {
             return HeatFlux.FromWattsPerSquareMeter(heatTransferCoefficient.WattsPerSquareMeterKelvin * temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="ThermalConductance"/> from <see cref="HeatTransferCoefficient"/> * <see cref="Area"/>.</summary>
+        public static ThermalConductance operator *(HeatTransferCoefficient heatTransferCoefficient, Area area)
+        {
+            return ThermalConductance.FromWattsPerKelvin(heatTransferCoefficient.WattsPerSquareMeterKelvin * area.SquareMeters);
         }
 
         #endregion

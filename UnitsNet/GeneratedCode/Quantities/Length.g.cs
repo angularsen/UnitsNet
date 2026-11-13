@@ -59,6 +59,7 @@ namespace UnitsNet
         IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>,
         IDivisionOperators<Length, Duration, Speed>,
         IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
+        IMultiplyOperators<Length, ThermalConductivity, ThermalConductance>,
         IMultiplyOperators<Length, Force, Torque>,
         IMultiplyOperators<Length, Area, Volume>,
         IMultiplyOperators<Length, VolumePerLength, Volume>,
@@ -1264,6 +1265,12 @@ namespace UnitsNet
         public static TemperatureDelta operator *(Length length, TemperatureGradient temperatureGradient)
         {
             return TemperatureDelta.FromDegreesCelsius(length.Kilometers * temperatureGradient.DegreesCelsiusPerKilometer);
+        }
+
+        /// <summary>Get <see cref="ThermalConductance"/> from <see cref="Length"/> * <see cref="ThermalConductivity"/>.</summary>
+        public static ThermalConductance operator *(Length length, ThermalConductivity thermalConductivity)
+        {
+            return ThermalConductance.FromWattsPerKelvin(length.Meters * thermalConductivity.WattsPerMeterKelvin);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Length"/> * <see cref="Force"/>.</summary>
