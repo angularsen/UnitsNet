@@ -476,6 +476,13 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ThermalConductance"/>.</returns>
+        public ThermalConductance Inverse()
+        {
+            return UnitConverter.Default.ConvertTo(Value, Unit, ThermalConductance.Info);
+        }
+
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="ThermalResistance"/> * <see cref="Power"/>.</summary>
         public static TemperatureDelta operator *(ThermalResistance thermalResistance, Power power)
         {

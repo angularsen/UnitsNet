@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -76,38 +77,58 @@ namespace UnitsNet
 
             str = str.Trim();
 
+            NumberFormatInfo numberFormat = NumberFormatInfo.GetInstance(formatProvider);
+            bool groupSeparatorIsFootMark = UnitAbbreviationsCache.Default
+                .GetUnitAbbreviations(LengthUnit.Foot, formatProvider)
+                .Contains(numberFormat.NumberGroupSeparator);
+
             // This succeeds if only feet or inches are given, not both
-            if (TryParse(str, formatProvider, out result))
+            if (TryParse(str, formatProvider, out result) && (!groupSeparatorIsFootMark || HasValidDigitGroups(str, numberFormat)))
                 return true;
 
             QuantityParser quantityParser = QuantityParser.Default;
             string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
-            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
+            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider);
 
-            // Match entire string exactly
-            string pattern = $@"^(?<negativeSign>\-?)(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
+            bool isNegative = str.StartsWith("-", StringComparison.Ordinal);
+            string magnitude = isNegative ? str.Substring(1) : str;
 
-            var match = new Regex(pattern, RegexOptions.Singleline).Match(str);
-            if (!match.Success)
-                return false;
-
-            var negativeSignGroup = match.Groups["negativeSign"];
-            var feetGroup = match.Groups["feet"];
-            var inchesGroup = match.Groups["inches"];
-
-            if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
-                TryParse(inchesGroup.Value, formatProvider, out Length inches))
+            // A foot mark can also be a separator in the number, such as 1'000' 6", so try each one as the end of the feet
+            foreach (Match footMatch in new Regex(footRegex, RegexOptions.Singleline).Matches(magnitude))
             {
-                result = feet + inches;
+                int feetLength = footMatch.Index + footMatch.Length;
+                string feetText = magnitude.Substring(0, feetLength);
+                string inchesText = magnitude.Substring(feetLength);
 
-                if (negativeSignGroup.Length > 0)
-                    result = -result;
-
-                return true;
+                if (Regex.IsMatch(inchesText, inchRegex, RegexOptions.Singleline) &&
+                    (!groupSeparatorIsFootMark || (HasValidDigitGroups(feetText, numberFormat) && HasValidDigitGroups(inchesText, numberFormat))) &&
+                    TryParse(feetText, formatProvider, out Length feet) &&
+                    TryParse(inchesText, formatProvider, out Length inches))
+                {
+                    result = isNegative ? -(feet + inches) : feet + inches;
+                    return true;
+                }
             }
 
             result = default;
             return false;
+        }
+
+        /// <summary>
+        ///     Number parsing ignores where digit group separators are placed, so 5'10 would otherwise parse as 510.
+        /// </summary>
+        private static bool HasValidDigitGroups(string str, NumberFormatInfo numberFormat)
+        {
+            int groupSize = numberFormat.NumberGroupSizes.Length > 0 ? numberFormat.NumberGroupSizes[0] : 0;
+            string digitGroupPattern = Regex.Escape(numberFormat.NumberGroupSeparator) + @"(?<digits>\d+)";
+
+            foreach (Match digitGroup in Regex.Matches(str, digitGroupPattern))
+            {
+                if (digitGroup.Groups["digits"].Length != groupSize)
+                    return false;
+            }
+
+            return true;
         }
     }
 

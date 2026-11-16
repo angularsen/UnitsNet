@@ -56,6 +56,8 @@ namespace UnitsNet
         IDivisionOperators<Power, MassFlow, SpecificEnergy>,
         IDivisionOperators<Power, Force, Speed>,
         IMultiplyOperators<Power, ThermalResistance, TemperatureDelta>,
+        IDivisionOperators<Power, ThermalConductance, TemperatureDelta>,
+        IDivisionOperators<Power, TemperatureDelta, ThermalConductance>,
         IDivisionOperators<Power, RotationalSpeed, Torque>,
         IDivisionOperators<Power, PowerDensity, Volume>,
         IComparisonOperators<Power, Power, bool>,
@@ -994,6 +996,18 @@ namespace UnitsNet
         public static TemperatureDelta operator *(Power power, ThermalResistance thermalResistance)
         {
             return TemperatureDelta.FromKelvins(power.Watts * thermalResistance.KelvinsPerWatt);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Power"/> / <see cref="ThermalConductance"/>.</summary>
+        public static TemperatureDelta operator /(Power power, ThermalConductance thermalConductance)
+        {
+            return TemperatureDelta.FromKelvins(power.Watts / thermalConductance.WattsPerKelvin);
+        }
+
+        /// <summary>Get <see cref="ThermalConductance"/> from <see cref="Power"/> / <see cref="TemperatureDelta"/>.</summary>
+        public static ThermalConductance operator /(Power power, TemperatureDelta temperatureDelta)
+        {
+            return ThermalConductance.FromWattsPerKelvin(power.Watts / temperatureDelta.Kelvins);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Power"/> / <see cref="RotationalSpeed"/>.</summary>

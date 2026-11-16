@@ -157,7 +157,7 @@ public sealed class CompatibilityTests
         string[] legacy = GetQuantityTypes(LegacyAssembly).Select(type => type.FullName!).ToArray();
         string[] generated = GetQuantityTypes(GeneratedAssembly).Select(type => type.FullName!).ToArray();
 
-        Assert.Equal(129, legacy.Length);
+        Assert.Equal(130, legacy.Length);
         Assert.Equal(legacy, generated);
     }
 
@@ -437,7 +437,7 @@ public sealed class CompatibilityTests
     {
         QuantityRegistry registry = Generated::UnitsNet.GeneratedQuantityRegistry.Instance;
 
-        Assert.Equal(129, registry.Quantities.Count);
+        Assert.Equal(130, registry.Quantities.Count);
         IQuantityDescriptor length = registry.Get(new QuantityId("UnitsNet.Length"));
         Assert.Same(length, registry.Get("length"));
         Assert.Same(length, registry.Get(typeof(Generated::UnitsNet.Length)));

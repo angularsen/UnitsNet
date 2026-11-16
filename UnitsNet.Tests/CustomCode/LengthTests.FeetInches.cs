@@ -65,9 +65,7 @@ public class FeetInchesTests
             ["-1'1\"", -1.08333333, EnglishUs], // Without space
             ["-1′1″", -1.08333333, EnglishUs], // Without space
             ["-1 ft 1 in", -1.08333333, EnglishUs],
-            ["-1ft 1in", -1.08333333, EnglishUs],
-            ["1’000′", 1000, GermanSwitzerland], // Feet only, with separator
-            ["1’000′ 6\"", 1000.5, GermanSwitzerland] // Normal form, using separators for culture
+            ["-1ft 1in", -1.08333333, EnglishUs]
         ];
     }
 
@@ -78,6 +76,69 @@ public class FeetInchesTests
         var formatProvider = new CultureInfo(cultureName, false);
         Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
         AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Theory]
+    [InlineData("1’000′", 1000)] // Feet only, with separator
+    [InlineData("1’000′ 6\"", 1000.5)] // Normal form, using separators for culture
+    public void TryParseFeetInches_GivenCultureWithRightQuoteDigitGroup_ReturnsLength(string str, double expectedFeet)
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "’"; // CLDR 48 changed the de-CH default to an ASCII apostrophe
+        Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Theory]
+    [InlineData("1'000′", 1000)] // Feet only, with separator
+    [InlineData("1'000'", 1000)]
+    [InlineData("1'000\"", 83.33333333)] // Inches only, with separator
+    [InlineData("1'000′ 6\"", 1000.5)] // Normal form
+    [InlineData("1'000' 6\"", 1000.5)]
+    [InlineData("1'000'6\"", 1000.5)] // Without space
+    [InlineData("-1'000' 6\"", -1000.5)]
+    [InlineData("1'000'000' 6\"", 1000000.5)] // Multiple separators
+    [InlineData("1'000' 1'200\"", 1100)] // Separators in both feet and inches
+    [InlineData("5'10\"", 5.83333333)] // Foot mark, not a digit group
+    [InlineData("5'10.5\"", 5.875)]
+    [InlineData("-5'10\"", -5.83333333)]
+    public void TryParseFeetInches_GivenApostropheDigitGroup_ReturnsLength(string str, double expectedFeet)
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "'";
+        Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Theory]
+    [InlineData("5'10'")] // Invalid digit group, and not feet followed by inches
+    [InlineData("1'0' 6\"")]
+    [InlineData("1'000' 1'")]
+    public void TryParseFeetInches_GivenApostropheDigitGroupAndInvalidString_ReturnsFalseAndZeroOut(string str)
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "'";
+        Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        Assert.Equal(Length.Zero, result);
+    }
+
+    [Fact]
+    public void TryParseFeetInches_GivenApostropheDecimalSeparator_ReturnsLength()
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "’";
+        formatProvider.NumberFormat.NumberDecimalSeparator = "'";
+        Assert.True(Length.TryParseFeetInches("1'5' 6\"", out Length result, formatProvider));
+        AssertEx.EqualTolerance(2, result.Feet, 1e-5);
+    }
+
+    [Fact]
+    public void TryParseFeetInches_GivenDefaultSwissDigitGroup_ReturnsLength()
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        string gs = formatProvider.NumberFormat.NumberGroupSeparator;
+        Assert.True(Length.TryParseFeetInches($"1{gs}000′ 6\"", out Length result, formatProvider));
+        AssertEx.EqualTolerance(1000.5, result.Feet, 1e-5);
     }
 
     public static IEnumerable<object[]> InvalidData
