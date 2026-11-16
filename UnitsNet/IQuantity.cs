@@ -109,10 +109,13 @@ namespace UnitsNet
         /// <param name="unit">The unit of the quantity.</param>
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
         public static abstract TQuantity Create(QuantityValue value, UnitKey unit);
-#else
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        new IQuantityInstanceInfo<TQuantity> QuantityInfo { get; }
 #endif
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+#if NET
+        [Obsolete("Kept for back-compat with netstandard2.0. On .NET 5+, use the static TSelf.Info property or the GetQuantityInfo() extension method.")]
+#endif
+        new IQuantityInstanceInfo<TQuantity> QuantityInfo { get; }
     }
 
     /// <summary>
@@ -145,6 +148,10 @@ namespace UnitsNet
         static TSelf IQuantityOfType<TSelf>.Create(QuantityValue value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
         static QuantityInfo IQuantityOfType<TSelf>.Info => TSelf.Info;
+
+#pragma warning disable CS0618 // Type or member is obsolete
+        IQuantityInstanceInfo<TSelf> IQuantityOfType<TSelf>.QuantityInfo => TSelf.Info;
+#pragma warning restore CS0618
 
 #pragma warning disable CS0618 // Type or member is obsolete
         QuantityInfo<TUnitType> IQuantity<TUnitType>.QuantityInfo

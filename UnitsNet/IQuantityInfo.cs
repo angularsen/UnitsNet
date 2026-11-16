@@ -14,12 +14,7 @@ namespace UnitsNet;
 /// <remarks>
 ///     Typically you obtain this by looking it up via <see cref="IQuantity.QuantityInfo" />.
 /// </remarks>
-#if NETSTANDARD2_0
-public
-#else
-internal
-#endif
-interface IQuantityInfo
+public interface IQuantityInfo
 {
     /// <summary>
     ///     Quantity name, such as "Length" or "Mass".
@@ -111,12 +106,7 @@ interface IQuantityInfo
 ///     This is a specialization of <see cref="IQuantityInfo" /> that is used (internally) for constraining certain
 ///     methods, without having to include the unit type as additional generic parameter.
 /// </remarks>
-#if NETSTANDARD2_0
-public
-#else
-internal
-#endif
-interface IQuantityInstanceInfo<out TQuantity> : IQuantityInfo
+public interface IQuantityInstanceInfo<out TQuantity> : IQuantityInfo
     where TQuantity : IQuantity
 {
     /// <inheritdoc cref="IQuantityInfo.Zero" />

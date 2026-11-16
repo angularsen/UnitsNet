@@ -66,7 +66,8 @@ public static class AffineQuantityExtensions
         TOffset difference = quantity - other;
         return QuantityValue.Abs(difference.Value) <= tolerance.GetValue(difference.UnitKey);
     }
-#else
+#endif
+
     /// <summary>
     ///     <para>
     ///         Compare equality to <paramref name="other" /> given a <paramref name="tolerance" /> for the maximum allowed +/-
@@ -109,7 +110,6 @@ public static class AffineQuantityExtensions
     {
         return other is Temperature otherInstance && quantity.Equals(otherInstance, tolerance);
     }
-#endif
 
     /// <summary>
     ///     Calculates the average of a collection of <see cref="Temperature" /> values.

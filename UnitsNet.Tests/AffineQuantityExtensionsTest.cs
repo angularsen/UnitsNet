@@ -1,6 +1,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Numerics;
 using UnitsNet.Tests.CustomQuantities;
 
 namespace UnitsNet.Tests;
@@ -108,6 +109,49 @@ public class AffineQuantityExtensionsTest
         var result = quantity.Equals(nullOther, tolerance);
 
         Assert.False(result);
+    }
+
+    [Theory]
+    [InlineData(25.0, 25.0, 0.1, true)] // Equal values
+    [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance
+    [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
+    [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
+    [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
+    public void Equals_GenericAffineQuantity_ComparesWithinTolerance(double value1, double value2, double toleranceValue, bool expected)
+    {
+        var temperature1 = Temperature.FromDegreesCelsius(value1);
+        var temperature2 = Temperature.FromDegreesCelsius(value2);
+        var tolerance = TemperatureDelta.FromDegreesCelsius(toleranceValue);
+
+        Assert.Equal(expected, GenericEquals(temperature1, temperature2, tolerance));
+        Assert.Equal(expected, GenericEqualsIQuantity(temperature1, temperature2, tolerance));
+    }
+
+    [Fact]
+    public void Equals_GenericAffineQuantity_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
+    {
+        var temperature1 = Temperature.FromDegreesCelsius(25.0);
+        var temperature2 = Temperature.FromDegreesCelsius(25.0);
+        var negativeTolerance = TemperatureDelta.FromDegreesCelsius(-0.1);
+
+        Assert.Throws<ArgumentOutOfRangeException>(() => GenericEquals(temperature1, temperature2, negativeTolerance));
+        Assert.Throws<ArgumentOutOfRangeException>(() => GenericEqualsIQuantity(temperature1, temperature2, negativeTolerance));
+    }
+
+    // Calling Equals in a generic context binds to the generic overloads; with concrete Temperature arguments
+    // the compiler prefers the Temperature-specific overloads instead.
+    private static bool GenericEquals<TQuantity, TOffset>(TQuantity quantity, TQuantity other, TOffset tolerance)
+        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
+        where TOffset : IQuantityOfType<TOffset>, IAdditiveIdentity<TOffset, TOffset>
+    {
+        return quantity.Equals(other, tolerance);
+    }
+
+    private static bool GenericEqualsIQuantity<TQuantity, TOffset>(TQuantity quantity, IQuantity other, TOffset tolerance)
+        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
+        where TOffset : IQuantityOfType<TOffset>, IAdditiveIdentity<TOffset, TOffset>
+    {
+        return quantity.Equals(other, tolerance);
     }
 #endif
 
