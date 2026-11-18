@@ -117,13 +117,12 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarEnergyUnit}"/> representing the default unit mappings for MolarEnergy.</returns>
             public static IEnumerable<UnitDefinition<MolarEnergyUnit>> GetDefaultMappings()
             {
-                yield return new (MolarEnergyUnit.JoulePerMole, "JoulePerMole", "JoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarEnergyUnit.KilojoulePerMole, "KilojoulePerMole", "KilojoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Millimole),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MolarEnergyUnit.MegajoulePerMole, "MegajoulePerMole", "MegajoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Micromole),
-                     new QuantityValue(1, 1000000)
-                );
+                return new UnitDefinition<MolarEnergyUnit>[]
+                {
+                    new (MolarEnergyUnit.JoulePerMole, MolarEnergyUnits.JoulePerMole),
+                    new (MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnits.KilojoulePerMole),
+                    new (MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnits.MegajoulePerMole),
+                };
             }
         }
 

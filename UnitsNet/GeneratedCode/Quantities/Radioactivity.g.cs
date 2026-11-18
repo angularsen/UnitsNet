@@ -116,91 +116,38 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadioactivityUnit}"/> representing the default unit mappings for Radioactivity.</returns>
             public static IEnumerable<UnitDefinition<RadioactivityUnit>> GetDefaultMappings()
             {
-                yield return new (RadioactivityUnit.Becquerel, "Becquerel", "Becquerels", new BaseUnits(time: DurationUnit.Second));
-                yield return new (RadioactivityUnit.Curie, "Curie", "Curies", new BaseUnits(time: DurationUnit.Second),
-                     new QuantityValue(1, 37000000000)
-                );
-                yield return new (RadioactivityUnit.Exabecquerel, "Exabecquerel", "Exabecquerels", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000000)
-                );
-                yield return new (RadioactivityUnit.Gigabecquerel, "Gigabecquerel", "Gigabecquerels", new BaseUnits(time: DurationUnit.Nanosecond),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (RadioactivityUnit.Gigacurie, "Gigacurie", "Gigacuries", new BaseUnits(time: DurationUnit.Nanosecond),
-                     new QuantityValue(1, new BigInteger(37) * QuantityValue.PowerOfTen(18))
-                );
-                yield return new (RadioactivityUnit.Gigarutherford, "Gigarutherford", "Gigarutherfords", new BaseUnits(time: DurationUnit.Nanosecond),
-                     new QuantityValue(1, 1000000000000000)
-                );
-                yield return new (RadioactivityUnit.Kilobecquerel, "Kilobecquerel", "Kilobecquerels", new BaseUnits(time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (RadioactivityUnit.Kilocurie, "Kilocurie", "Kilocuries", new BaseUnits(time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 37000000000000)
-                );
-                yield return new (RadioactivityUnit.Kilorutherford, "Kilorutherford", "Kilorutherfords", new BaseUnits(time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (RadioactivityUnit.Megabecquerel, "Megabecquerel", "Megabecquerels", new BaseUnits(time: DurationUnit.Microsecond),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (RadioactivityUnit.Megacurie, "Megacurie", "Megacuries", new BaseUnits(time: DurationUnit.Microsecond),
-                     new QuantityValue(1, 37000000000000000)
-                );
-                yield return new (RadioactivityUnit.Megarutherford, "Megarutherford", "Megarutherfords", new BaseUnits(time: DurationUnit.Microsecond),
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (RadioactivityUnit.Microbecquerel, "Microbecquerel", "Microbecquerels", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (RadioactivityUnit.Microcurie, "Microcurie", "Microcuries", BaseUnits.Undefined,
-                     new QuantityValue(1, 37000)
-                );
-                yield return new (RadioactivityUnit.Microrutherford, "Microrutherford", "Microrutherfords", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (RadioactivityUnit.Millibecquerel, "Millibecquerel", "Millibecquerels", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (RadioactivityUnit.Millicurie, "Millicurie", "Millicuries", BaseUnits.Undefined,
-                     new QuantityValue(1, 37000000)
-                );
-                yield return new (RadioactivityUnit.Millirutherford, "Millirutherford", "Millirutherfords", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (RadioactivityUnit.Nanobecquerel, "Nanobecquerel", "Nanobecquerels", BaseUnits.Undefined,
-                     1000000000
-                );
-                yield return new (RadioactivityUnit.Nanocurie, "Nanocurie", "Nanocuries", BaseUnits.Undefined,
-                     new QuantityValue(1, 37)
-                );
-                yield return new (RadioactivityUnit.Nanorutherford, "Nanorutherford", "Nanorutherfords", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (RadioactivityUnit.Petabecquerel, "Petabecquerel", "Petabecquerels", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000)
-                );
-                yield return new (RadioactivityUnit.Picobecquerel, "Picobecquerel", "Picobecquerels", BaseUnits.Undefined,
-                     1000000000000
-                );
-                yield return new (RadioactivityUnit.Picocurie, "Picocurie", "Picocuries", BaseUnits.Undefined,
-                     new QuantityValue(1000, 37)
-                );
-                yield return new (RadioactivityUnit.Picorutherford, "Picorutherford", "Picorutherfords", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (RadioactivityUnit.Rutherford, "Rutherford", "Rutherfords", new BaseUnits(time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (RadioactivityUnit.Terabecquerel, "Terabecquerel", "Terabecquerels", new BaseUnits(time: DurationUnit.Picosecond),
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (RadioactivityUnit.Teracurie, "Teracurie", "Teracuries", new BaseUnits(time: DurationUnit.Picosecond),
-                     new QuantityValue(1, new BigInteger(37) * QuantityValue.PowerOfTen(21))
-                );
-                yield return new (RadioactivityUnit.Terarutherford, "Terarutherford", "Terarutherfords", new BaseUnits(time: DurationUnit.Picosecond),
-                     new QuantityValue(1, 1000000000000000000)
-                );
+                return new UnitDefinition<RadioactivityUnit>[]
+                {
+                    new (RadioactivityUnit.Becquerel, RadioactivityUnits.Becquerel),
+                    new (RadioactivityUnit.Curie, RadioactivityUnits.Curie),
+                    new (RadioactivityUnit.Exabecquerel, RadioactivityUnits.Exabecquerel),
+                    new (RadioactivityUnit.Gigabecquerel, RadioactivityUnits.Gigabecquerel),
+                    new (RadioactivityUnit.Gigacurie, RadioactivityUnits.Gigacurie),
+                    new (RadioactivityUnit.Gigarutherford, RadioactivityUnits.Gigarutherford),
+                    new (RadioactivityUnit.Kilobecquerel, RadioactivityUnits.Kilobecquerel),
+                    new (RadioactivityUnit.Kilocurie, RadioactivityUnits.Kilocurie),
+                    new (RadioactivityUnit.Kilorutherford, RadioactivityUnits.Kilorutherford),
+                    new (RadioactivityUnit.Megabecquerel, RadioactivityUnits.Megabecquerel),
+                    new (RadioactivityUnit.Megacurie, RadioactivityUnits.Megacurie),
+                    new (RadioactivityUnit.Megarutherford, RadioactivityUnits.Megarutherford),
+                    new (RadioactivityUnit.Microbecquerel, RadioactivityUnits.Microbecquerel),
+                    new (RadioactivityUnit.Microcurie, RadioactivityUnits.Microcurie),
+                    new (RadioactivityUnit.Microrutherford, RadioactivityUnits.Microrutherford),
+                    new (RadioactivityUnit.Millibecquerel, RadioactivityUnits.Millibecquerel),
+                    new (RadioactivityUnit.Millicurie, RadioactivityUnits.Millicurie),
+                    new (RadioactivityUnit.Millirutherford, RadioactivityUnits.Millirutherford),
+                    new (RadioactivityUnit.Nanobecquerel, RadioactivityUnits.Nanobecquerel),
+                    new (RadioactivityUnit.Nanocurie, RadioactivityUnits.Nanocurie),
+                    new (RadioactivityUnit.Nanorutherford, RadioactivityUnits.Nanorutherford),
+                    new (RadioactivityUnit.Petabecquerel, RadioactivityUnits.Petabecquerel),
+                    new (RadioactivityUnit.Picobecquerel, RadioactivityUnits.Picobecquerel),
+                    new (RadioactivityUnit.Picocurie, RadioactivityUnits.Picocurie),
+                    new (RadioactivityUnit.Picorutherford, RadioactivityUnits.Picorutherford),
+                    new (RadioactivityUnit.Rutherford, RadioactivityUnits.Rutherford),
+                    new (RadioactivityUnit.Terabecquerel, RadioactivityUnits.Terabecquerel),
+                    new (RadioactivityUnit.Teracurie, RadioactivityUnits.Teracurie),
+                    new (RadioactivityUnit.Terarutherford, RadioactivityUnits.Terarutherford),
+                };
             }
         }
 

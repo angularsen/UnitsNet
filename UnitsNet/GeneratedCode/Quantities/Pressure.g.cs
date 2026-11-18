@@ -132,154 +132,59 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PressureUnit}"/> representing the default unit mappings for Pressure.</returns>
             public static IEnumerable<UnitDefinition<PressureUnit>> GetDefaultMappings()
             {
-                yield return new (PressureUnit.Atmosphere, "Atmosphere", "Atmospheres", BaseUnits.Undefined,
-                     new QuantityValue(1, 101325)
-                );
-                yield return new (PressureUnit.Bar, "Bar", "Bars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)
-                );
-                yield return new (PressureUnit.Centibar, "Centibar", "Centibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (PressureUnit.CentimeterOfWaterColumn, "CentimeterOfWaterColumn", "CentimetersOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(2000, 196133)
-                );
-                yield return new (PressureUnit.Decapascal, "Decapascal", "Decapascals", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10)
-                );
-                yield return new (PressureUnit.Decibar, "Decibar", "Decibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (PressureUnit.DynePerSquareCentimeter, "DynePerSquareCentimeter", "DynesPerSquareCentimeter", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (PressureUnit.FootOfHead, "FootOfHead", "FeetOfHead", BaseUnits.Undefined,
-                     new QuantityValue(156250000, 466922140449)
-                );
-                yield return new (PressureUnit.Gigapascal, "Gigapascal", "Gigapascals", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (PressureUnit.Hectopascal, "Hectopascal", "Hectopascals", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 100)
-                );
-                yield return new (PressureUnit.InchOfMercury, "InchOfMercury", "InchesOfMercury", BaseUnits.Undefined,
-                     new QuantityValue(1000000000, 3386388640341)
-                );
-                yield return new (PressureUnit.InchOfWaterColumn, "InchOfWaterColumn", "InchesOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(100000, 24908891)
-                );
-                yield return new (PressureUnit.Kilobar, "Kilobar", "Kilobars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000)
-                );
-                yield return new (PressureUnit.KilogramForcePerSquareCentimeter, "KilogramForcePerSquareCentimeter", "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(2, 196133)
-                );
-                yield return new (PressureUnit.KilogramForcePerSquareMeter, "KilogramForcePerSquareMeter", "KilogramsForcePerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
-                yield return new (PressureUnit.KilogramForcePerSquareMillimeter, "KilogramForcePerSquareMillimeter", "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650)
-                );
-                yield return new (PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonPerSquareCentimeter", "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000000)
-                );
-                yield return new (PressureUnit.KilonewtonPerSquareMeter, "KilonewtonPerSquareMeter", "KilonewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonPerSquareMillimeter", "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (PressureUnit.Kilopascal, "Kilopascal", "Kilopascals", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (PressureUnit.KilopoundForcePerSquareFoot, "KilopoundForcePerSquareFoot", "KilopoundsForcePerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(185806080, 8896443230521)
-                );
-                yield return new (PressureUnit.KilopoundForcePerSquareInch, "KilopoundForcePerSquareInch", "KilopoundsForcePerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1290320, 8896443230521)
-                );
-                yield return new (PressureUnit.KilopoundForcePerSquareMil, "KilopoundForcePerSquareMil", "KilopoundsForcePerSquareMil", BaseUnits.Undefined,
-                     new QuantityValue(16129, 111205540381512500)
-                );
-                yield return new (PressureUnit.Megabar, "Megabar", "Megabars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000000)
-                );
-                yield return new (PressureUnit.MeganewtonPerSquareMeter, "MeganewtonPerSquareMeter", "MeganewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (PressureUnit.Megapascal, "Megapascal", "Megapascals", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (PressureUnit.MeterOfHead, "MeterOfHead", "MetersOfHead", BaseUnits.Undefined,
-                     new QuantityValue(125000, 1225517429)
-                );
-                yield return new (PressureUnit.MeterOfWaterColumn, "MeterOfWaterColumn", "MetersOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)
-                );
-                yield return new (PressureUnit.Microbar, "Microbar", "Microbars", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (PressureUnit.Micropascal, "Micropascal", "Micropascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (PressureUnit.Millibar, "Millibar", "Millibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)
-                );
-                yield return new (PressureUnit.MilligramForcePerSquareFoot, "MilligramForcePerSquareFoot", "MilligramsForcePerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(1858060800, 196133)
-                );
-                yield return new (PressureUnit.MilligramForcePerSquareMeter, "MilligramForcePerSquareMeter", "MilligramsForcePerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(20000000000, 196133)
-                );
-                yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined,
-                     new QuantityValue(200000000, 26664477483)
-                );
-                yield return new (PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", "MillimetersOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
-                yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (PressureUnit.Millitorr, "Millitorr", "Millitorrs", BaseUnits.Undefined,
-                     new QuantityValue(30400, 4053)
-                );
-                yield return new (PressureUnit.NewtonPerSquareCentimeter, "NewtonPerSquareCentimeter", "NewtonsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (PressureUnit.NewtonPerSquareMeter, "NewtonPerSquareMeter", "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1
-                );
-                yield return new (PressureUnit.NewtonPerSquareMillimeter, "NewtonPerSquareMillimeter", "NewtonsPerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (PressureUnit.Pascal, "Pascal", "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PressureUnit.PoundForcePerSquareFoot, "PoundForcePerSquareFoot", "PoundsForcePerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(185806080000, 8896443230521)
-                );
-                yield return new (PressureUnit.PoundForcePerSquareInch, "PoundForcePerSquareInch", "PoundsForcePerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1290320000, 8896443230521)
-                );
-                yield return new (PressureUnit.PoundForcePerSquareMil, "PoundForcePerSquareMil", "PoundsForcePerSquareMil", BaseUnits.Undefined,
-                     new QuantityValue(32258, 222411080763025)
-                );
-                yield return new (PressureUnit.PoundPerInchSecondSquared, "PoundPerInchSecondSquared", "PoundsPerInchSecondSquared", BaseUnits.Undefined,
-                     new QuantityValue(498177842352, 8896443230521)
-                );
-                yield return new (PressureUnit.TechnicalAtmosphere, "TechnicalAtmosphere", "TechnicalAtmospheres", BaseUnits.Undefined,
-                     new QuantityValue(2, 196133)
-                );
-                yield return new (PressureUnit.TonneForcePerSquareCentimeter, "TonneForcePerSquareCentimeter", "TonnesForcePerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 98066500)
-                );
-                yield return new (PressureUnit.TonneForcePerSquareMeter, "TonneForcePerSquareMeter", "TonnesForcePerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)
-                );
-                yield return new (PressureUnit.TonneForcePerSquareMillimeter, "TonneForcePerSquareMillimeter", "TonnesForcePerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650000)
-                );
-                yield return new (PressureUnit.Torr, "Torr", "Torrs", BaseUnits.Undefined,
-                     new QuantityValue(152, 20265)
-                );
+                return new UnitDefinition<PressureUnit>[]
+                {
+                    new (PressureUnit.Atmosphere, PressureUnits.Atmosphere),
+                    new (PressureUnit.Bar, PressureUnits.Bar),
+                    new (PressureUnit.Centibar, PressureUnits.Centibar),
+                    new (PressureUnit.CentimeterOfWaterColumn, PressureUnits.CentimeterOfWaterColumn),
+                    new (PressureUnit.Decapascal, PressureUnits.Decapascal),
+                    new (PressureUnit.Decibar, PressureUnits.Decibar),
+                    new (PressureUnit.DynePerSquareCentimeter, PressureUnits.DynePerSquareCentimeter),
+                    new (PressureUnit.FootOfHead, PressureUnits.FootOfHead),
+                    new (PressureUnit.Gigapascal, PressureUnits.Gigapascal),
+                    new (PressureUnit.Hectopascal, PressureUnits.Hectopascal),
+                    new (PressureUnit.InchOfMercury, PressureUnits.InchOfMercury),
+                    new (PressureUnit.InchOfWaterColumn, PressureUnits.InchOfWaterColumn),
+                    new (PressureUnit.Kilobar, PressureUnits.Kilobar),
+                    new (PressureUnit.KilogramForcePerSquareCentimeter, PressureUnits.KilogramForcePerSquareCentimeter),
+                    new (PressureUnit.KilogramForcePerSquareMeter, PressureUnits.KilogramForcePerSquareMeter),
+                    new (PressureUnit.KilogramForcePerSquareMillimeter, PressureUnits.KilogramForcePerSquareMillimeter),
+                    new (PressureUnit.KilonewtonPerSquareCentimeter, PressureUnits.KilonewtonPerSquareCentimeter),
+                    new (PressureUnit.KilonewtonPerSquareMeter, PressureUnits.KilonewtonPerSquareMeter),
+                    new (PressureUnit.KilonewtonPerSquareMillimeter, PressureUnits.KilonewtonPerSquareMillimeter),
+                    new (PressureUnit.Kilopascal, PressureUnits.Kilopascal),
+                    new (PressureUnit.KilopoundForcePerSquareFoot, PressureUnits.KilopoundForcePerSquareFoot),
+                    new (PressureUnit.KilopoundForcePerSquareInch, PressureUnits.KilopoundForcePerSquareInch),
+                    new (PressureUnit.KilopoundForcePerSquareMil, PressureUnits.KilopoundForcePerSquareMil),
+                    new (PressureUnit.Megabar, PressureUnits.Megabar),
+                    new (PressureUnit.MeganewtonPerSquareMeter, PressureUnits.MeganewtonPerSquareMeter),
+                    new (PressureUnit.Megapascal, PressureUnits.Megapascal),
+                    new (PressureUnit.MeterOfHead, PressureUnits.MeterOfHead),
+                    new (PressureUnit.MeterOfWaterColumn, PressureUnits.MeterOfWaterColumn),
+                    new (PressureUnit.Microbar, PressureUnits.Microbar),
+                    new (PressureUnit.Micropascal, PressureUnits.Micropascal),
+                    new (PressureUnit.Millibar, PressureUnits.Millibar),
+                    new (PressureUnit.MilligramForcePerSquareFoot, PressureUnits.MilligramForcePerSquareFoot),
+                    new (PressureUnit.MilligramForcePerSquareMeter, PressureUnits.MilligramForcePerSquareMeter),
+                    new (PressureUnit.MillimeterOfMercury, PressureUnits.MillimeterOfMercury),
+                    new (PressureUnit.MillimeterOfWaterColumn, PressureUnits.MillimeterOfWaterColumn),
+                    new (PressureUnit.Millipascal, PressureUnits.Millipascal),
+                    new (PressureUnit.Millitorr, PressureUnits.Millitorr),
+                    new (PressureUnit.NewtonPerSquareCentimeter, PressureUnits.NewtonPerSquareCentimeter),
+                    new (PressureUnit.NewtonPerSquareMeter, PressureUnits.NewtonPerSquareMeter),
+                    new (PressureUnit.NewtonPerSquareMillimeter, PressureUnits.NewtonPerSquareMillimeter),
+                    new (PressureUnit.Pascal, PressureUnits.Pascal),
+                    new (PressureUnit.PoundForcePerSquareFoot, PressureUnits.PoundForcePerSquareFoot),
+                    new (PressureUnit.PoundForcePerSquareInch, PressureUnits.PoundForcePerSquareInch),
+                    new (PressureUnit.PoundForcePerSquareMil, PressureUnits.PoundForcePerSquareMil),
+                    new (PressureUnit.PoundPerInchSecondSquared, PressureUnits.PoundPerInchSecondSquared),
+                    new (PressureUnit.TechnicalAtmosphere, PressureUnits.TechnicalAtmosphere),
+                    new (PressureUnit.TonneForcePerSquareCentimeter, PressureUnits.TonneForcePerSquareCentimeter),
+                    new (PressureUnit.TonneForcePerSquareMeter, PressureUnits.TonneForcePerSquareMeter),
+                    new (PressureUnit.TonneForcePerSquareMillimeter, PressureUnits.TonneForcePerSquareMillimeter),
+                    new (PressureUnit.Torr, PressureUnits.Torr),
+                };
             }
         }
 

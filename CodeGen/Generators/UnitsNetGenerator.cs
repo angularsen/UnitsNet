@@ -61,6 +61,7 @@ namespace CodeGen.Generators
 
                 GenerateQuantity(quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
                 GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs", unitEnumValues);
+                GenerateUnitsClass(quantity, $"{outputDir}/Units/{quantity.Name}Units.g.cs");
                 GenerateNumberToExtensions(quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
                 GenerateNumberToExtensionsTestClass(quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
                 GenerateNumberToExtensionsCS14(quantity, $"{extensionsCs14OutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
@@ -123,6 +124,12 @@ namespace CodeGen.Generators
         private static void GenerateNumberToExtensionsCS14TestClass(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsCS14TestClassGenerator(quantity).Generate();
+            CodeGenFile.WriteAllText(filePath, content);
+        }
+
+        private static void GenerateUnitsClass(Quantity quantity, string filePath)
+        {
+            var content = new UnitsClassGenerator(quantity).Generate();
             CodeGenFile.WriteAllText(filePath, content);
         }
 

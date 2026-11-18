@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Linq;
+using System.Threading;
 using System.Resources;
 
 namespace UnitsNet;
@@ -77,6 +78,15 @@ public abstract class QuantityInfo : IQuantityInfo
 
     /// <inheritdoc />
     public abstract UnitInfo this[UnitKey unit] { get; }
+
+    /// <summary>
+    ///     Finds the unit of this quantity that was created from a definition, such as <see cref="LengthUnits.Meter" />.
+    /// </summary>
+    /// <returns>The unit, or <c>null</c> if no unit was created from <paramref name="unit" />.</returns>
+    internal virtual UnitInfo? FindUnitInfo(IUnitDefinition unit)
+    {
+        return null;
+    }
 
     /// <inheritdoc />
     public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
@@ -308,6 +318,29 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
         return FromDelegate(value, unit);
     }
 
+    /// <summary>
+    ///     Creates an instance of the quantity from a value in a <see cref="UnitOf{TQuantity}" />, such as a furlong of
+    ///     <see cref="Length" />.
+    /// </summary>
+    /// <param name="value">The numerical value in <paramref name="unit" />.</param>
+    /// <param name="unit">The unit of the value.</param>
+    /// <returns>
+    ///     The quantity in <paramref name="unit" /> if it's one of the units of this quantity, such as
+    ///     <see cref="LengthUnits.Meter" />. Otherwise the quantity in its base unit, since a quantity can only be in a unit
+    ///     of <typeparamref name="TUnit" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="unit" /> is <c>null</c>.</exception>
+    public TQuantity From(QuantityValue value, UnitOf<TQuantity> unit)
+    {
+        if (unit is null) throw new ArgumentNullException(nameof(unit));
+        if (FindUnitInfo(unit) is UnitInfo<TUnit> unitInfo)
+        {
+            return From(value, unitInfo.Value);
+        }
+
+        return From(unit.ConversionToBase.Evaluate(value), BaseUnitInfo.Value);
+    }
+
     /// <inheritdoc />
     TQuantity IQuantityInstanceInfo<TQuantity>.Create(QuantityValue value, UnitKey unitKey)
     {
@@ -361,6 +394,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly Dictionary<TUnit, UnitInfo<TQuantity, TUnit>> _unitMappings;
+    private Dictionary<IUnitDefinition, UnitInfo<TQuantity, TUnit>>? _unitsBySource;
     
 #if NET
 
@@ -485,6 +519,29 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
         }
 
         BaseUnitInfo = baseUnitInfo;
+    }
+
+    /// <inheritdoc />
+    internal override UnitInfo? FindUnitInfo(IUnitDefinition unit)
+    {
+        // Created on first use, since few applications look up units by their definition.
+        Dictionary<IUnitDefinition, UnitInfo<TQuantity, TUnit>> unitsBySource = Volatile.Read(ref _unitsBySource) ?? CreateUnitsBySource();
+        return unitsBySource.TryGetValue(unit, out UnitInfo<TQuantity, TUnit>? unitInfo) ? unitInfo : null;
+    }
+
+    private Dictionary<IUnitDefinition, UnitInfo<TQuantity, TUnit>> CreateUnitsBySource()
+    {
+        var unitsBySource = new Dictionary<IUnitDefinition, UnitInfo<TQuantity, TUnit>>();
+        foreach (UnitInfo<TQuantity, TUnit> unitInfo in _unitInfos)
+        {
+            if (unitInfo.Source is { } source)
+            {
+                unitsBySource[source] = unitInfo;
+            }
+        }
+
+        Volatile.Write(ref _unitsBySource, unitsBySource);
+        return unitsBySource;
     }
 
     /// <summary>

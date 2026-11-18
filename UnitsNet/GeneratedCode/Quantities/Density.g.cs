@@ -127,172 +127,65 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DensityUnit}"/> representing the default unit mappings for Density.</returns>
             public static IEnumerable<UnitDefinition<DensityUnit>> GetDefaultMappings()
             {
-                yield return new (DensityUnit.CentigramPerDeciliter, "CentigramPerDeciliter", "CentigramsPerDeciliter", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (DensityUnit.CentigramPerLiter, "CentigramPerLiter", "CentigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Centigram),
-                     100
-                );
-                yield return new (DensityUnit.CentigramPerMilliliter, "CentigramPerMilliliter", "CentigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Centigram),
-                     new QuantityValue(1, 10)
-                );
-                yield return new (DensityUnit.DecigramPerDeciliter, "DecigramPerDeciliter", "DecigramsPerDeciliter", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (DensityUnit.DecigramPerLiter, "DecigramPerLiter", "DecigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Decigram),
-                     10
-                );
-                yield return new (DensityUnit.DecigramPerMilliliter, "DecigramPerMilliliter", "DecigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Decigram),
-                     new QuantityValue(1, 100)
-                );
-                yield return new (DensityUnit.FemtogramPerDeciliter, "FemtogramPerDeciliter", "FemtogramsPerDeciliter", BaseUnits.Undefined,
-                     100000000000000
-                );
-                yield return new (DensityUnit.FemtogramPerLiter, "FemtogramPerLiter", "FemtogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Femtogram),
-                     1000000000000000
-                );
-                yield return new (DensityUnit.FemtogramPerMilliliter, "FemtogramPerMilliliter", "FemtogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Femtogram),
-                     1000000000000
-                );
-                yield return new (DensityUnit.GramPerCubicCentimeter, "GramPerCubicCentimeter", "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (DensityUnit.GramPerCubicFoot, "GramPerCubicFoot", "GramsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram),
-                     new QuantityValue(55306341, 1953125)
-                );
-                yield return new (DensityUnit.GramPerCubicInch, "GramPerCubicInch", "GramsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Gram),
-                     new QuantityValue(2048383, 125000000)
-                );
-                yield return new (DensityUnit.GramPerCubicMeter, "GramPerCubicMeter", "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
-                     1000
-                );
-                yield return new (DensityUnit.GramPerCubicMillimeter, "GramPerCubicMillimeter", "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (DensityUnit.GramPerDeciliter, "GramPerDeciliter", "GramsPerDeciliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)
-                );
-                yield return new (DensityUnit.GramPerLiter, "GramPerLiter", "GramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram),
-                     1
-                );
-                yield return new (DensityUnit.GramPerMilliliter, "GramPerMilliliter", "GramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (DensityUnit.KilogramPerCubicCentimeter, "KilogramPerCubicCentimeter", "KilogramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (DensityUnit.KilogramPerCubicMeter, "KilogramPerCubicMeter", "KilogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (DensityUnit.KilogramPerCubicMillimeter, "KilogramPerCubicMillimeter", "KilogramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (DensityUnit.KilogramPerLiter, "KilogramPerLiter", "KilogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (DensityUnit.KilopoundPerCubicFoot, "KilopoundPerCubicFoot", "KilopoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilopound),
-                     new QuantityValue(221225364, 3543690390625)
-                );
-                yield return new (DensityUnit.KilopoundPerCubicInch, "KilopoundPerCubicInch", "KilopoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound),
-                     new QuantityValue(2048383, 56699046250000)
-                );
-                yield return new (DensityUnit.KilopoundPerCubicYard, "KilopoundPerCubicYard", "KilopoundsPerCubicYard", new BaseUnits(length: LengthUnit.Yard, mass: MassUnit.Kilopound),
-                     new QuantityValue(5973084828, 3543690390625)
-                );
-                yield return new (DensityUnit.MicrogramPerCubicMeter, "MicrogramPerCubicMeter", "MicrogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram),
-                     1000000000
-                );
-                yield return new (DensityUnit.MicrogramPerDeciliter, "MicrogramPerDeciliter", "MicrogramsPerDeciliter", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (DensityUnit.MicrogramPerLiter, "MicrogramPerLiter", "MicrogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Microgram),
-                     1000000
-                );
-                yield return new (DensityUnit.MicrogramPerMilliliter, "MicrogramPerMilliliter", "MicrogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram),
-                     1000
-                );
-                yield return new (DensityUnit.MilligramPerCubicMeter, "MilligramPerCubicMeter", "MilligramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
-                     1000000
-                );
-                yield return new (DensityUnit.MilligramPerDeciliter, "MilligramPerDeciliter", "MilligramsPerDeciliter", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (DensityUnit.MilligramPerLiter, "MilligramPerLiter", "MilligramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Milligram),
-                     1000
-                );
-                yield return new (DensityUnit.MilligramPerMilliliter, "MilligramPerMilliliter", "MilligramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram),
-                     1
-                );
-                yield return new (DensityUnit.NanogramPerDeciliter, "NanogramPerDeciliter", "NanogramsPerDeciliter", BaseUnits.Undefined,
-                     100000000
-                );
-                yield return new (DensityUnit.NanogramPerLiter, "NanogramPerLiter", "NanogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Nanogram),
-                     1000000000
-                );
-                yield return new (DensityUnit.NanogramPerMilliliter, "NanogramPerMilliliter", "NanogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Nanogram),
-                     1000000
-                );
-                yield return new (DensityUnit.PicogramPerDeciliter, "PicogramPerDeciliter", "PicogramsPerDeciliter", BaseUnits.Undefined,
-                     100000000000
-                );
-                yield return new (DensityUnit.PicogramPerLiter, "PicogramPerLiter", "PicogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Picogram),
-                     1000000000000
-                );
-                yield return new (DensityUnit.PicogramPerMilliliter, "PicogramPerMilliliter", "PicogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Picogram),
-                     1000000000
-                );
-                yield return new (DensityUnit.PoundPerCubicCentimeter, "PoundPerCubicCentimeter", "PoundsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Pound),
-                     new QuantityValue(100, 45359237)
-                );
-                yield return new (DensityUnit.PoundPerCubicFoot, "PoundPerCubicFoot", "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(1769802912, 28349523125)
-                );
-                yield return new (DensityUnit.PoundPerCubicInch, "PoundPerCubicInch", "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound),
-                     new QuantityValue(2048383, 56699046250)
-                );
-                yield return new (DensityUnit.PoundPerCubicMeter, "PoundPerCubicMeter", "PoundsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Pound),
-                     new QuantityValue(100000000, 45359237)
-                );
-                yield return new (DensityUnit.PoundPerCubicMillimeter, "PoundPerCubicMillimeter", "PoundsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Pound),
-                     new QuantityValue(1, 453592370)
-                );
-                yield return new (DensityUnit.PoundPerCubicYard, "PoundPerCubicYard", "PoundsPerCubicYard", new BaseUnits(length: LengthUnit.Yard, mass: MassUnit.Pound),
-                     new QuantityValue(47784678624, 28349523125)
-                );
-                yield return new (DensityUnit.PoundPerImperialGallon, "PoundPerImperialGallon", "PoundsPerImperialGallon", BaseUnits.Undefined,
-                     new QuantityValue(454609, 45359237)
-                );
-                yield return new (DensityUnit.PoundPerUSGallon, "PoundPerUSGallon", "PoundsPerUSGallon", BaseUnits.Undefined,
-                     new QuantityValue(6145149, 736351250)
-                );
-                yield return new (DensityUnit.SlugPerCubicCentimeter, "SlugPerCubicCentimeter", "SlugsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Slug),
-                     new QuantityValue(609600, 8896443230521)
-                );
-                yield return new (DensityUnit.SlugPerCubicFoot, "SlugPerCubicFoot", "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug),
-                     new QuantityValue(10788718551552, 5560277019075625)
-                );
-                yield return new (DensityUnit.SlugPerCubicInch, "SlugPerCubicInch", "SlugsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Slug),
-                     new QuantityValue(6243471384, 5560277019075625)
-                );
-                yield return new (DensityUnit.SlugPerCubicMeter, "SlugPerCubicMeter", "SlugsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Slug),
-                     new QuantityValue(609600000000, 8896443230521)
-                );
-                yield return new (DensityUnit.SlugPerCubicMillimeter, "SlugPerCubicMillimeter", "SlugsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Slug),
-                     new QuantityValue(3048, 44482216152605)
-                );
-                yield return new (DensityUnit.TonnePerCubicCentimeter, "TonnePerCubicCentimeter", "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (DensityUnit.TonnePerCubicFoot, "TonnePerCubicFoot", "TonnesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Tonne),
-                     new QuantityValue(55306341, 1953125000000)
-                );
-                yield return new (DensityUnit.TonnePerCubicInch, "TonnePerCubicInch", "TonnesPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Tonne),
-                     new QuantityValue(2048383, 125000000000000)
-                );
-                yield return new (DensityUnit.TonnePerCubicMeter, "TonnePerCubicMeter", "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (DensityUnit.TonnePerCubicMillimeter, "TonnePerCubicMillimeter", "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000000000000)
-                );
+                return new UnitDefinition<DensityUnit>[]
+                {
+                    new (DensityUnit.CentigramPerDeciliter, DensityUnits.CentigramPerDeciliter),
+                    new (DensityUnit.CentigramPerLiter, DensityUnits.CentigramPerLiter),
+                    new (DensityUnit.CentigramPerMilliliter, DensityUnits.CentigramPerMilliliter),
+                    new (DensityUnit.DecigramPerDeciliter, DensityUnits.DecigramPerDeciliter),
+                    new (DensityUnit.DecigramPerLiter, DensityUnits.DecigramPerLiter),
+                    new (DensityUnit.DecigramPerMilliliter, DensityUnits.DecigramPerMilliliter),
+                    new (DensityUnit.FemtogramPerDeciliter, DensityUnits.FemtogramPerDeciliter),
+                    new (DensityUnit.FemtogramPerLiter, DensityUnits.FemtogramPerLiter),
+                    new (DensityUnit.FemtogramPerMilliliter, DensityUnits.FemtogramPerMilliliter),
+                    new (DensityUnit.GramPerCubicCentimeter, DensityUnits.GramPerCubicCentimeter),
+                    new (DensityUnit.GramPerCubicFoot, DensityUnits.GramPerCubicFoot),
+                    new (DensityUnit.GramPerCubicInch, DensityUnits.GramPerCubicInch),
+                    new (DensityUnit.GramPerCubicMeter, DensityUnits.GramPerCubicMeter),
+                    new (DensityUnit.GramPerCubicMillimeter, DensityUnits.GramPerCubicMillimeter),
+                    new (DensityUnit.GramPerDeciliter, DensityUnits.GramPerDeciliter),
+                    new (DensityUnit.GramPerLiter, DensityUnits.GramPerLiter),
+                    new (DensityUnit.GramPerMilliliter, DensityUnits.GramPerMilliliter),
+                    new (DensityUnit.KilogramPerCubicCentimeter, DensityUnits.KilogramPerCubicCentimeter),
+                    new (DensityUnit.KilogramPerCubicMeter, DensityUnits.KilogramPerCubicMeter),
+                    new (DensityUnit.KilogramPerCubicMillimeter, DensityUnits.KilogramPerCubicMillimeter),
+                    new (DensityUnit.KilogramPerLiter, DensityUnits.KilogramPerLiter),
+                    new (DensityUnit.KilopoundPerCubicFoot, DensityUnits.KilopoundPerCubicFoot),
+                    new (DensityUnit.KilopoundPerCubicInch, DensityUnits.KilopoundPerCubicInch),
+                    new (DensityUnit.KilopoundPerCubicYard, DensityUnits.KilopoundPerCubicYard),
+                    new (DensityUnit.MicrogramPerCubicMeter, DensityUnits.MicrogramPerCubicMeter),
+                    new (DensityUnit.MicrogramPerDeciliter, DensityUnits.MicrogramPerDeciliter),
+                    new (DensityUnit.MicrogramPerLiter, DensityUnits.MicrogramPerLiter),
+                    new (DensityUnit.MicrogramPerMilliliter, DensityUnits.MicrogramPerMilliliter),
+                    new (DensityUnit.MilligramPerCubicMeter, DensityUnits.MilligramPerCubicMeter),
+                    new (DensityUnit.MilligramPerDeciliter, DensityUnits.MilligramPerDeciliter),
+                    new (DensityUnit.MilligramPerLiter, DensityUnits.MilligramPerLiter),
+                    new (DensityUnit.MilligramPerMilliliter, DensityUnits.MilligramPerMilliliter),
+                    new (DensityUnit.NanogramPerDeciliter, DensityUnits.NanogramPerDeciliter),
+                    new (DensityUnit.NanogramPerLiter, DensityUnits.NanogramPerLiter),
+                    new (DensityUnit.NanogramPerMilliliter, DensityUnits.NanogramPerMilliliter),
+                    new (DensityUnit.PicogramPerDeciliter, DensityUnits.PicogramPerDeciliter),
+                    new (DensityUnit.PicogramPerLiter, DensityUnits.PicogramPerLiter),
+                    new (DensityUnit.PicogramPerMilliliter, DensityUnits.PicogramPerMilliliter),
+                    new (DensityUnit.PoundPerCubicCentimeter, DensityUnits.PoundPerCubicCentimeter),
+                    new (DensityUnit.PoundPerCubicFoot, DensityUnits.PoundPerCubicFoot),
+                    new (DensityUnit.PoundPerCubicInch, DensityUnits.PoundPerCubicInch),
+                    new (DensityUnit.PoundPerCubicMeter, DensityUnits.PoundPerCubicMeter),
+                    new (DensityUnit.PoundPerCubicMillimeter, DensityUnits.PoundPerCubicMillimeter),
+                    new (DensityUnit.PoundPerCubicYard, DensityUnits.PoundPerCubicYard),
+                    new (DensityUnit.PoundPerImperialGallon, DensityUnits.PoundPerImperialGallon),
+                    new (DensityUnit.PoundPerUSGallon, DensityUnits.PoundPerUSGallon),
+                    new (DensityUnit.SlugPerCubicCentimeter, DensityUnits.SlugPerCubicCentimeter),
+                    new (DensityUnit.SlugPerCubicFoot, DensityUnits.SlugPerCubicFoot),
+                    new (DensityUnit.SlugPerCubicInch, DensityUnits.SlugPerCubicInch),
+                    new (DensityUnit.SlugPerCubicMeter, DensityUnits.SlugPerCubicMeter),
+                    new (DensityUnit.SlugPerCubicMillimeter, DensityUnits.SlugPerCubicMillimeter),
+                    new (DensityUnit.TonnePerCubicCentimeter, DensityUnits.TonnePerCubicCentimeter),
+                    new (DensityUnit.TonnePerCubicFoot, DensityUnits.TonnePerCubicFoot),
+                    new (DensityUnit.TonnePerCubicInch, DensityUnits.TonnePerCubicInch),
+                    new (DensityUnit.TonnePerCubicMeter, DensityUnits.TonnePerCubicMeter),
+                    new (DensityUnit.TonnePerCubicMillimeter, DensityUnits.TonnePerCubicMillimeter),
+                };
             }
         }
 

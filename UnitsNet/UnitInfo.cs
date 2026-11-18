@@ -209,11 +209,17 @@ public abstract class UnitInfo<TUnit> : UnitInfo, IUnitDefinition<TUnit>
         : base(mapping)
     {
         Value = mapping.Value;
+        Source = (mapping as UnitDefinition<TUnit>)?.Source;
     }
 
     /// <inheritdoc />
     [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
     public new TUnit Value { get; }
+
+    /// <summary>
+    ///     The definition this unit was created from, such as <see cref="LengthUnits.Meter" />, if any.
+    /// </summary>
+    internal IUnitDefinition? Source { get; }
 }
 
 /// <summary>

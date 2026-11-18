@@ -119,40 +119,21 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{EnergyDensityUnit}"/> representing the default unit mappings for EnergyDensity.</returns>
             public static IEnumerable<UnitDefinition<EnergyDensityUnit>> GetDefaultMappings()
             {
-                yield return new (EnergyDensityUnit.GigajoulePerCubicMeter, "GigajoulePerCubicMeter", "GigajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (EnergyDensityUnit.GigawattHourPerCubicMeter, "GigawattHourPerCubicMeter", "GigawattHoursPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000000)
-                );
-                yield return new (EnergyDensityUnit.JoulePerCubicMeter, "JoulePerCubicMeter", "JoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (EnergyDensityUnit.KilojoulePerCubicMeter, "KilojoulePerCubicMeter", "KilojoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (EnergyDensityUnit.KilowattHourPerCubicMeter, "KilowattHourPerCubicMeter", "KilowattHoursPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000)
-                );
-                yield return new (EnergyDensityUnit.MegajoulePerCubicMeter, "MegajoulePerCubicMeter", "MegajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (EnergyDensityUnit.MegawattHourPerCubicMeter, "MegawattHourPerCubicMeter", "MegawattHoursPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000)
-                );
-                yield return new (EnergyDensityUnit.PetajoulePerCubicMeter, "PetajoulePerCubicMeter", "PetajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Femtometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000000000)
-                );
-                yield return new (EnergyDensityUnit.PetawattHourPerCubicMeter, "PetawattHourPerCubicMeter", "PetawattHoursPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000000000000)
-                );
-                yield return new (EnergyDensityUnit.TerajoulePerCubicMeter, "TerajoulePerCubicMeter", "TerajoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (EnergyDensityUnit.TerawattHourPerCubicMeter, "TerawattHourPerCubicMeter", "TerawattHoursPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000000000)
-                );
-                yield return new (EnergyDensityUnit.WattHourPerCubicMeter, "WattHourPerCubicMeter", "WattHoursPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600)
-                );
+                return new UnitDefinition<EnergyDensityUnit>[]
+                {
+                    new (EnergyDensityUnit.GigajoulePerCubicMeter, EnergyDensityUnits.GigajoulePerCubicMeter),
+                    new (EnergyDensityUnit.GigawattHourPerCubicMeter, EnergyDensityUnits.GigawattHourPerCubicMeter),
+                    new (EnergyDensityUnit.JoulePerCubicMeter, EnergyDensityUnits.JoulePerCubicMeter),
+                    new (EnergyDensityUnit.KilojoulePerCubicMeter, EnergyDensityUnits.KilojoulePerCubicMeter),
+                    new (EnergyDensityUnit.KilowattHourPerCubicMeter, EnergyDensityUnits.KilowattHourPerCubicMeter),
+                    new (EnergyDensityUnit.MegajoulePerCubicMeter, EnergyDensityUnits.MegajoulePerCubicMeter),
+                    new (EnergyDensityUnit.MegawattHourPerCubicMeter, EnergyDensityUnits.MegawattHourPerCubicMeter),
+                    new (EnergyDensityUnit.PetajoulePerCubicMeter, EnergyDensityUnits.PetajoulePerCubicMeter),
+                    new (EnergyDensityUnit.PetawattHourPerCubicMeter, EnergyDensityUnits.PetawattHourPerCubicMeter),
+                    new (EnergyDensityUnit.TerajoulePerCubicMeter, EnergyDensityUnits.TerajoulePerCubicMeter),
+                    new (EnergyDensityUnit.TerawattHourPerCubicMeter, EnergyDensityUnits.TerawattHourPerCubicMeter),
+                    new (EnergyDensityUnit.WattHourPerCubicMeter, EnergyDensityUnits.WattHourPerCubicMeter),
+                };
             }
         }
 

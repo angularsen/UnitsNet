@@ -128,37 +128,20 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricChargeUnit}"/> representing the default unit mappings for ElectricCharge.</returns>
             public static IEnumerable<UnitDefinition<ElectricChargeUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricChargeUnit.AmpereHour, "AmpereHour", "AmpereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 3600)
-                );
-                yield return new (ElectricChargeUnit.Coulomb, "Coulomb", "Coulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricChargeUnit.KiloampereHour, "KiloampereHour", "KiloampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Kiloampere),
-                     new QuantityValue(1, 3600000)
-                );
-                yield return new (ElectricChargeUnit.Kilocoulomb, "Kilocoulomb", "Kilocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Kiloampere),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricChargeUnit.MegaampereHour, "MegaampereHour", "MegaampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Megaampere),
-                     new QuantityValue(1, 3600000000)
-                );
-                yield return new (ElectricChargeUnit.Megacoulomb, "Megacoulomb", "Megacoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Megaampere),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricChargeUnit.Microcoulomb, "Microcoulomb", "Microcoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
-                     1000000
-                );
-                yield return new (ElectricChargeUnit.MilliampereHour, "MilliampereHour", "MilliampereHours", new BaseUnits(time: DurationUnit.Hour, current: ElectricCurrentUnit.Milliampere),
-                     new QuantityValue(5, 18)
-                );
-                yield return new (ElectricChargeUnit.Millicoulomb, "Millicoulomb", "Millicoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     1000
-                );
-                yield return new (ElectricChargeUnit.Nanocoulomb, "Nanocoulomb", "Nanocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere),
-                     1000000000
-                );
-                yield return new (ElectricChargeUnit.Picocoulomb, "Picocoulomb", "Picocoulombs", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere),
-                     1000000000000
-                );
+                return new UnitDefinition<ElectricChargeUnit>[]
+                {
+                    new (ElectricChargeUnit.AmpereHour, ElectricChargeUnits.AmpereHour),
+                    new (ElectricChargeUnit.Coulomb, ElectricChargeUnits.Coulomb),
+                    new (ElectricChargeUnit.KiloampereHour, ElectricChargeUnits.KiloampereHour),
+                    new (ElectricChargeUnit.Kilocoulomb, ElectricChargeUnits.Kilocoulomb),
+                    new (ElectricChargeUnit.MegaampereHour, ElectricChargeUnits.MegaampereHour),
+                    new (ElectricChargeUnit.Megacoulomb, ElectricChargeUnits.Megacoulomb),
+                    new (ElectricChargeUnit.Microcoulomb, ElectricChargeUnits.Microcoulomb),
+                    new (ElectricChargeUnit.MilliampereHour, ElectricChargeUnits.MilliampereHour),
+                    new (ElectricChargeUnit.Millicoulomb, ElectricChargeUnits.Millicoulomb),
+                    new (ElectricChargeUnit.Nanocoulomb, ElectricChargeUnits.Nanocoulomb),
+                    new (ElectricChargeUnit.Picocoulomb, ElectricChargeUnits.Picocoulomb),
+                };
             }
         }
 

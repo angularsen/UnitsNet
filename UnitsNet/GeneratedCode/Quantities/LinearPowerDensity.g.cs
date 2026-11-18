@@ -120,79 +120,34 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LinearPowerDensityUnit}"/> representing the default unit mappings for LinearPowerDensity.</returns>
             public static IEnumerable<UnitDefinition<LinearPowerDensityUnit>> GetDefaultMappings()
             {
-                yield return new (LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattPerCentimeter", "GigawattsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000000)
-                );
-                yield return new (LinearPowerDensityUnit.GigawattPerFoot, "GigawattPerFoot", "GigawattsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(381, 1250000000000)
-                );
-                yield return new (LinearPowerDensityUnit.GigawattPerInch, "GigawattPerInch", "GigawattsPerInch", BaseUnits.Undefined,
-                     new QuantityValue(127, 5000000000000)
-                );
-                yield return new (LinearPowerDensityUnit.GigawattPerMeter, "GigawattPerMeter", "GigawattsPerMeter", new BaseUnits(length: LengthUnit.Gigameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattPerMillimeter", "GigawattsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattPerCentimeter", "KilowattsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)
-                );
-                yield return new (LinearPowerDensityUnit.KilowattPerFoot, "KilowattPerFoot", "KilowattsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(381, 1250000)
-                );
-                yield return new (LinearPowerDensityUnit.KilowattPerInch, "KilowattPerInch", "KilowattsPerInch", BaseUnits.Undefined,
-                     new QuantityValue(127, 5000000)
-                );
-                yield return new (LinearPowerDensityUnit.KilowattPerMeter, "KilowattPerMeter", "KilowattsPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattPerMillimeter", "KilowattsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattPerCentimeter", "MegawattsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000)
-                );
-                yield return new (LinearPowerDensityUnit.MegawattPerFoot, "MegawattPerFoot", "MegawattsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(381, 1250000000)
-                );
-                yield return new (LinearPowerDensityUnit.MegawattPerInch, "MegawattPerInch", "MegawattsPerInch", BaseUnits.Undefined,
-                     new QuantityValue(127, 5000000000)
-                );
-                yield return new (LinearPowerDensityUnit.MegawattPerMeter, "MegawattPerMeter", "MegawattsPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattPerMillimeter", "MegawattsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattPerCentimeter", "MilliwattsPerCentimeter", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattPerFoot", "MilliwattsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(1524, 5)
-                );
-                yield return new (LinearPowerDensityUnit.MilliwattPerInch, "MilliwattPerInch", "MilliwattsPerInch", BaseUnits.Undefined,
-                     new QuantityValue(127, 5)
-                );
-                yield return new (LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattPerMeter", "MilliwattsPerMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattPerMillimeter", "MilliwattsPerMillimeter", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (LinearPowerDensityUnit.WattPerCentimeter, "WattPerCentimeter", "WattsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)
-                );
-                yield return new (LinearPowerDensityUnit.WattPerFoot, "WattPerFoot", "WattsPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(381, 1250)
-                );
-                yield return new (LinearPowerDensityUnit.WattPerInch, "WattPerInch", "WattsPerInch", BaseUnits.Undefined,
-                     new QuantityValue(127, 5000)
-                );
-                yield return new (LinearPowerDensityUnit.WattPerMeter, "WattPerMeter", "WattsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (LinearPowerDensityUnit.WattPerMillimeter, "WattPerMillimeter", "WattsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
+                return new UnitDefinition<LinearPowerDensityUnit>[]
+                {
+                    new (LinearPowerDensityUnit.GigawattPerCentimeter, LinearPowerDensityUnits.GigawattPerCentimeter),
+                    new (LinearPowerDensityUnit.GigawattPerFoot, LinearPowerDensityUnits.GigawattPerFoot),
+                    new (LinearPowerDensityUnit.GigawattPerInch, LinearPowerDensityUnits.GigawattPerInch),
+                    new (LinearPowerDensityUnit.GigawattPerMeter, LinearPowerDensityUnits.GigawattPerMeter),
+                    new (LinearPowerDensityUnit.GigawattPerMillimeter, LinearPowerDensityUnits.GigawattPerMillimeter),
+                    new (LinearPowerDensityUnit.KilowattPerCentimeter, LinearPowerDensityUnits.KilowattPerCentimeter),
+                    new (LinearPowerDensityUnit.KilowattPerFoot, LinearPowerDensityUnits.KilowattPerFoot),
+                    new (LinearPowerDensityUnit.KilowattPerInch, LinearPowerDensityUnits.KilowattPerInch),
+                    new (LinearPowerDensityUnit.KilowattPerMeter, LinearPowerDensityUnits.KilowattPerMeter),
+                    new (LinearPowerDensityUnit.KilowattPerMillimeter, LinearPowerDensityUnits.KilowattPerMillimeter),
+                    new (LinearPowerDensityUnit.MegawattPerCentimeter, LinearPowerDensityUnits.MegawattPerCentimeter),
+                    new (LinearPowerDensityUnit.MegawattPerFoot, LinearPowerDensityUnits.MegawattPerFoot),
+                    new (LinearPowerDensityUnit.MegawattPerInch, LinearPowerDensityUnits.MegawattPerInch),
+                    new (LinearPowerDensityUnit.MegawattPerMeter, LinearPowerDensityUnits.MegawattPerMeter),
+                    new (LinearPowerDensityUnit.MegawattPerMillimeter, LinearPowerDensityUnits.MegawattPerMillimeter),
+                    new (LinearPowerDensityUnit.MilliwattPerCentimeter, LinearPowerDensityUnits.MilliwattPerCentimeter),
+                    new (LinearPowerDensityUnit.MilliwattPerFoot, LinearPowerDensityUnits.MilliwattPerFoot),
+                    new (LinearPowerDensityUnit.MilliwattPerInch, LinearPowerDensityUnits.MilliwattPerInch),
+                    new (LinearPowerDensityUnit.MilliwattPerMeter, LinearPowerDensityUnits.MilliwattPerMeter),
+                    new (LinearPowerDensityUnit.MilliwattPerMillimeter, LinearPowerDensityUnits.MilliwattPerMillimeter),
+                    new (LinearPowerDensityUnit.WattPerCentimeter, LinearPowerDensityUnits.WattPerCentimeter),
+                    new (LinearPowerDensityUnit.WattPerFoot, LinearPowerDensityUnits.WattPerFoot),
+                    new (LinearPowerDensityUnit.WattPerInch, LinearPowerDensityUnits.WattPerInch),
+                    new (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnits.WattPerMeter),
+                    new (LinearPowerDensityUnit.WattPerMillimeter, LinearPowerDensityUnits.WattPerMillimeter),
+                };
             }
         }
 

@@ -227,63 +227,18 @@ namespace UnitsNet
             /// </summary>
             /// <returns>An <see cref=""IEnumerable{{T}}""/> of <see cref=""UnitDefinition{{{_unitEnumName}}}""/> representing the default unit mappings for {_quantity.Name}.</returns>
             public static IEnumerable<UnitDefinition<{_unitEnumName}>> GetDefaultMappings()
-            {{");
+            {{
+                return new UnitDefinition<{_unitEnumName}>[]
+                {{");
 
             foreach (Unit unit in _quantity.Units)
             {
-                BaseUnits? baseUnits = unit.BaseUnits;
-                string baseUnitsFormat;
-                if (baseUnits == null)
-                {
-                    baseUnitsFormat = "BaseUnits.Undefined";
-                }
-                else
-                {
-                    baseUnitsFormat = $"new BaseUnits({string.Join(", ",
-                        new[]
-                        {
-                            baseUnits.L != null ? $"length: LengthUnit.{baseUnits.L}" : null,
-                            baseUnits.M != null ? $"mass: MassUnit.{baseUnits.M}" : null,
-                            baseUnits.T != null ? $"time: DurationUnit.{baseUnits.T}" : null,
-                            baseUnits.I != null ? $"current: ElectricCurrentUnit.{baseUnits.I}" : null,
-                            baseUnits.Θ != null ? $"temperature: TemperatureUnit.{baseUnits.Θ}" : null,
-                            baseUnits.N != null ? $"amount: AmountOfSubstanceUnit.{baseUnits.N}" : null,
-                            baseUnits.J != null ? $"luminousIntensity: LuminousIntensityUnit.{baseUnits.J}" : null
-                        }.Where(str => str != null))})";
-                }
-
-                // the UnitInfo constructor has 3 overloads:
-                // - one for the base unit without conversion expressions
-                // - one for units with only FromBaseToUnit conversion expression (with the FromUnitToBase expression assumed to be the inverse)
-                // - one for units with both FromBaseToUnit and FromUnitToBase conversion expressions (required when the conversion is not a simple inverse, e.g. affine conversions)
-                if (unit.SingularName == _quantity.BaseUnit)
-                {
-                    Writer.WL($@"
-                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat});");
-                }
-                else
-                {
-                    CompositeExpression expressionFromBaseToUnit = ExpressionEvaluator.Evaluate(unit.FromBaseToUnitFunc, "{x}");
-                    // Check if FromUnitToBase is simply the inverse of FromBaseToUnit
-                    if (expressionFromBaseToUnit.Terms.Count == 1 && expressionFromBaseToUnit.Degree == Fraction.One)
-                    {
-                        Writer.WL($@"
-                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
-                     {expressionFromBaseToUnit.GetConversionExpressionFormat()}
-                );");
-                    }
-                    else
-                    {
-                        Writer.WL($@"
-                yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
-                     {expressionFromBaseToUnit.GetConversionExpressionFormat()},
-                     {unit.GetUnitToBaseConversionExpressionFormat()}
-                );");
-                    }
-                }
+                Writer.WL($@"
+                    new ({_unitEnumName}.{unit.SingularName}, {_quantity.Name}Units.{unit.SingularName}),");
             }
 
             Writer.WL($@"
+                }};
             }}
         }}
 ");

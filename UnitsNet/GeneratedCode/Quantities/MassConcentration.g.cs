@@ -124,151 +124,58 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassConcentrationUnit}"/> representing the default unit mappings for MassConcentration.</returns>
             public static IEnumerable<UnitDefinition<MassConcentrationUnit>> GetDefaultMappings()
             {
-                yield return new (MassConcentrationUnit.CentigramPerDeciliter, "CentigramPerDeciliter", "CentigramsPerDeciliter", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (MassConcentrationUnit.CentigramPerLiter, "CentigramPerLiter", "CentigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Centigram),
-                     100
-                );
-                yield return new (MassConcentrationUnit.CentigramPerMicroliter, "CentigramPerMicroliter", "CentigramsPerMicroliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (MassConcentrationUnit.CentigramPerMilliliter, "CentigramPerMilliliter", "CentigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Centigram),
-                     new QuantityValue(1, 10)
-                );
-                yield return new (MassConcentrationUnit.DecigramPerDeciliter, "DecigramPerDeciliter", "DecigramsPerDeciliter", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (MassConcentrationUnit.DecigramPerLiter, "DecigramPerLiter", "DecigramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Decigram),
-                     10
-                );
-                yield return new (MassConcentrationUnit.DecigramPerMicroliter, "DecigramPerMicroliter", "DecigramsPerMicroliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)
-                );
-                yield return new (MassConcentrationUnit.DecigramPerMilliliter, "DecigramPerMilliliter", "DecigramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Decigram),
-                     new QuantityValue(1, 100)
-                );
-                yield return new (MassConcentrationUnit.GramPerCubicCentimeter, "GramPerCubicCentimeter", "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MassConcentrationUnit.GramPerCubicMeter, "GramPerCubicMeter", "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
-                     1000
-                );
-                yield return new (MassConcentrationUnit.GramPerCubicMillimeter, "GramPerCubicMillimeter", "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (MassConcentrationUnit.GramPerDeciliter, "GramPerDeciliter", "GramsPerDeciliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)
-                );
-                yield return new (MassConcentrationUnit.GramPerLiter, "GramPerLiter", "GramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram),
-                     1
-                );
-                yield return new (MassConcentrationUnit.GramPerMicroliter, "GramPerMicroliter", "GramsPerMicroliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (MassConcentrationUnit.GramPerMilliliter, "GramPerMilliliter", "GramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MassConcentrationUnit.KilogramPerCubicCentimeter, "KilogramPerCubicCentimeter", "KilogramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (MassConcentrationUnit.KilogramPerCubicMeter, "KilogramPerCubicMeter", "KilogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (MassConcentrationUnit.KilogramPerCubicMillimeter, "KilogramPerCubicMillimeter", "KilogramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (MassConcentrationUnit.KilogramPerLiter, "KilogramPerLiter", "KilogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MassConcentrationUnit.KilopoundPerCubicFoot, "KilopoundPerCubicFoot", "KilopoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Kilopound),
-                     new QuantityValue(221225364, 3543690390625)
-                );
-                yield return new (MassConcentrationUnit.KilopoundPerCubicInch, "KilopoundPerCubicInch", "KilopoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Kilopound),
-                     new QuantityValue(2048383, 56699046250000)
-                );
-                yield return new (MassConcentrationUnit.MicrogramPerCubicMeter, "MicrogramPerCubicMeter", "MicrogramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram),
-                     1000000000
-                );
-                yield return new (MassConcentrationUnit.MicrogramPerDeciliter, "MicrogramPerDeciliter", "MicrogramsPerDeciliter", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (MassConcentrationUnit.MicrogramPerLiter, "MicrogramPerLiter", "MicrogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Microgram),
-                     1000000
-                );
-                yield return new (MassConcentrationUnit.MicrogramPerMicroliter, "MicrogramPerMicroliter", "MicrogramsPerMicroliter", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (MassConcentrationUnit.MicrogramPerMilliliter, "MicrogramPerMilliliter", "MicrogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Microgram),
-                     1000
-                );
-                yield return new (MassConcentrationUnit.MilligramPerCubicMeter, "MilligramPerCubicMeter", "MilligramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
-                     1000000
-                );
-                yield return new (MassConcentrationUnit.MilligramPerDeciliter, "MilligramPerDeciliter", "MilligramsPerDeciliter", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (MassConcentrationUnit.MilligramPerLiter, "MilligramPerLiter", "MilligramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Milligram),
-                     1000
-                );
-                yield return new (MassConcentrationUnit.MilligramPerMicroliter, "MilligramPerMicroliter", "MilligramsPerMicroliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MassConcentrationUnit.MilligramPerMilliliter, "MilligramPerMilliliter", "MilligramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram),
-                     1
-                );
-                yield return new (MassConcentrationUnit.NanogramPerDeciliter, "NanogramPerDeciliter", "NanogramsPerDeciliter", BaseUnits.Undefined,
-                     100000000
-                );
-                yield return new (MassConcentrationUnit.NanogramPerLiter, "NanogramPerLiter", "NanogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Nanogram),
-                     1000000000
-                );
-                yield return new (MassConcentrationUnit.NanogramPerMicroliter, "NanogramPerMicroliter", "NanogramsPerMicroliter", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (MassConcentrationUnit.NanogramPerMilliliter, "NanogramPerMilliliter", "NanogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Nanogram),
-                     1000000
-                );
-                yield return new (MassConcentrationUnit.OuncePerImperialGallon, "OuncePerImperialGallon", "OuncesPerImperialGallon", BaseUnits.Undefined,
-                     new QuantityValue(7273744, 45359237)
-                );
-                yield return new (MassConcentrationUnit.OuncePerUSGallon, "OuncePerUSGallon", "OuncesPerUSGallon", BaseUnits.Undefined,
-                     new QuantityValue(49161192, 368175625)
-                );
-                yield return new (MassConcentrationUnit.PicogramPerDeciliter, "PicogramPerDeciliter", "PicogramsPerDeciliter", BaseUnits.Undefined,
-                     100000000000
-                );
-                yield return new (MassConcentrationUnit.PicogramPerLiter, "PicogramPerLiter", "PicogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Picogram),
-                     1000000000000
-                );
-                yield return new (MassConcentrationUnit.PicogramPerMicroliter, "PicogramPerMicroliter", "PicogramsPerMicroliter", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (MassConcentrationUnit.PicogramPerMilliliter, "PicogramPerMilliliter", "PicogramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Picogram),
-                     1000000000
-                );
-                yield return new (MassConcentrationUnit.PoundPerCubicFoot, "PoundPerCubicFoot", "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(1769802912, 28349523125)
-                );
-                yield return new (MassConcentrationUnit.PoundPerCubicInch, "PoundPerCubicInch", "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound),
-                     new QuantityValue(2048383, 56699046250)
-                );
-                yield return new (MassConcentrationUnit.PoundPerImperialGallon, "PoundPerImperialGallon", "PoundsPerImperialGallon", BaseUnits.Undefined,
-                     new QuantityValue(454609, 45359237)
-                );
-                yield return new (MassConcentrationUnit.PoundPerUSGallon, "PoundPerUSGallon", "PoundsPerUSGallon", BaseUnits.Undefined,
-                     new QuantityValue(6145149, 736351250)
-                );
-                yield return new (MassConcentrationUnit.SlugPerCubicFoot, "SlugPerCubicFoot", "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug),
-                     new QuantityValue(10788718551552, 5560277019075625)
-                );
-                yield return new (MassConcentrationUnit.TonnePerCubicCentimeter, "TonnePerCubicCentimeter", "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (MassConcentrationUnit.TonnePerCubicMeter, "TonnePerCubicMeter", "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MassConcentrationUnit.TonnePerCubicMillimeter, "TonnePerCubicMillimeter", "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000000000000)
-                );
+                return new UnitDefinition<MassConcentrationUnit>[]
+                {
+                    new (MassConcentrationUnit.CentigramPerDeciliter, MassConcentrationUnits.CentigramPerDeciliter),
+                    new (MassConcentrationUnit.CentigramPerLiter, MassConcentrationUnits.CentigramPerLiter),
+                    new (MassConcentrationUnit.CentigramPerMicroliter, MassConcentrationUnits.CentigramPerMicroliter),
+                    new (MassConcentrationUnit.CentigramPerMilliliter, MassConcentrationUnits.CentigramPerMilliliter),
+                    new (MassConcentrationUnit.DecigramPerDeciliter, MassConcentrationUnits.DecigramPerDeciliter),
+                    new (MassConcentrationUnit.DecigramPerLiter, MassConcentrationUnits.DecigramPerLiter),
+                    new (MassConcentrationUnit.DecigramPerMicroliter, MassConcentrationUnits.DecigramPerMicroliter),
+                    new (MassConcentrationUnit.DecigramPerMilliliter, MassConcentrationUnits.DecigramPerMilliliter),
+                    new (MassConcentrationUnit.GramPerCubicCentimeter, MassConcentrationUnits.GramPerCubicCentimeter),
+                    new (MassConcentrationUnit.GramPerCubicMeter, MassConcentrationUnits.GramPerCubicMeter),
+                    new (MassConcentrationUnit.GramPerCubicMillimeter, MassConcentrationUnits.GramPerCubicMillimeter),
+                    new (MassConcentrationUnit.GramPerDeciliter, MassConcentrationUnits.GramPerDeciliter),
+                    new (MassConcentrationUnit.GramPerLiter, MassConcentrationUnits.GramPerLiter),
+                    new (MassConcentrationUnit.GramPerMicroliter, MassConcentrationUnits.GramPerMicroliter),
+                    new (MassConcentrationUnit.GramPerMilliliter, MassConcentrationUnits.GramPerMilliliter),
+                    new (MassConcentrationUnit.KilogramPerCubicCentimeter, MassConcentrationUnits.KilogramPerCubicCentimeter),
+                    new (MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnits.KilogramPerCubicMeter),
+                    new (MassConcentrationUnit.KilogramPerCubicMillimeter, MassConcentrationUnits.KilogramPerCubicMillimeter),
+                    new (MassConcentrationUnit.KilogramPerLiter, MassConcentrationUnits.KilogramPerLiter),
+                    new (MassConcentrationUnit.KilopoundPerCubicFoot, MassConcentrationUnits.KilopoundPerCubicFoot),
+                    new (MassConcentrationUnit.KilopoundPerCubicInch, MassConcentrationUnits.KilopoundPerCubicInch),
+                    new (MassConcentrationUnit.MicrogramPerCubicMeter, MassConcentrationUnits.MicrogramPerCubicMeter),
+                    new (MassConcentrationUnit.MicrogramPerDeciliter, MassConcentrationUnits.MicrogramPerDeciliter),
+                    new (MassConcentrationUnit.MicrogramPerLiter, MassConcentrationUnits.MicrogramPerLiter),
+                    new (MassConcentrationUnit.MicrogramPerMicroliter, MassConcentrationUnits.MicrogramPerMicroliter),
+                    new (MassConcentrationUnit.MicrogramPerMilliliter, MassConcentrationUnits.MicrogramPerMilliliter),
+                    new (MassConcentrationUnit.MilligramPerCubicMeter, MassConcentrationUnits.MilligramPerCubicMeter),
+                    new (MassConcentrationUnit.MilligramPerDeciliter, MassConcentrationUnits.MilligramPerDeciliter),
+                    new (MassConcentrationUnit.MilligramPerLiter, MassConcentrationUnits.MilligramPerLiter),
+                    new (MassConcentrationUnit.MilligramPerMicroliter, MassConcentrationUnits.MilligramPerMicroliter),
+                    new (MassConcentrationUnit.MilligramPerMilliliter, MassConcentrationUnits.MilligramPerMilliliter),
+                    new (MassConcentrationUnit.NanogramPerDeciliter, MassConcentrationUnits.NanogramPerDeciliter),
+                    new (MassConcentrationUnit.NanogramPerLiter, MassConcentrationUnits.NanogramPerLiter),
+                    new (MassConcentrationUnit.NanogramPerMicroliter, MassConcentrationUnits.NanogramPerMicroliter),
+                    new (MassConcentrationUnit.NanogramPerMilliliter, MassConcentrationUnits.NanogramPerMilliliter),
+                    new (MassConcentrationUnit.OuncePerImperialGallon, MassConcentrationUnits.OuncePerImperialGallon),
+                    new (MassConcentrationUnit.OuncePerUSGallon, MassConcentrationUnits.OuncePerUSGallon),
+                    new (MassConcentrationUnit.PicogramPerDeciliter, MassConcentrationUnits.PicogramPerDeciliter),
+                    new (MassConcentrationUnit.PicogramPerLiter, MassConcentrationUnits.PicogramPerLiter),
+                    new (MassConcentrationUnit.PicogramPerMicroliter, MassConcentrationUnits.PicogramPerMicroliter),
+                    new (MassConcentrationUnit.PicogramPerMilliliter, MassConcentrationUnits.PicogramPerMilliliter),
+                    new (MassConcentrationUnit.PoundPerCubicFoot, MassConcentrationUnits.PoundPerCubicFoot),
+                    new (MassConcentrationUnit.PoundPerCubicInch, MassConcentrationUnits.PoundPerCubicInch),
+                    new (MassConcentrationUnit.PoundPerImperialGallon, MassConcentrationUnits.PoundPerImperialGallon),
+                    new (MassConcentrationUnit.PoundPerUSGallon, MassConcentrationUnits.PoundPerUSGallon),
+                    new (MassConcentrationUnit.SlugPerCubicFoot, MassConcentrationUnits.SlugPerCubicFoot),
+                    new (MassConcentrationUnit.TonnePerCubicCentimeter, MassConcentrationUnits.TonnePerCubicCentimeter),
+                    new (MassConcentrationUnit.TonnePerCubicMeter, MassConcentrationUnits.TonnePerCubicMeter),
+                    new (MassConcentrationUnit.TonnePerCubicMillimeter, MassConcentrationUnits.TonnePerCubicMillimeter),
+                };
             }
         }
 
