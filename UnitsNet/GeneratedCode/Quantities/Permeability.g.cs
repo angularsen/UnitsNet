@@ -119,7 +119,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PermeabilityUnit}"/> representing the default unit mappings for Permeability.</returns>
             public static IEnumerable<UnitDefinition<PermeabilityUnit>> GetDefaultMappings()
             {
-                yield return new (PermeabilityUnit.HenryPerMeter, "HenryPerMeter", "HenriesPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<PermeabilityUnit>[]
+                {
+                    new (PermeabilityUnit.HenryPerMeter, "HenryPerMeter", "HenriesPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

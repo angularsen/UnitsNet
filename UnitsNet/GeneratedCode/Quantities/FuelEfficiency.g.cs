@@ -119,17 +119,20 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{FuelEfficiencyUnit}"/> representing the default unit mappings for FuelEfficiency.</returns>
             public static IEnumerable<UnitDefinition<FuelEfficiencyUnit>> GetDefaultMappings()
             {
-                yield return new (FuelEfficiencyUnit.KilometerPerLiter, "KilometerPerLiter", "KilometersPerLiter", BaseUnits.Undefined);
-                yield return new (FuelEfficiencyUnit.LiterPer100Kilometers, "LiterPer100Kilometers", "LitersPer100Kilometers", BaseUnits.Undefined,
-                     new ConversionExpression(coefficient: 100, exponent: -1),
-                     new ConversionExpression(coefficient: 100, exponent: -1)
-                );
-                yield return new (FuelEfficiencyUnit.MilePerUkGallon, "MilePerUkGallon", "MilesPerUkGallon", BaseUnits.Undefined,
-                     new QuantityValue(2273045, 804672)
-                );
-                yield return new (FuelEfficiencyUnit.MilePerUsGallon, "MilePerUsGallon", "MilesPerUsGallon", BaseUnits.Undefined,
-                     new QuantityValue(112903, 48000)
-                );
+                return new UnitDefinition<FuelEfficiencyUnit>[]
+                {
+                    new (FuelEfficiencyUnit.KilometerPerLiter, "KilometerPerLiter", "KilometersPerLiter", BaseUnits.Undefined),
+                    new (FuelEfficiencyUnit.LiterPer100Kilometers, "LiterPer100Kilometers", "LitersPer100Kilometers", BaseUnits.Undefined,
+                         new ConversionExpression(coefficient: 100, exponent: -1),
+                         new ConversionExpression(coefficient: 100, exponent: -1)
+                    ),
+                    new (FuelEfficiencyUnit.MilePerUkGallon, "MilePerUkGallon", "MilesPerUkGallon", BaseUnits.Undefined,
+                         new QuantityValue(2273045, 804672)
+                    ),
+                    new (FuelEfficiencyUnit.MilePerUsGallon, "MilePerUsGallon", "MilesPerUsGallon", BaseUnits.Undefined,
+                         new QuantityValue(112903, 48000)
+                    ),
+                };
             }
         }
 

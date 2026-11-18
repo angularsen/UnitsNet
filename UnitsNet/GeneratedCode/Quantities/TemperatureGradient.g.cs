@@ -117,16 +117,19 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TemperatureGradientUnit}"/> representing the default unit mappings for TemperatureGradient.</returns>
             public static IEnumerable<UnitDefinition<TemperatureGradientUnit>> GetDefaultMappings()
             {
-                yield return new (TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreeCelsiusPerKilometer", "DegreesCelsiusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius),
-                     1000
-                );
-                yield return new (TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreeCelsiusPerMeter", "DegreesCelsiusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius),
-                     1
-                );
-                yield return new (TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreeFahrenheitPerFoot", "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit),
-                     new QuantityValue(3429, 6250)
-                );
-                yield return new (TemperatureGradientUnit.KelvinPerMeter, "KelvinPerMeter", "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
+                return new UnitDefinition<TemperatureGradientUnit>[]
+                {
+                    new (TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreeCelsiusPerKilometer", "DegreesCelsiusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius),
+                         1000
+                    ),
+                    new (TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreeCelsiusPerMeter", "DegreesCelsiusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius),
+                         1
+                    ),
+                    new (TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreeFahrenheitPerFoot", "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit),
+                         new QuantityValue(3429, 6250)
+                    ),
+                    new (TemperatureGradientUnit.KelvinPerMeter, "KelvinPerMeter", "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin)),
+                };
             }
         }
 

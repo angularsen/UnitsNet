@@ -119,13 +119,16 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalConductivityUnit}"/> representing the default unit mappings for ThermalConductivity.</returns>
             public static IEnumerable<UnitDefinition<ThermalConductivityUnit>> GetDefaultMappings()
             {
-                yield return new (ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtuPerHourFootFahrenheit", "BtusPerHourFootFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(30480000000, 52752792631)
-                );
-                yield return new (ThermalConductivityUnit.BtuPerSecondInchFahrenheit, "BtuPerSecondInchFahrenheit", "BtusPerSecondInchFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(6350000, 474775133679)
-                );
-                yield return new (ThermalConductivityUnit.WattPerMeterKelvin, "WattPerMeterKelvin", "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+                return new UnitDefinition<ThermalConductivityUnit>[]
+                {
+                    new (ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtuPerHourFootFahrenheit", "BtusPerHourFootFahrenheit", BaseUnits.Undefined,
+                         new QuantityValue(30480000000, 52752792631)
+                    ),
+                    new (ThermalConductivityUnit.BtuPerSecondInchFahrenheit, "BtuPerSecondInchFahrenheit", "BtusPerSecondInchFahrenheit", BaseUnits.Undefined,
+                         new QuantityValue(6350000, 474775133679)
+                    ),
+                    new (ThermalConductivityUnit.WattPerMeterKelvin, "WattPerMeterKelvin", "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin)),
+                };
             }
         }
 

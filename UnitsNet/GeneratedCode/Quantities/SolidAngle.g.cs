@@ -120,7 +120,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SolidAngleUnit}"/> representing the default unit mappings for SolidAngle.</returns>
             public static IEnumerable<UnitDefinition<SolidAngleUnit>> GetDefaultMappings()
             {
-                yield return new (SolidAngleUnit.Steradian, "Steradian", "Steradians", BaseUnits.Undefined);
+                return new UnitDefinition<SolidAngleUnit>[]
+                {
+                    new (SolidAngleUnit.Steradian, "Steradian", "Steradians", BaseUnits.Undefined),
+                };
             }
         }
 

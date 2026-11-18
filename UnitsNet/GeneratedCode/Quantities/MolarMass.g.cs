@@ -119,46 +119,49 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarMassUnit}"/> representing the default unit mappings for MolarMass.</returns>
             public static IEnumerable<UnitDefinition<MolarMassUnit>> GetDefaultMappings()
             {
-                yield return new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole),
-                     100000
-                );
-                yield return new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole),
-                     100
-                );
-                yield return new (MolarMassUnit.DecigramPerMole, "DecigramPerMole", "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole),
-                     10000
-                );
-                yield return new (MolarMassUnit.GramPerMole, "GramPerMole", "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole),
-                     1000
-                );
-                yield return new (MolarMassUnit.HectogramPerMole, "HectogramPerMole", "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole),
-                     10
-                );
-                yield return new (MolarMassUnit.KilogramPerKilomole, "KilogramPerKilomole", "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole),
-                     1000
-                );
-                yield return new (MolarMassUnit.KilogramPerMole, "KilogramPerMole", "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarMassUnit.KilopoundPerMole, "KilopoundPerMole", "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(100000, 45359237)
-                );
-                yield return new (MolarMassUnit.MegapoundPerMole, "MegapoundPerMole", "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(100, 45359237)
-                );
-                yield return new (MolarMassUnit.MicrogramPerMole, "MicrogramPerMole", "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole),
-                     1000000000
-                );
-                yield return new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole),
-                     1000000
-                );
-                yield return new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole),
-                     1000000000000
-                );
-                yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(100000000, 45359237)
-                );
-                yield return new (MolarMassUnit.PoundPerPoundMole, "PoundPerPoundMole", "PoundsPerPoundMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.PoundMole),
-                     1000
-                );
+                return new UnitDefinition<MolarMassUnit>[]
+                {
+                    new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole),
+                         100000
+                    ),
+                    new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole),
+                         100
+                    ),
+                    new (MolarMassUnit.DecigramPerMole, "DecigramPerMole", "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole),
+                         10000
+                    ),
+                    new (MolarMassUnit.GramPerMole, "GramPerMole", "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole),
+                         1000
+                    ),
+                    new (MolarMassUnit.HectogramPerMole, "HectogramPerMole", "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole),
+                         10
+                    ),
+                    new (MolarMassUnit.KilogramPerKilomole, "KilogramPerKilomole", "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole),
+                         1000
+                    ),
+                    new (MolarMassUnit.KilogramPerMole, "KilogramPerMole", "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole)),
+                    new (MolarMassUnit.KilopoundPerMole, "KilopoundPerMole", "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole),
+                         new QuantityValue(100000, 45359237)
+                    ),
+                    new (MolarMassUnit.MegapoundPerMole, "MegapoundPerMole", "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole),
+                         new QuantityValue(100, 45359237)
+                    ),
+                    new (MolarMassUnit.MicrogramPerMole, "MicrogramPerMole", "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole),
+                         1000000000
+                    ),
+                    new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole),
+                         1000000
+                    ),
+                    new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole),
+                         1000000000000
+                    ),
+                    new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole),
+                         new QuantityValue(100000000, 45359237)
+                    ),
+                    new (MolarMassUnit.PoundPerPoundMole, "PoundPerPoundMole", "PoundsPerPoundMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.PoundMole),
+                         1000
+                    ),
+                };
             }
         }
 

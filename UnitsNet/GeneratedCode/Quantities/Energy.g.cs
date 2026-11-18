@@ -129,124 +129,127 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{EnergyUnit}"/> representing the default unit mappings for Energy.</returns>
             public static IEnumerable<UnitDefinition<EnergyUnit>> GetDefaultMappings()
             {
-                yield return new (EnergyUnit.BritishThermalUnit, "BritishThermalUnit", "BritishThermalUnits", BaseUnits.Undefined,
-                     new QuantityValue(50000000, 52752792631)
-                );
-                yield return new (EnergyUnit.Calorie, "Calorie", "Calories", BaseUnits.Undefined,
-                     new QuantityValue(125, 523)
-                );
-                yield return new (EnergyUnit.DecathermEc, "DecathermEc", "DecathermsEc", BaseUnits.Undefined,
-                     new QuantityValue(50, 52752792631)
-                );
-                yield return new (EnergyUnit.DecathermImperial, "DecathermImperial", "DecathermsImperial", BaseUnits.Undefined,
-                     new QuantityValue(25000, 26376396314337)
-                );
-                yield return new (EnergyUnit.DecathermUs, "DecathermUs", "DecathermsUs", BaseUnits.Undefined,
-                     new QuantityValue(1, 1054804000)
-                );
-                yield return new (EnergyUnit.ElectronVolt, "ElectronVolt", "ElectronVolts", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(27), 801088317)
-                );
-                yield return new (EnergyUnit.Erg, "Erg", "Ergs", BaseUnits.Undefined,
-                     10000000
-                );
-                yield return new (EnergyUnit.FootPound, "FootPound", "FootPounds", BaseUnits.Undefined,
-                     new QuantityValue(2500000000000000, 3389544870828501)
-                );
-                yield return new (EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnit", "GigabritishThermalUnits", BaseUnits.Undefined,
-                     new QuantityValue(1, 1055055852620)
-                );
-                yield return new (EnergyUnit.GigaelectronVolt, "GigaelectronVolt", "GigaelectronVolts", BaseUnits.Undefined,
-                     new QuantityValue(5000000000000000000, 801088317)
-                );
-                yield return new (EnergyUnit.Gigajoule, "Gigajoule", "Gigajoules", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (EnergyUnit.GigawattDay, "GigawattDay", "GigawattDays", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000000)
-                );
-                yield return new (EnergyUnit.GigawattHour, "GigawattHour", "GigawattHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000000)
-                );
-                yield return new (EnergyUnit.HorsepowerHour, "HorsepowerHour", "HorsepowerHours", BaseUnits.Undefined,
-                     new QuantityValue(500000000, 1342259768728053)
-                );
-                yield return new (EnergyUnit.Joule, "Joule", "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnit", "KilobritishThermalUnits", BaseUnits.Undefined,
-                     new QuantityValue(50000, 52752792631)
-                );
-                yield return new (EnergyUnit.Kilocalorie, "Kilocalorie", "Kilocalories", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184)
-                );
-                yield return new (EnergyUnit.KiloelectronVolt, "KiloelectronVolt", "KiloelectronVolts", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(24), 801088317)
-                );
-                yield return new (EnergyUnit.Kilojoule, "Kilojoule", "Kilojoules", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (EnergyUnit.KilowattDay, "KilowattDay", "KilowattDays", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000)
-                );
-                yield return new (EnergyUnit.KilowattHour, "KilowattHour", "KilowattHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000)
-                );
-                yield return new (EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnit", "MegabritishThermalUnits", BaseUnits.Undefined,
-                     new QuantityValue(50, 52752792631)
-                );
-                yield return new (EnergyUnit.Megacalorie, "Megacalorie", "Megacalories", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184000)
-                );
-                yield return new (EnergyUnit.MegaelectronVolt, "MegaelectronVolt", "MegaelectronVolts", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(21), 801088317)
-                );
-                yield return new (EnergyUnit.Megajoule, "Megajoule", "Megajoules", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (EnergyUnit.MegawattDay, "MegawattDay", "MegawattDays", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000)
-                );
-                yield return new (EnergyUnit.MegawattHour, "MegawattHour", "MegawattHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000)
-                );
-                yield return new (EnergyUnit.Microjoule, "Microjoule", "Microjoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (EnergyUnit.Millijoule, "Millijoule", "Millijoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (EnergyUnit.Nanojoule, "Nanojoule", "Nanojoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second),
-                     1000000000
-                );
-                yield return new (EnergyUnit.Petajoule, "Petajoule", "Petajoules", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000)
-                );
-                yield return new (EnergyUnit.TeraelectronVolt, "TeraelectronVolt", "TeraelectronVolts", BaseUnits.Undefined,
-                     new QuantityValue(5000000000000000, 801088317)
-                );
-                yield return new (EnergyUnit.Terajoule, "Terajoule", "Terajoules", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (EnergyUnit.TerawattDay, "TerawattDay", "TerawattDays", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000000000)
-                );
-                yield return new (EnergyUnit.TerawattHour, "TerawattHour", "TerawattHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000000000)
-                );
-                yield return new (EnergyUnit.ThermEc, "ThermEc", "ThermsEc", BaseUnits.Undefined,
-                     new QuantityValue(500, 52752792631)
-                );
-                yield return new (EnergyUnit.ThermImperial, "ThermImperial", "ThermsImperial", BaseUnits.Undefined,
-                     new QuantityValue(250000, 26376396314337)
-                );
-                yield return new (EnergyUnit.ThermUs, "ThermUs", "ThermsUs", BaseUnits.Undefined,
-                     new QuantityValue(1, 105480400)
-                );
-                yield return new (EnergyUnit.WattDay, "WattDay", "WattDays", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400)
-                );
-                yield return new (EnergyUnit.WattHour, "WattHour", "WattHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600)
-                );
+                return new UnitDefinition<EnergyUnit>[]
+                {
+                    new (EnergyUnit.BritishThermalUnit, "BritishThermalUnit", "BritishThermalUnits", BaseUnits.Undefined,
+                         new QuantityValue(50000000, 52752792631)
+                    ),
+                    new (EnergyUnit.Calorie, "Calorie", "Calories", BaseUnits.Undefined,
+                         new QuantityValue(125, 523)
+                    ),
+                    new (EnergyUnit.DecathermEc, "DecathermEc", "DecathermsEc", BaseUnits.Undefined,
+                         new QuantityValue(50, 52752792631)
+                    ),
+                    new (EnergyUnit.DecathermImperial, "DecathermImperial", "DecathermsImperial", BaseUnits.Undefined,
+                         new QuantityValue(25000, 26376396314337)
+                    ),
+                    new (EnergyUnit.DecathermUs, "DecathermUs", "DecathermsUs", BaseUnits.Undefined,
+                         new QuantityValue(1, 1054804000)
+                    ),
+                    new (EnergyUnit.ElectronVolt, "ElectronVolt", "ElectronVolts", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(27), 801088317)
+                    ),
+                    new (EnergyUnit.Erg, "Erg", "Ergs", BaseUnits.Undefined,
+                         10000000
+                    ),
+                    new (EnergyUnit.FootPound, "FootPound", "FootPounds", BaseUnits.Undefined,
+                         new QuantityValue(2500000000000000, 3389544870828501)
+                    ),
+                    new (EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnit", "GigabritishThermalUnits", BaseUnits.Undefined,
+                         new QuantityValue(1, 1055055852620)
+                    ),
+                    new (EnergyUnit.GigaelectronVolt, "GigaelectronVolt", "GigaelectronVolts", BaseUnits.Undefined,
+                         new QuantityValue(5000000000000000000, 801088317)
+                    ),
+                    new (EnergyUnit.Gigajoule, "Gigajoule", "Gigajoules", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (EnergyUnit.GigawattDay, "GigawattDay", "GigawattDays", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000000)
+                    ),
+                    new (EnergyUnit.GigawattHour, "GigawattHour", "GigawattHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000000000)
+                    ),
+                    new (EnergyUnit.HorsepowerHour, "HorsepowerHour", "HorsepowerHours", BaseUnits.Undefined,
+                         new QuantityValue(500000000, 1342259768728053)
+                    ),
+                    new (EnergyUnit.Joule, "Joule", "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnit", "KilobritishThermalUnits", BaseUnits.Undefined,
+                         new QuantityValue(50000, 52752792631)
+                    ),
+                    new (EnergyUnit.Kilocalorie, "Kilocalorie", "Kilocalories", BaseUnits.Undefined,
+                         new QuantityValue(1, 4184)
+                    ),
+                    new (EnergyUnit.KiloelectronVolt, "KiloelectronVolt", "KiloelectronVolts", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(24), 801088317)
+                    ),
+                    new (EnergyUnit.Kilojoule, "Kilojoule", "Kilojoules", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (EnergyUnit.KilowattDay, "KilowattDay", "KilowattDays", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000)
+                    ),
+                    new (EnergyUnit.KilowattHour, "KilowattHour", "KilowattHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000)
+                    ),
+                    new (EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnit", "MegabritishThermalUnits", BaseUnits.Undefined,
+                         new QuantityValue(50, 52752792631)
+                    ),
+                    new (EnergyUnit.Megacalorie, "Megacalorie", "Megacalories", BaseUnits.Undefined,
+                         new QuantityValue(1, 4184000)
+                    ),
+                    new (EnergyUnit.MegaelectronVolt, "MegaelectronVolt", "MegaelectronVolts", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(21), 801088317)
+                    ),
+                    new (EnergyUnit.Megajoule, "Megajoule", "Megajoules", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (EnergyUnit.MegawattDay, "MegawattDay", "MegawattDays", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000)
+                    ),
+                    new (EnergyUnit.MegawattHour, "MegawattHour", "MegawattHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000000)
+                    ),
+                    new (EnergyUnit.Microjoule, "Microjoule", "Microjoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
+                         1000000
+                    ),
+                    new (EnergyUnit.Millijoule, "Millijoule", "Millijoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                         1000
+                    ),
+                    new (EnergyUnit.Nanojoule, "Nanojoule", "Nanojoules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second),
+                         1000000000
+                    ),
+                    new (EnergyUnit.Petajoule, "Petajoule", "Petajoules", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000000000)
+                    ),
+                    new (EnergyUnit.TeraelectronVolt, "TeraelectronVolt", "TeraelectronVolts", BaseUnits.Undefined,
+                         new QuantityValue(5000000000000000, 801088317)
+                    ),
+                    new (EnergyUnit.Terajoule, "Terajoule", "Terajoules", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000000000)
+                    ),
+                    new (EnergyUnit.TerawattDay, "TerawattDay", "TerawattDays", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000000000)
+                    ),
+                    new (EnergyUnit.TerawattHour, "TerawattHour", "TerawattHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000000000000)
+                    ),
+                    new (EnergyUnit.ThermEc, "ThermEc", "ThermsEc", BaseUnits.Undefined,
+                         new QuantityValue(500, 52752792631)
+                    ),
+                    new (EnergyUnit.ThermImperial, "ThermImperial", "ThermsImperial", BaseUnits.Undefined,
+                         new QuantityValue(250000, 26376396314337)
+                    ),
+                    new (EnergyUnit.ThermUs, "ThermUs", "ThermsUs", BaseUnits.Undefined,
+                         new QuantityValue(1, 105480400)
+                    ),
+                    new (EnergyUnit.WattDay, "WattDay", "WattDays", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400)
+                    ),
+                    new (EnergyUnit.WattHour, "WattHour", "WattHours", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600)
+                    ),
+                };
             }
         }
 

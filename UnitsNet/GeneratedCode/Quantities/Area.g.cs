@@ -138,46 +138,49 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaUnit}"/> representing the default unit mappings for Area.</returns>
             public static IEnumerable<UnitDefinition<AreaUnit>> GetDefaultMappings()
             {
-                yield return new (AreaUnit.Acre, "Acre", "Acres", BaseUnits.Undefined,
-                     new QuantityValue(78125, 316160658)
-                );
-                yield return new (AreaUnit.Hectare, "Hectare", "Hectares", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (AreaUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
-                     10000
-                );
-                yield return new (AreaUnit.SquareDecimeter, "SquareDecimeter", "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter),
-                     100
-                );
-                yield return new (AreaUnit.SquareFoot, "SquareFoot", "SquareFeet", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(1562500, 145161)
-                );
-                yield return new (AreaUnit.SquareInch, "SquareInch", "SquareInches", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(25000000, 16129)
-                );
-                yield return new (AreaUnit.SquareKilometer, "SquareKilometer", "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (AreaUnit.SquareMeter, "SquareMeter", "SquareMeters", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (AreaUnit.SquareMicrometer, "SquareMicrometer", "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer),
-                     1000000000000
-                );
-                yield return new (AreaUnit.SquareMile, "SquareMile", "SquareMiles", new BaseUnits(length: LengthUnit.Mile),
-                     new QuantityValue(15625, 40468564224)
-                );
-                yield return new (AreaUnit.SquareMillimeter, "SquareMillimeter", "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000
-                );
-                yield return new (AreaUnit.SquareNauticalMile, "SquareNauticalMile", "SquareNauticalMiles", BaseUnits.Undefined,
-                     new QuantityValue(1, 3429904)
-                );
-                yield return new (AreaUnit.SquareYard, "SquareYard", "SquareYards", new BaseUnits(length: LengthUnit.Yard),
-                     new QuantityValue(1562500, 1306449)
-                );
-                yield return new (AreaUnit.UsSurveySquareFoot, "UsSurveySquareFoot", "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot),
-                     new QuantityValue(15499969, 1440000)
-                );
+                return new UnitDefinition<AreaUnit>[]
+                {
+                    new (AreaUnit.Acre, "Acre", "Acres", BaseUnits.Undefined,
+                         new QuantityValue(78125, 316160658)
+                    ),
+                    new (AreaUnit.Hectare, "Hectare", "Hectares", BaseUnits.Undefined,
+                         new QuantityValue(1, 10000)
+                    ),
+                    new (AreaUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
+                         10000
+                    ),
+                    new (AreaUnit.SquareDecimeter, "SquareDecimeter", "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter),
+                         100
+                    ),
+                    new (AreaUnit.SquareFoot, "SquareFoot", "SquareFeet", new BaseUnits(length: LengthUnit.Foot),
+                         new QuantityValue(1562500, 145161)
+                    ),
+                    new (AreaUnit.SquareInch, "SquareInch", "SquareInches", new BaseUnits(length: LengthUnit.Inch),
+                         new QuantityValue(25000000, 16129)
+                    ),
+                    new (AreaUnit.SquareKilometer, "SquareKilometer", "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (AreaUnit.SquareMeter, "SquareMeter", "SquareMeters", new BaseUnits(length: LengthUnit.Meter)),
+                    new (AreaUnit.SquareMicrometer, "SquareMicrometer", "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer),
+                         1000000000000
+                    ),
+                    new (AreaUnit.SquareMile, "SquareMile", "SquareMiles", new BaseUnits(length: LengthUnit.Mile),
+                         new QuantityValue(15625, 40468564224)
+                    ),
+                    new (AreaUnit.SquareMillimeter, "SquareMillimeter", "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter),
+                         1000000
+                    ),
+                    new (AreaUnit.SquareNauticalMile, "SquareNauticalMile", "SquareNauticalMiles", BaseUnits.Undefined,
+                         new QuantityValue(1, 3429904)
+                    ),
+                    new (AreaUnit.SquareYard, "SquareYard", "SquareYards", new BaseUnits(length: LengthUnit.Yard),
+                         new QuantityValue(1562500, 1306449)
+                    ),
+                    new (AreaUnit.UsSurveySquareFoot, "UsSurveySquareFoot", "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot),
+                         new QuantityValue(15499969, 1440000)
+                    ),
+                };
             }
         }
 

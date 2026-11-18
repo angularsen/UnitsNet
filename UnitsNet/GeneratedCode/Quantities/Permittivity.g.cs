@@ -119,7 +119,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PermittivityUnit}"/> representing the default unit mappings for Permittivity.</returns>
             public static IEnumerable<UnitDefinition<PermittivityUnit>> GetDefaultMappings()
             {
-                yield return new (PermittivityUnit.FaradPerMeter, "FaradPerMeter", "FaradsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<PermittivityUnit>[]
+                {
+                    new (PermittivityUnit.FaradPerMeter, "FaradPerMeter", "FaradsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

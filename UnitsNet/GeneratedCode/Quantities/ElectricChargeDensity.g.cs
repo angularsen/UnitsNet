@@ -120,7 +120,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricChargeDensityUnit}"/> representing the default unit mappings for ElectricChargeDensity.</returns>
             public static IEnumerable<UnitDefinition<ElectricChargeDensityUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombPerCubicMeter", "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<ElectricChargeDensityUnit>[]
+                {
+                    new (ElectricChargeDensityUnit.CoulombPerCubicMeter, "CoulombPerCubicMeter", "CoulombsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

@@ -119,19 +119,22 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricInductanceUnit}"/> representing the default unit mappings for ElectricInductance.</returns>
             public static IEnumerable<UnitDefinition<ElectricInductanceUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricInductanceUnit.Henry, "Henry", "Henries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricInductanceUnit.Microhenry, "Microhenry", "Microhenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000
-                );
-                yield return new (ElectricInductanceUnit.Millihenry, "Millihenry", "Millihenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000
-                );
-                yield return new (ElectricInductanceUnit.Nanohenry, "Nanohenry", "Nanohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000
-                );
-                yield return new (ElectricInductanceUnit.Picohenry, "Picohenry", "Picohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000000
-                );
+                return new UnitDefinition<ElectricInductanceUnit>[]
+                {
+                    new (ElectricInductanceUnit.Henry, "Henry", "Henries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new (ElectricInductanceUnit.Microhenry, "Microhenry", "Microhenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         1000000
+                    ),
+                    new (ElectricInductanceUnit.Millihenry, "Millihenry", "Millihenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         1000
+                    ),
+                    new (ElectricInductanceUnit.Nanohenry, "Nanohenry", "Nanohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         1000000000
+                    ),
+                    new (ElectricInductanceUnit.Picohenry, "Picohenry", "Picohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         1000000000000
+                    ),
+                };
             }
         }
 

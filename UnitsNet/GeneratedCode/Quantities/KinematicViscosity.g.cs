@@ -123,31 +123,34 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{KinematicViscosityUnit}"/> representing the default unit mappings for KinematicViscosity.</returns>
             public static IEnumerable<UnitDefinition<KinematicViscosityUnit>> GetDefaultMappings()
             {
-                yield return new (KinematicViscosityUnit.Centistokes, "Centistokes", "Centistokes", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (KinematicViscosityUnit.Decistokes, "Decistokes", "Decistokes", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (KinematicViscosityUnit.Kilostokes, "Kilostokes", "Kilostokes", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (KinematicViscosityUnit.Microstokes, "Microstokes", "Microstokes", BaseUnits.Undefined,
-                     10000000000
-                );
-                yield return new (KinematicViscosityUnit.Millistokes, "Millistokes", "Millistokes", BaseUnits.Undefined,
-                     10000000
-                );
-                yield return new (KinematicViscosityUnit.Nanostokes, "Nanostokes", "Nanostokes", BaseUnits.Undefined,
-                     10000000000000
-                );
-                yield return new (KinematicViscosityUnit.SquareFootPerSecond, "SquareFootPerSecond", "SquareFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
-                     new QuantityValue(1562500, 145161)
-                );
-                yield return new (KinematicViscosityUnit.SquareMeterPerSecond, "SquareMeterPerSecond", "SquareMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                yield return new (KinematicViscosityUnit.Stokes, "Stokes", "Stokes", BaseUnits.Undefined,
-                     10000
-                );
+                return new UnitDefinition<KinematicViscosityUnit>[]
+                {
+                    new (KinematicViscosityUnit.Centistokes, "Centistokes", "Centistokes", BaseUnits.Undefined,
+                         1000000
+                    ),
+                    new (KinematicViscosityUnit.Decistokes, "Decistokes", "Decistokes", BaseUnits.Undefined,
+                         100000
+                    ),
+                    new (KinematicViscosityUnit.Kilostokes, "Kilostokes", "Kilostokes", BaseUnits.Undefined,
+                         10
+                    ),
+                    new (KinematicViscosityUnit.Microstokes, "Microstokes", "Microstokes", BaseUnits.Undefined,
+                         10000000000
+                    ),
+                    new (KinematicViscosityUnit.Millistokes, "Millistokes", "Millistokes", BaseUnits.Undefined,
+                         10000000
+                    ),
+                    new (KinematicViscosityUnit.Nanostokes, "Nanostokes", "Nanostokes", BaseUnits.Undefined,
+                         10000000000000
+                    ),
+                    new (KinematicViscosityUnit.SquareFootPerSecond, "SquareFootPerSecond", "SquareFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
+                         new QuantityValue(1562500, 145161)
+                    ),
+                    new (KinematicViscosityUnit.SquareMeterPerSecond, "SquareMeterPerSecond", "SquareMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new (KinematicViscosityUnit.Stokes, "Stokes", "Stokes", BaseUnits.Undefined,
+                         10000
+                    ),
+                };
             }
         }
 

@@ -120,13 +120,16 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricSurfaceChargeDensityUnit}"/> representing the default unit mappings for ElectricSurfaceChargeDensity.</returns>
             public static IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombPerSquareCentimeter", "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombPerSquareInch", "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(16129, 25000000)
-                );
-                yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombPerSquareMeter", "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<ElectricSurfaceChargeDensityUnit>[]
+                {
+                    new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombPerSquareCentimeter", "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         new QuantityValue(1, 10000)
+                    ),
+                    new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombPerSquareInch", "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         new QuantityValue(16129, 25000000)
+                    ),
+                    new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombPerSquareMeter", "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

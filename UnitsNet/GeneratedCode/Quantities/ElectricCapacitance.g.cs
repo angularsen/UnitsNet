@@ -120,25 +120,28 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricCapacitanceUnit}"/> representing the default unit mappings for ElectricCapacitance.</returns>
             public static IEnumerable<UnitDefinition<ElectricCapacitanceUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricCapacitanceUnit.Farad, "Farad", "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricCapacitanceUnit.Megafarad, "Megafarad", "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricCapacitanceUnit.Microfarad, "Microfarad", "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     1000000
-                );
-                yield return new (ElectricCapacitanceUnit.Millifarad, "Millifarad", "Millifarads", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (ElectricCapacitanceUnit.Nanofarad, "Nanofarad", "Nanofarads", BaseUnits.Undefined,
-                     1000000000
-                );
-                yield return new (ElectricCapacitanceUnit.Picofarad, "Picofarad", "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
-                     1000000000000
-                );
+                return new UnitDefinition<ElectricCapacitanceUnit>[]
+                {
+                    new (ElectricCapacitanceUnit.Farad, "Farad", "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (ElectricCapacitanceUnit.Megafarad, "Megafarad", "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (ElectricCapacitanceUnit.Microfarad, "Microfarad", "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
+                         1000000
+                    ),
+                    new (ElectricCapacitanceUnit.Millifarad, "Millifarad", "Millifarads", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (ElectricCapacitanceUnit.Nanofarad, "Nanofarad", "Nanofarads", BaseUnits.Undefined,
+                         1000000000
+                    ),
+                    new (ElectricCapacitanceUnit.Picofarad, "Picofarad", "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
+                         1000000000000
+                    ),
+                };
             }
         }
 

@@ -116,10 +116,13 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LevelUnit}"/> representing the default unit mappings for Level.</returns>
             public static IEnumerable<UnitDefinition<LevelUnit>> GetDefaultMappings()
             {
-                yield return new (LevelUnit.Decibel, "Decibel", "Decibels", BaseUnits.Undefined);
-                yield return new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined,
-                     new QuantityValue(57564627, 500000000)
-                );
+                return new UnitDefinition<LevelUnit>[]
+                {
+                    new (LevelUnit.Decibel, "Decibel", "Decibels", BaseUnits.Undefined),
+                    new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined,
+                         new QuantityValue(57564627, 500000000)
+                    ),
+                };
             }
         }
 

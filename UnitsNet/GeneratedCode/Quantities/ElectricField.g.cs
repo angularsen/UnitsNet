@@ -120,7 +120,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricFieldUnit}"/> representing the default unit mappings for ElectricField.</returns>
             public static IEnumerable<UnitDefinition<ElectricFieldUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricFieldUnit.VoltPerMeter, "VoltPerMeter", "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<ElectricFieldUnit>[]
+                {
+                    new (ElectricFieldUnit.VoltPerMeter, "VoltPerMeter", "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

@@ -121,19 +121,22 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaDensityUnit}"/> representing the default unit mappings for AreaDensity.</returns>
             public static IEnumerable<UnitDefinition<AreaDensityUnit>> GetDefaultMappings()
             {
-                yield return new (AreaDensityUnit.GramPerSquareMeter, "GramPerSquareMeter", "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
-                     1000
-                );
-                yield return new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (AreaDensityUnit.MilligramPerSquareMeter, "MilligramPerSquareMeter", "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
-                     1000000
-                );
-                yield return new (AreaDensityUnit.PoundPerSquareFoot, "PoundPerSquareFoot", "PoundsPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(9290304, 45359237)
-                );
-                yield return new (AreaDensityUnit.PoundPerThousandSquareFeet, "PoundPerThousandSquareFeet", "PoundsPerThousandSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(9290304000, 45359237)
-                );
+                return new UnitDefinition<AreaDensityUnit>[]
+                {
+                    new (AreaDensityUnit.GramPerSquareMeter, "GramPerSquareMeter", "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
+                         1000
+                    ),
+                    new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
+                    new (AreaDensityUnit.MilligramPerSquareMeter, "MilligramPerSquareMeter", "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
+                         1000000
+                    ),
+                    new (AreaDensityUnit.PoundPerSquareFoot, "PoundPerSquareFoot", "PoundsPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                         new QuantityValue(9290304, 45359237)
+                    ),
+                    new (AreaDensityUnit.PoundPerThousandSquareFeet, "PoundPerThousandSquareFeet", "PoundsPerThousandSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                         new QuantityValue(9290304000, 45359237)
+                    ),
+                };
             }
         }
 

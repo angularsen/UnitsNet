@@ -117,16 +117,19 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalAccelerationUnit}"/> representing the default unit mappings for RotationalAcceleration.</returns>
             public static IEnumerable<UnitDefinition<RotationalAccelerationUnit>> GetDefaultMappings()
             {
-                yield return new (RotationalAccelerationUnit.DegreePerSecondSquared, "DegreePerSecondSquared", "DegreesPerSecondSquared", BaseUnits.Undefined,
-                     new QuantityValue(180000000000000000, 3141592653589793)
-                );
-                yield return new (RotationalAccelerationUnit.RadianPerSecondSquared, "RadianPerSecondSquared", "RadiansPerSecondSquared", new BaseUnits(time: DurationUnit.Second));
-                yield return new (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionPerMinutePerSecond", "RevolutionsPerMinutePerSecond", BaseUnits.Undefined,
-                     new QuantityValue(30000000000000000, 3141592653589793)
-                );
-                yield return new (RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionPerSecondSquared", "RevolutionsPerSecondSquared", BaseUnits.Undefined,
-                     new QuantityValue(500000000000000, 3141592653589793)
-                );
+                return new UnitDefinition<RotationalAccelerationUnit>[]
+                {
+                    new (RotationalAccelerationUnit.DegreePerSecondSquared, "DegreePerSecondSquared", "DegreesPerSecondSquared", BaseUnits.Undefined,
+                         new QuantityValue(180000000000000000, 3141592653589793)
+                    ),
+                    new (RotationalAccelerationUnit.RadianPerSecondSquared, "RadianPerSecondSquared", "RadiansPerSecondSquared", new BaseUnits(time: DurationUnit.Second)),
+                    new (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionPerMinutePerSecond", "RevolutionsPerMinutePerSecond", BaseUnits.Undefined,
+                         new QuantityValue(30000000000000000, 3141592653589793)
+                    ),
+                    new (RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionPerSecondSquared", "RevolutionsPerSecondSquared", BaseUnits.Undefined,
+                         new QuantityValue(500000000000000, 3141592653589793)
+                    ),
+                };
             }
         }
 

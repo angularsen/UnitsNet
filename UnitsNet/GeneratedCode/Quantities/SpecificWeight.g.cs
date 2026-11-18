@@ -124,55 +124,58 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificWeightUnit}"/> representing the default unit mappings for SpecificWeight.</returns>
             public static IEnumerable<UnitDefinition<SpecificWeightUnit>> GetDefaultMappings()
             {
-                yield return new (SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramForcePerCubicCentimeter", "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650)
-                );
-                yield return new (SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramForcePerCubicMeter", "KilogramsForcePerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
-                yield return new (SpecificWeightUnit.KilogramForcePerCubicMillimeter, "KilogramForcePerCubicMillimeter", "KilogramsForcePerCubicMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650000)
-                );
-                yield return new (SpecificWeightUnit.KilonewtonPerCubicCentimeter, "KilonewtonPerCubicCentimeter", "KilonewtonsPerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (SpecificWeightUnit.KilonewtonPerCubicMeter, "KilonewtonPerCubicMeter", "KilonewtonsPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (SpecificWeightUnit.KilonewtonPerCubicMillimeter, "KilonewtonPerCubicMillimeter", "KilonewtonsPerCubicMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000)
-                );
-                yield return new (SpecificWeightUnit.KilopoundForcePerCubicFoot, "KilopoundForcePerCubicFoot", "KilopoundsForcePerCubicFoot", BaseUnits.Undefined,
-                     new QuantityValue(7079211648, 1112055403815125)
-                );
-                yield return new (SpecificWeightUnit.KilopoundForcePerCubicInch, "KilopoundForcePerCubicInch", "KilopoundsForcePerCubicInch", BaseUnits.Undefined,
-                     new QuantityValue(4096766, 1112055403815125)
-                );
-                yield return new (SpecificWeightUnit.MeganewtonPerCubicMeter, "MeganewtonPerCubicMeter", "MeganewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (SpecificWeightUnit.NewtonPerCubicCentimeter, "NewtonPerCubicCentimeter", "NewtonsPerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (SpecificWeightUnit.NewtonPerCubicMeter, "NewtonPerCubicMeter", "NewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (SpecificWeightUnit.NewtonPerCubicMillimeter, "NewtonPerCubicMillimeter", "NewtonsPerCubicMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (SpecificWeightUnit.PoundForcePerCubicFoot, "PoundForcePerCubicFoot", "PoundsForcePerCubicFoot", BaseUnits.Undefined,
-                     new QuantityValue(56633693184, 8896443230521)
-                );
-                yield return new (SpecificWeightUnit.PoundForcePerCubicInch, "PoundForcePerCubicInch", "PoundsForcePerCubicInch", BaseUnits.Undefined,
-                     new QuantityValue(32774128, 8896443230521)
-                );
-                yield return new (SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonneForcePerCubicCentimeter", "TonnesForcePerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650000)
-                );
-                yield return new (SpecificWeightUnit.TonneForcePerCubicMeter, "TonneForcePerCubicMeter", "TonnesForcePerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)
-                );
-                yield return new (SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonneForcePerCubicMillimeter", "TonnesForcePerCubicMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650000000)
-                );
+                return new UnitDefinition<SpecificWeightUnit>[]
+                {
+                    new (SpecificWeightUnit.KilogramForcePerCubicCentimeter, "KilogramForcePerCubicCentimeter", "KilogramsForcePerCubicCentimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 9806650)
+                    ),
+                    new (SpecificWeightUnit.KilogramForcePerCubicMeter, "KilogramForcePerCubicMeter", "KilogramsForcePerCubicMeter", BaseUnits.Undefined,
+                         new QuantityValue(20000, 196133)
+                    ),
+                    new (SpecificWeightUnit.KilogramForcePerCubicMillimeter, "KilogramForcePerCubicMillimeter", "KilogramsForcePerCubicMillimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 9806650000)
+                    ),
+                    new (SpecificWeightUnit.KilonewtonPerCubicCentimeter, "KilonewtonPerCubicCentimeter", "KilonewtonsPerCubicCentimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (SpecificWeightUnit.KilonewtonPerCubicMeter, "KilonewtonPerCubicMeter", "KilonewtonsPerCubicMeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (SpecificWeightUnit.KilonewtonPerCubicMillimeter, "KilonewtonPerCubicMillimeter", "KilonewtonsPerCubicMillimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000000)
+                    ),
+                    new (SpecificWeightUnit.KilopoundForcePerCubicFoot, "KilopoundForcePerCubicFoot", "KilopoundsForcePerCubicFoot", BaseUnits.Undefined,
+                         new QuantityValue(7079211648, 1112055403815125)
+                    ),
+                    new (SpecificWeightUnit.KilopoundForcePerCubicInch, "KilopoundForcePerCubicInch", "KilopoundsForcePerCubicInch", BaseUnits.Undefined,
+                         new QuantityValue(4096766, 1112055403815125)
+                    ),
+                    new (SpecificWeightUnit.MeganewtonPerCubicMeter, "MeganewtonPerCubicMeter", "MeganewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (SpecificWeightUnit.NewtonPerCubicCentimeter, "NewtonPerCubicCentimeter", "NewtonsPerCubicCentimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (SpecificWeightUnit.NewtonPerCubicMeter, "NewtonPerCubicMeter", "NewtonsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (SpecificWeightUnit.NewtonPerCubicMillimeter, "NewtonPerCubicMillimeter", "NewtonsPerCubicMillimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (SpecificWeightUnit.PoundForcePerCubicFoot, "PoundForcePerCubicFoot", "PoundsForcePerCubicFoot", BaseUnits.Undefined,
+                         new QuantityValue(56633693184, 8896443230521)
+                    ),
+                    new (SpecificWeightUnit.PoundForcePerCubicInch, "PoundForcePerCubicInch", "PoundsForcePerCubicInch", BaseUnits.Undefined,
+                         new QuantityValue(32774128, 8896443230521)
+                    ),
+                    new (SpecificWeightUnit.TonneForcePerCubicCentimeter, "TonneForcePerCubicCentimeter", "TonnesForcePerCubicCentimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 9806650000)
+                    ),
+                    new (SpecificWeightUnit.TonneForcePerCubicMeter, "TonneForcePerCubicMeter", "TonnesForcePerCubicMeter", BaseUnits.Undefined,
+                         new QuantityValue(20, 196133)
+                    ),
+                    new (SpecificWeightUnit.TonneForcePerCubicMillimeter, "TonneForcePerCubicMillimeter", "TonnesForcePerCubicMillimeter", BaseUnits.Undefined,
+                         new QuantityValue(1, 9806650000000)
+                    ),
+                };
             }
         }
 

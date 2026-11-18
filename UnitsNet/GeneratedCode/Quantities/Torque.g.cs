@@ -123,85 +123,88 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{TorqueUnit}"/> representing the default unit mappings for Torque.</returns>
             public static IEnumerable<UnitDefinition<TorqueUnit>> GetDefaultMappings()
             {
-                yield return new (TorqueUnit.GramForceCentimeter, "GramForceCentimeter", "GramForceCentimeters", BaseUnits.Undefined,
-                     new QuantityValue(2000000000, 196133)
-                );
-                yield return new (TorqueUnit.GramForceMeter, "GramForceMeter", "GramForceMeters", BaseUnits.Undefined,
-                     new QuantityValue(20000000, 196133)
-                );
-                yield return new (TorqueUnit.GramForceMillimeter, "GramForceMillimeter", "GramForceMillimeters", BaseUnits.Undefined,
-                     new QuantityValue(20000000000, 196133)
-                );
-                yield return new (TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeter", "KilogramForceCentimeters", BaseUnits.Undefined,
-                     new QuantityValue(2000000, 196133)
-                );
-                yield return new (TorqueUnit.KilogramForceMeter, "KilogramForceMeter", "KilogramForceMeters", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
-                yield return new (TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeter", "KilogramForceMillimeters", BaseUnits.Undefined,
-                     new QuantityValue(20000000, 196133)
-                );
-                yield return new (TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeter", "KilonewtonCentimeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)
-                );
-                yield return new (TorqueUnit.KilonewtonMeter, "KilonewtonMeter", "KilonewtonMeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeter", "KilonewtonMillimeters", BaseUnits.Undefined,
-                     1
-                );
-                yield return new (TorqueUnit.KilopoundForceFoot, "KilopoundForceFoot", "KilopoundForceFeet", BaseUnits.Undefined,
-                     new QuantityValue(2500000000000, 3389544870828501)
-                );
-                yield return new (TorqueUnit.KilopoundForceInch, "KilopoundForceInch", "KilopoundForceInches", BaseUnits.Undefined,
-                     new QuantityValue(10000000000000, 1129848290276167)
-                );
-                yield return new (TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeter", "MeganewtonCentimeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (TorqueUnit.MeganewtonMeter, "MeganewtonMeter", "MeganewtonMeters", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeter", "MeganewtonMillimeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (TorqueUnit.MegapoundForceFoot, "MegapoundForceFoot", "MegapoundForceFeet", BaseUnits.Undefined,
-                     new QuantityValue(2500000000, 3389544870828501)
-                );
-                yield return new (TorqueUnit.MegapoundForceInch, "MegapoundForceInch", "MegapoundForceInches", BaseUnits.Undefined,
-                     new QuantityValue(10000000000, 1129848290276167)
-                );
-                yield return new (TorqueUnit.NewtonCentimeter, "NewtonCentimeter", "NewtonCentimeters", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (TorqueUnit.NewtonMeter, "NewtonMeter", "NewtonMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (TorqueUnit.NewtonMillimeter, "NewtonMillimeter", "NewtonMillimeters", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (TorqueUnit.OunceForceFoot, "OunceForceFoot", "OunceForceFeet", BaseUnits.Undefined,
-                     new QuantityValue(40000000000000000, 3389544870828501)
-                );
-                yield return new (TorqueUnit.OunceForceInch, "OunceForceInch", "OunceForceInches", BaseUnits.Undefined,
-                     new QuantityValue(160000000000000000, 1129848290276167)
-                );
-                yield return new (TorqueUnit.PoundalFoot, "PoundalFoot", "PoundalFeet", BaseUnits.Undefined,
-                     new QuantityValue(156250000000000, 6584392202157)
-                );
-                yield return new (TorqueUnit.PoundForceFoot, "PoundForceFoot", "PoundForceFeet", BaseUnits.Undefined,
-                     new QuantityValue(2500000000000000, 3389544870828501)
-                );
-                yield return new (TorqueUnit.PoundForceInch, "PoundForceInch", "PoundForceInches", BaseUnits.Undefined,
-                     new QuantityValue(10000000000000000, 1129848290276167)
-                );
-                yield return new (TorqueUnit.TonneForceCentimeter, "TonneForceCentimeter", "TonneForceCentimeters", BaseUnits.Undefined,
-                     new QuantityValue(2000, 196133)
-                );
-                yield return new (TorqueUnit.TonneForceMeter, "TonneForceMeter", "TonneForceMeters", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)
-                );
-                yield return new (TorqueUnit.TonneForceMillimeter, "TonneForceMillimeter", "TonneForceMillimeters", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
+                return new UnitDefinition<TorqueUnit>[]
+                {
+                    new (TorqueUnit.GramForceCentimeter, "GramForceCentimeter", "GramForceCentimeters", BaseUnits.Undefined,
+                         new QuantityValue(2000000000, 196133)
+                    ),
+                    new (TorqueUnit.GramForceMeter, "GramForceMeter", "GramForceMeters", BaseUnits.Undefined,
+                         new QuantityValue(20000000, 196133)
+                    ),
+                    new (TorqueUnit.GramForceMillimeter, "GramForceMillimeter", "GramForceMillimeters", BaseUnits.Undefined,
+                         new QuantityValue(20000000000, 196133)
+                    ),
+                    new (TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeter", "KilogramForceCentimeters", BaseUnits.Undefined,
+                         new QuantityValue(2000000, 196133)
+                    ),
+                    new (TorqueUnit.KilogramForceMeter, "KilogramForceMeter", "KilogramForceMeters", BaseUnits.Undefined,
+                         new QuantityValue(20000, 196133)
+                    ),
+                    new (TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeter", "KilogramForceMillimeters", BaseUnits.Undefined,
+                         new QuantityValue(20000000, 196133)
+                    ),
+                    new (TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeter", "KilonewtonCentimeters", BaseUnits.Undefined,
+                         new QuantityValue(1, 10)
+                    ),
+                    new (TorqueUnit.KilonewtonMeter, "KilonewtonMeter", "KilonewtonMeters", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeter", "KilonewtonMillimeters", BaseUnits.Undefined,
+                         1
+                    ),
+                    new (TorqueUnit.KilopoundForceFoot, "KilopoundForceFoot", "KilopoundForceFeet", BaseUnits.Undefined,
+                         new QuantityValue(2500000000000, 3389544870828501)
+                    ),
+                    new (TorqueUnit.KilopoundForceInch, "KilopoundForceInch", "KilopoundForceInches", BaseUnits.Undefined,
+                         new QuantityValue(10000000000000, 1129848290276167)
+                    ),
+                    new (TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeter", "MeganewtonCentimeters", BaseUnits.Undefined,
+                         new QuantityValue(1, 10000)
+                    ),
+                    new (TorqueUnit.MeganewtonMeter, "MeganewtonMeter", "MeganewtonMeters", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeter", "MeganewtonMillimeters", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (TorqueUnit.MegapoundForceFoot, "MegapoundForceFoot", "MegapoundForceFeet", BaseUnits.Undefined,
+                         new QuantityValue(2500000000, 3389544870828501)
+                    ),
+                    new (TorqueUnit.MegapoundForceInch, "MegapoundForceInch", "MegapoundForceInches", BaseUnits.Undefined,
+                         new QuantityValue(10000000000, 1129848290276167)
+                    ),
+                    new (TorqueUnit.NewtonCentimeter, "NewtonCentimeter", "NewtonCentimeters", BaseUnits.Undefined,
+                         100
+                    ),
+                    new (TorqueUnit.NewtonMeter, "NewtonMeter", "NewtonMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (TorqueUnit.NewtonMillimeter, "NewtonMillimeter", "NewtonMillimeters", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (TorqueUnit.OunceForceFoot, "OunceForceFoot", "OunceForceFeet", BaseUnits.Undefined,
+                         new QuantityValue(40000000000000000, 3389544870828501)
+                    ),
+                    new (TorqueUnit.OunceForceInch, "OunceForceInch", "OunceForceInches", BaseUnits.Undefined,
+                         new QuantityValue(160000000000000000, 1129848290276167)
+                    ),
+                    new (TorqueUnit.PoundalFoot, "PoundalFoot", "PoundalFeet", BaseUnits.Undefined,
+                         new QuantityValue(156250000000000, 6584392202157)
+                    ),
+                    new (TorqueUnit.PoundForceFoot, "PoundForceFoot", "PoundForceFeet", BaseUnits.Undefined,
+                         new QuantityValue(2500000000000000, 3389544870828501)
+                    ),
+                    new (TorqueUnit.PoundForceInch, "PoundForceInch", "PoundForceInches", BaseUnits.Undefined,
+                         new QuantityValue(10000000000000000, 1129848290276167)
+                    ),
+                    new (TorqueUnit.TonneForceCentimeter, "TonneForceCentimeter", "TonneForceCentimeters", BaseUnits.Undefined,
+                         new QuantityValue(2000, 196133)
+                    ),
+                    new (TorqueUnit.TonneForceMeter, "TonneForceMeter", "TonneForceMeters", BaseUnits.Undefined,
+                         new QuantityValue(20, 196133)
+                    ),
+                    new (TorqueUnit.TonneForceMillimeter, "TonneForceMillimeter", "TonneForceMillimeters", BaseUnits.Undefined,
+                         new QuantityValue(20000, 196133)
+                    ),
+                };
             }
         }
 

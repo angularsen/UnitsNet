@@ -120,43 +120,46 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalSpeedUnit}"/> representing the default unit mappings for RotationalSpeed.</returns>
             public static IEnumerable<UnitDefinition<RotationalSpeedUnit>> GetDefaultMappings()
             {
-                yield return new (RotationalSpeedUnit.CentiradianPerSecond, "CentiradianPerSecond", "CentiradiansPerSecond", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (RotationalSpeedUnit.DeciradianPerSecond, "DeciradianPerSecond", "DeciradiansPerSecond", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (RotationalSpeedUnit.DegreePerMinute, "DegreePerMinute", "DegreesPerMinute", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(108) * QuantityValue.PowerOfTen(17), 3141592653589793)
-                );
-                yield return new (RotationalSpeedUnit.DegreePerSecond, "DegreePerSecond", "DegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(180000000000000000, 3141592653589793)
-                );
-                yield return new (RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreePerSecond", "MicrodegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(22), 3141592653589793)
-                );
-                yield return new (RotationalSpeedUnit.MicroradianPerSecond, "MicroradianPerSecond", "MicroradiansPerSecond", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (RotationalSpeedUnit.MillidegreePerSecond, "MillidegreePerSecond", "MillidegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(19), 3141592653589793)
-                );
-                yield return new (RotationalSpeedUnit.MilliradianPerSecond, "MilliradianPerSecond", "MilliradiansPerSecond", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (RotationalSpeedUnit.NanodegreePerSecond, "NanodegreePerSecond", "NanodegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(25), 3141592653589793)
-                );
-                yield return new (RotationalSpeedUnit.NanoradianPerSecond, "NanoradianPerSecond", "NanoradiansPerSecond", BaseUnits.Undefined,
-                     1000000000
-                );
-                yield return new (RotationalSpeedUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", new BaseUnits(time: DurationUnit.Second));
-                yield return new (RotationalSpeedUnit.RevolutionPerMinute, "RevolutionPerMinute", "RevolutionsPerMinute", BaseUnits.Undefined,
-                     new QuantityValue(30000000000000000, 3141592653589793)
-                );
-                yield return new (RotationalSpeedUnit.RevolutionPerSecond, "RevolutionPerSecond", "RevolutionsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(500000000000000, 3141592653589793)
-                );
+                return new UnitDefinition<RotationalSpeedUnit>[]
+                {
+                    new (RotationalSpeedUnit.CentiradianPerSecond, "CentiradianPerSecond", "CentiradiansPerSecond", BaseUnits.Undefined,
+                         100
+                    ),
+                    new (RotationalSpeedUnit.DeciradianPerSecond, "DeciradianPerSecond", "DeciradiansPerSecond", BaseUnits.Undefined,
+                         10
+                    ),
+                    new (RotationalSpeedUnit.DegreePerMinute, "DegreePerMinute", "DegreesPerMinute", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(108) * QuantityValue.PowerOfTen(17), 3141592653589793)
+                    ),
+                    new (RotationalSpeedUnit.DegreePerSecond, "DegreePerSecond", "DegreesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(180000000000000000, 3141592653589793)
+                    ),
+                    new (RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreePerSecond", "MicrodegreesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(22), 3141592653589793)
+                    ),
+                    new (RotationalSpeedUnit.MicroradianPerSecond, "MicroradianPerSecond", "MicroradiansPerSecond", BaseUnits.Undefined,
+                         1000000
+                    ),
+                    new (RotationalSpeedUnit.MillidegreePerSecond, "MillidegreePerSecond", "MillidegreesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(19), 3141592653589793)
+                    ),
+                    new (RotationalSpeedUnit.MilliradianPerSecond, "MilliradianPerSecond", "MilliradiansPerSecond", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (RotationalSpeedUnit.NanodegreePerSecond, "NanodegreePerSecond", "NanodegreesPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(25), 3141592653589793)
+                    ),
+                    new (RotationalSpeedUnit.NanoradianPerSecond, "NanoradianPerSecond", "NanoradiansPerSecond", BaseUnits.Undefined,
+                         1000000000
+                    ),
+                    new (RotationalSpeedUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", new BaseUnits(time: DurationUnit.Second)),
+                    new (RotationalSpeedUnit.RevolutionPerMinute, "RevolutionPerMinute", "RevolutionsPerMinute", BaseUnits.Undefined,
+                         new QuantityValue(30000000000000000, 3141592653589793)
+                    ),
+                    new (RotationalSpeedUnit.RevolutionPerSecond, "RevolutionPerSecond", "RevolutionsPerSecond", BaseUnits.Undefined,
+                         new QuantityValue(500000000000000, 3141592653589793)
+                    ),
+                };
             }
         }
 

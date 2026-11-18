@@ -117,19 +117,22 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RotationalStiffnessPerLengthUnit}"/> representing the default unit mappings for RotationalStiffnessPerLength.</returns>
             public static IEnumerable<UnitDefinition<RotationalStiffnessPerLengthUnit>> GetDefaultMappings()
             {
-                yield return new (RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMeterPerRadianPerMeter", "KilonewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFootPerDegreesPerFoot", "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined,
-                     new QuantityValue(3141592653589793, QuantityValue.PowerOfTen(7) * new BigInteger(80067989074689))
-                );
-                yield return new (RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMeterPerRadianPerMeter", "MeganewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMeterPerRadianPerMeter", "NewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFootPerDegreesPerFoot", "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined,
-                     new QuantityValue(3141592653589793, 800679890746890000)
-                );
+                return new UnitDefinition<RotationalStiffnessPerLengthUnit>[]
+                {
+                    new (RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMeterPerRadianPerMeter", "KilonewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFootPerDegreesPerFoot", "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined,
+                         new QuantityValue(3141592653589793, QuantityValue.PowerOfTen(7) * new BigInteger(80067989074689))
+                    ),
+                    new (RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMeterPerRadianPerMeter", "MeganewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMeterPerRadianPerMeter", "NewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFootPerDegreesPerFoot", "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined,
+                         new QuantityValue(3141592653589793, 800679890746890000)
+                    ),
+                };
             }
         }
 

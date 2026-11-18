@@ -132,97 +132,100 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassUnit}"/> representing the default unit mappings for Mass.</returns>
             public static IEnumerable<UnitDefinition<MassUnit>> GetDefaultMappings()
             {
-                yield return new (MassUnit.Centigram, "Centigram", "Centigrams", new BaseUnits(mass: MassUnit.Centigram),
-                     100000
-                );
-                yield return new (MassUnit.Dalton, "Dalton", "Daltons", new BaseUnits(mass: MassUnit.Dalton),
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(36), 8302695333)
-                );
-                yield return new (MassUnit.Decagram, "Decagram", "Decagrams", new BaseUnits(mass: MassUnit.Decagram),
-                     100
-                );
-                yield return new (MassUnit.Decigram, "Decigram", "Decigrams", new BaseUnits(mass: MassUnit.Decigram),
-                     10000
-                );
-                yield return new (MassUnit.EarthMass, "EarthMass", "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass),
-                     new QuantityValue(1, new BigInteger(59722) * QuantityValue.PowerOfTen(20))
-                );
-                yield return new (MassUnit.Femtogram, "Femtogram", "Femtograms", new BaseUnits(mass: MassUnit.Femtogram),
-                     1000000000000000000
-                );
-                yield return new (MassUnit.Gigadalton, "Gigadalton", "Gigadaltons", new BaseUnits(mass: MassUnit.Gigadalton),
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(27), 8302695333)
-                );
-                yield return new (MassUnit.Grain, "Grain", "Grains", new BaseUnits(mass: MassUnit.Grain),
-                     new QuantityValue(100000000000, 6479891)
-                );
-                yield return new (MassUnit.Gram, "Gram", "Grams", new BaseUnits(mass: MassUnit.Gram),
-                     1000
-                );
-                yield return new (MassUnit.Hectogram, "Hectogram", "Hectograms", new BaseUnits(mass: MassUnit.Hectogram),
-                     10
-                );
-                yield return new (MassUnit.Kilodalton, "Kilodalton", "Kilodaltons", new BaseUnits(mass: MassUnit.Kilodalton),
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(33), 8302695333)
-                );
-                yield return new (MassUnit.Kilogram, "Kilogram", "Kilograms", new BaseUnits(mass: MassUnit.Kilogram));
-                yield return new (MassUnit.Kilopound, "Kilopound", "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound),
-                     new QuantityValue(100000, 45359237)
-                );
-                yield return new (MassUnit.Kilotonne, "Kilotonne", "Kilotonnes", new BaseUnits(mass: MassUnit.Kilotonne),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (MassUnit.LongHundredweight, "LongHundredweight", "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight),
-                     new QuantityValue(6250000, 317514659)
-                );
-                yield return new (MassUnit.LongTon, "LongTon", "LongTons", new BaseUnits(mass: MassUnit.LongTon),
-                     new QuantityValue(312500, 317514659)
-                );
-                yield return new (MassUnit.Megadalton, "Megadalton", "Megadaltons", new BaseUnits(mass: MassUnit.Megadalton),
-                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(30), 8302695333)
-                );
-                yield return new (MassUnit.Megapound, "Megapound", "Megapounds", new BaseUnits(mass: MassUnit.Megapound),
-                     new QuantityValue(100, 45359237)
-                );
-                yield return new (MassUnit.Megatonne, "Megatonne", "Megatonnes", new BaseUnits(mass: MassUnit.Megatonne),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (MassUnit.Microgram, "Microgram", "Micrograms", new BaseUnits(mass: MassUnit.Microgram),
-                     1000000000
-                );
-                yield return new (MassUnit.Milligram, "Milligram", "Milligrams", new BaseUnits(mass: MassUnit.Milligram),
-                     1000000
-                );
-                yield return new (MassUnit.Nanogram, "Nanogram", "Nanograms", new BaseUnits(mass: MassUnit.Nanogram),
-                     1000000000000
-                );
-                yield return new (MassUnit.Ounce, "Ounce", "Ounces", new BaseUnits(mass: MassUnit.Ounce),
-                     new QuantityValue(1600000000, 45359237)
-                );
-                yield return new (MassUnit.Picogram, "Picogram", "Picograms", new BaseUnits(mass: MassUnit.Picogram),
-                     1000000000000000
-                );
-                yield return new (MassUnit.Pound, "Pound", "Pounds", new BaseUnits(mass: MassUnit.Pound),
-                     new QuantityValue(100000000, 45359237)
-                );
-                yield return new (MassUnit.ShortHundredweight, "ShortHundredweight", "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight),
-                     new QuantityValue(1000000, 45359237)
-                );
-                yield return new (MassUnit.ShortTon, "ShortTon", "ShortTons", new BaseUnits(mass: MassUnit.ShortTon),
-                     new QuantityValue(50000, 45359237)
-                );
-                yield return new (MassUnit.Slug, "Slug", "Slugs", new BaseUnits(mass: MassUnit.Slug),
-                     new QuantityValue(609600000000, 8896443230521)
-                );
-                yield return new (MassUnit.SolarMass, "SolarMass", "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass),
-                     new QuantityValue(1, new BigInteger(198947) * QuantityValue.PowerOfTen(25))
-                );
-                yield return new (MassUnit.Stone, "Stone", "Stone", new BaseUnits(mass: MassUnit.Stone),
-                     new QuantityValue(50000000, 317514659)
-                );
-                yield return new (MassUnit.Tonne, "Tonne", "Tonnes", new BaseUnits(mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000)
-                );
+                return new UnitDefinition<MassUnit>[]
+                {
+                    new (MassUnit.Centigram, "Centigram", "Centigrams", new BaseUnits(mass: MassUnit.Centigram),
+                         100000
+                    ),
+                    new (MassUnit.Dalton, "Dalton", "Daltons", new BaseUnits(mass: MassUnit.Dalton),
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(36), 8302695333)
+                    ),
+                    new (MassUnit.Decagram, "Decagram", "Decagrams", new BaseUnits(mass: MassUnit.Decagram),
+                         100
+                    ),
+                    new (MassUnit.Decigram, "Decigram", "Decigrams", new BaseUnits(mass: MassUnit.Decigram),
+                         10000
+                    ),
+                    new (MassUnit.EarthMass, "EarthMass", "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass),
+                         new QuantityValue(1, new BigInteger(59722) * QuantityValue.PowerOfTen(20))
+                    ),
+                    new (MassUnit.Femtogram, "Femtogram", "Femtograms", new BaseUnits(mass: MassUnit.Femtogram),
+                         1000000000000000000
+                    ),
+                    new (MassUnit.Gigadalton, "Gigadalton", "Gigadaltons", new BaseUnits(mass: MassUnit.Gigadalton),
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(27), 8302695333)
+                    ),
+                    new (MassUnit.Grain, "Grain", "Grains", new BaseUnits(mass: MassUnit.Grain),
+                         new QuantityValue(100000000000, 6479891)
+                    ),
+                    new (MassUnit.Gram, "Gram", "Grams", new BaseUnits(mass: MassUnit.Gram),
+                         1000
+                    ),
+                    new (MassUnit.Hectogram, "Hectogram", "Hectograms", new BaseUnits(mass: MassUnit.Hectogram),
+                         10
+                    ),
+                    new (MassUnit.Kilodalton, "Kilodalton", "Kilodaltons", new BaseUnits(mass: MassUnit.Kilodalton),
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(33), 8302695333)
+                    ),
+                    new (MassUnit.Kilogram, "Kilogram", "Kilograms", new BaseUnits(mass: MassUnit.Kilogram)),
+                    new (MassUnit.Kilopound, "Kilopound", "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound),
+                         new QuantityValue(100000, 45359237)
+                    ),
+                    new (MassUnit.Kilotonne, "Kilotonne", "Kilotonnes", new BaseUnits(mass: MassUnit.Kilotonne),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (MassUnit.LongHundredweight, "LongHundredweight", "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight),
+                         new QuantityValue(6250000, 317514659)
+                    ),
+                    new (MassUnit.LongTon, "LongTon", "LongTons", new BaseUnits(mass: MassUnit.LongTon),
+                         new QuantityValue(312500, 317514659)
+                    ),
+                    new (MassUnit.Megadalton, "Megadalton", "Megadaltons", new BaseUnits(mass: MassUnit.Megadalton),
+                         new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(30), 8302695333)
+                    ),
+                    new (MassUnit.Megapound, "Megapound", "Megapounds", new BaseUnits(mass: MassUnit.Megapound),
+                         new QuantityValue(100, 45359237)
+                    ),
+                    new (MassUnit.Megatonne, "Megatonne", "Megatonnes", new BaseUnits(mass: MassUnit.Megatonne),
+                         new QuantityValue(1, 1000000000)
+                    ),
+                    new (MassUnit.Microgram, "Microgram", "Micrograms", new BaseUnits(mass: MassUnit.Microgram),
+                         1000000000
+                    ),
+                    new (MassUnit.Milligram, "Milligram", "Milligrams", new BaseUnits(mass: MassUnit.Milligram),
+                         1000000
+                    ),
+                    new (MassUnit.Nanogram, "Nanogram", "Nanograms", new BaseUnits(mass: MassUnit.Nanogram),
+                         1000000000000
+                    ),
+                    new (MassUnit.Ounce, "Ounce", "Ounces", new BaseUnits(mass: MassUnit.Ounce),
+                         new QuantityValue(1600000000, 45359237)
+                    ),
+                    new (MassUnit.Picogram, "Picogram", "Picograms", new BaseUnits(mass: MassUnit.Picogram),
+                         1000000000000000
+                    ),
+                    new (MassUnit.Pound, "Pound", "Pounds", new BaseUnits(mass: MassUnit.Pound),
+                         new QuantityValue(100000000, 45359237)
+                    ),
+                    new (MassUnit.ShortHundredweight, "ShortHundredweight", "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight),
+                         new QuantityValue(1000000, 45359237)
+                    ),
+                    new (MassUnit.ShortTon, "ShortTon", "ShortTons", new BaseUnits(mass: MassUnit.ShortTon),
+                         new QuantityValue(50000, 45359237)
+                    ),
+                    new (MassUnit.Slug, "Slug", "Slugs", new BaseUnits(mass: MassUnit.Slug),
+                         new QuantityValue(609600000000, 8896443230521)
+                    ),
+                    new (MassUnit.SolarMass, "SolarMass", "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass),
+                         new QuantityValue(1, new BigInteger(198947) * QuantityValue.PowerOfTen(25))
+                    ),
+                    new (MassUnit.Stone, "Stone", "Stone", new BaseUnits(mass: MassUnit.Stone),
+                         new QuantityValue(50000000, 317514659)
+                    ),
+                    new (MassUnit.Tonne, "Tonne", "Tonnes", new BaseUnits(mass: MassUnit.Tonne),
+                         new QuantityValue(1, 1000)
+                    ),
+                };
             }
         }
 

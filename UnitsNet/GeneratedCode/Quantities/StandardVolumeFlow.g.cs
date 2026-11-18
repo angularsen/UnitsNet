@@ -116,31 +116,34 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{StandardVolumeFlowUnit}"/> representing the default unit mappings for StandardVolumeFlow.</returns>
             public static IEnumerable<UnitDefinition<StandardVolumeFlowUnit>> GetDefaultMappings()
             {
-                yield return new (StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimeterPerMinute", "StandardCubicCentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute),
-                     60000000
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFootPerHour", "StandardCubicFeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour),
-                     new QuantityValue(781250000000, 6145149)
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFootPerMinute", "StandardCubicFeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute),
-                     new QuantityValue(39062500000, 18435447)
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFootPerSecond", "StandardCubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
-                     new QuantityValue(1953125000, 55306341)
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMeterPerDay", "StandardCubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day),
-                     86400
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMeterPerHour", "StandardCubicMetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour),
-                     3600
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMeterPerMinute", "StandardCubicMetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute),
-                     60
-                );
-                yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMeterPerSecond", "StandardCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                yield return new (StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLiterPerMinute", "StandardLitersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute),
-                     60000
-                );
+                return new UnitDefinition<StandardVolumeFlowUnit>[]
+                {
+                    new (StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimeterPerMinute", "StandardCubicCentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute),
+                         60000000
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFootPerHour", "StandardCubicFeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour),
+                         new QuantityValue(781250000000, 6145149)
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFootPerMinute", "StandardCubicFeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute),
+                         new QuantityValue(39062500000, 18435447)
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFootPerSecond", "StandardCubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
+                         new QuantityValue(1953125000, 55306341)
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMeterPerDay", "StandardCubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day),
+                         86400
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMeterPerHour", "StandardCubicMetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour),
+                         3600
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMeterPerMinute", "StandardCubicMetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute),
+                         60
+                    ),
+                    new (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMeterPerSecond", "StandardCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new (StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLiterPerMinute", "StandardLitersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute),
+                         60000
+                    ),
+                };
             }
         }
 

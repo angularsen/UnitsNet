@@ -117,25 +117,28 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{CompressibilityUnit}"/> representing the default unit mappings for Compressibility.</returns>
             public static IEnumerable<UnitDefinition<CompressibilityUnit>> GetDefaultMappings()
             {
-                yield return new (CompressibilityUnit.InverseAtmosphere, "InverseAtmosphere", "InverseAtmospheres", BaseUnits.Undefined,
-                     101325
-                );
-                yield return new (CompressibilityUnit.InverseBar, "InverseBar", "InverseBars", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (CompressibilityUnit.InverseKilopascal, "InverseKilopascal", "InverseKilopascals", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (CompressibilityUnit.InverseMegapascal, "InverseMegapascal", "InverseMegapascals", BaseUnits.Undefined,
-                     1000000
-                );
-                yield return new (CompressibilityUnit.InverseMillibar, "InverseMillibar", "InverseMillibars", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (CompressibilityUnit.InversePascal, "InversePascal", "InversePascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundForcePerSquareInch", "InversePoundsForcePerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(6894757293168361, 1000000000000)
-                );
+                return new UnitDefinition<CompressibilityUnit>[]
+                {
+                    new (CompressibilityUnit.InverseAtmosphere, "InverseAtmosphere", "InverseAtmospheres", BaseUnits.Undefined,
+                         101325
+                    ),
+                    new (CompressibilityUnit.InverseBar, "InverseBar", "InverseBars", BaseUnits.Undefined,
+                         100000
+                    ),
+                    new (CompressibilityUnit.InverseKilopascal, "InverseKilopascal", "InverseKilopascals", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (CompressibilityUnit.InverseMegapascal, "InverseMegapascal", "InverseMegapascals", BaseUnits.Undefined,
+                         1000000
+                    ),
+                    new (CompressibilityUnit.InverseMillibar, "InverseMillibar", "InverseMillibars", BaseUnits.Undefined,
+                         100
+                    ),
+                    new (CompressibilityUnit.InversePascal, "InversePascal", "InversePascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundForcePerSquareInch", "InversePoundsForcePerSquareInch", BaseUnits.Undefined,
+                         new QuantityValue(6894757293168361, 1000000000000)
+                    ),
+                };
             }
         }
 

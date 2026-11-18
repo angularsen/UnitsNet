@@ -116,19 +116,22 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AmplitudeRatioUnit}"/> representing the default unit mappings for AmplitudeRatio.</returns>
             public static IEnumerable<UnitDefinition<AmplitudeRatioUnit>> GetDefaultMappings()
             {
-                yield return new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined,
-                     new ConversionExpression(coefficient: 1, constantTerm: 120),
-                     new ConversionExpression(coefficient: 1, constantTerm: -120)
-                );
-                yield return new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined,
-                     new ConversionExpression(coefficient: 1, constantTerm: 60),
-                     new ConversionExpression(coefficient: 1, constantTerm: -60)
-                );
-                yield return new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined,
-                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(2218487499, 1000000000)),
-                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(-2218487499, 1000000000))
-                );
-                yield return new (AmplitudeRatioUnit.DecibelVolt, "DecibelVolt", "DecibelVolts", BaseUnits.Undefined);
+                return new UnitDefinition<AmplitudeRatioUnit>[]
+                {
+                    new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined,
+                         new ConversionExpression(coefficient: 1, constantTerm: 120),
+                         new ConversionExpression(coefficient: 1, constantTerm: -120)
+                    ),
+                    new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined,
+                         new ConversionExpression(coefficient: 1, constantTerm: 60),
+                         new ConversionExpression(coefficient: 1, constantTerm: -60)
+                    ),
+                    new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined,
+                         new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(2218487499, 1000000000)),
+                         new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(-2218487499, 1000000000))
+                    ),
+                    new (AmplitudeRatioUnit.DecibelVolt, "DecibelVolt", "DecibelVolts", BaseUnits.Undefined),
+                };
             }
         }
 

@@ -121,7 +121,10 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MagneticFluxUnit}"/> representing the default unit mappings for MagneticFlux.</returns>
             public static IEnumerable<UnitDefinition<MagneticFluxUnit>> GetDefaultMappings()
             {
-                yield return new (MagneticFluxUnit.Weber, "Weber", "Webers", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                return new UnitDefinition<MagneticFluxUnit>[]
+                {
+                    new (MagneticFluxUnit.Weber, "Weber", "Webers", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                };
             }
         }
 

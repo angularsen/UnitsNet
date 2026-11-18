@@ -119,40 +119,43 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFluxUnit}"/> representing the default unit mappings for MassFlux.</returns>
             public static IEnumerable<UnitDefinition<MassFluxUnit>> GetDefaultMappings()
             {
-                yield return new (MassFluxUnit.GramPerHourPerSquareCentimeter, "GramPerHourPerSquareCentimeter", "GramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Hour),
-                     360
-                );
-                yield return new (MassFluxUnit.GramPerHourPerSquareMeter, "GramPerHourPerSquareMeter", "GramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Hour),
-                     3600000
-                );
-                yield return new (MassFluxUnit.GramPerHourPerSquareMillimeter, "GramPerHourPerSquareMillimeter", "GramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Hour),
-                     new QuantityValue(18, 5)
-                );
-                yield return new (MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramPerSecondPerSquareCentimeter", "GramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10)
-                );
-                yield return new (MassFluxUnit.GramPerSecondPerSquareMeter, "GramPerSecondPerSquareMeter", "GramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramPerSecondPerSquareMillimeter", "GramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramPerHourPerSquareCentimeter", "KilogramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour),
-                     new QuantityValue(9, 25)
-                );
-                yield return new (MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramPerHourPerSquareMeter", "KilogramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour),
-                     3600
-                );
-                yield return new (MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramPerHourPerSquareMillimeter", "KilogramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour),
-                     new QuantityValue(9, 2500)
-                );
-                yield return new (MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramPerSecondPerSquareCentimeter", "KilogramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramPerSecondPerSquareMeter", "KilogramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramPerSecondPerSquareMillimeter", "KilogramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
+                return new UnitDefinition<MassFluxUnit>[]
+                {
+                    new (MassFluxUnit.GramPerHourPerSquareCentimeter, "GramPerHourPerSquareCentimeter", "GramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Hour),
+                         360
+                    ),
+                    new (MassFluxUnit.GramPerHourPerSquareMeter, "GramPerHourPerSquareMeter", "GramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Hour),
+                         3600000
+                    ),
+                    new (MassFluxUnit.GramPerHourPerSquareMillimeter, "GramPerHourPerSquareMillimeter", "GramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Hour),
+                         new QuantityValue(18, 5)
+                    ),
+                    new (MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramPerSecondPerSquareCentimeter", "GramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                         new QuantityValue(1, 10)
+                    ),
+                    new (MassFluxUnit.GramPerSecondPerSquareMeter, "GramPerSecondPerSquareMeter", "GramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                         1000
+                    ),
+                    new (MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramPerSecondPerSquareMillimeter", "GramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramPerHourPerSquareCentimeter", "KilogramsPerHourPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour),
+                         new QuantityValue(9, 25)
+                    ),
+                    new (MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramPerHourPerSquareMeter", "KilogramsPerHourPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour),
+                         3600
+                    ),
+                    new (MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramPerHourPerSquareMillimeter", "KilogramsPerHourPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Hour),
+                         new QuantityValue(9, 2500)
+                    ),
+                    new (MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramPerSecondPerSquareCentimeter", "KilogramsPerSecondPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 10000)
+                    ),
+                    new (MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramPerSecondPerSquareMeter", "KilogramsPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new (MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramPerSecondPerSquareMillimeter", "KilogramsPerSecondPerSquareMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                };
             }
         }
 

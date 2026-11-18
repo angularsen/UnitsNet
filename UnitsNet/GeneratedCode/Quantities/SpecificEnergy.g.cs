@@ -125,94 +125,97 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificEnergyUnit}"/> representing the default unit mappings for SpecificEnergy.</returns>
             public static IEnumerable<UnitDefinition<SpecificEnergyUnit>> GetDefaultMappings()
             {
-                yield return new (SpecificEnergyUnit.BtuPerPound, "BtuPerPound", "BtuPerPound", BaseUnits.Undefined,
-                     new QuantityValue(1, 2326)
-                );
-                yield return new (SpecificEnergyUnit.CaloriePerGram, "CaloriePerGram", "CaloriesPerGram", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184)
-                );
-                yield return new (SpecificEnergyUnit.GigawattDayPerKilogram, "GigawattDayPerKilogram", "GigawattDaysPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000000)
-                );
-                yield return new (SpecificEnergyUnit.GigawattDayPerShortTon, "GigawattDayPerShortTon", "GigawattDaysPerShortTon", BaseUnits.Undefined,
-                     new QuantityValue(45359237, 4320000000000000000)
-                );
-                yield return new (SpecificEnergyUnit.GigawattDayPerTonne, "GigawattDayPerTonne", "GigawattDaysPerTonne", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000)
-                );
-                yield return new (SpecificEnergyUnit.GigawattHourPerKilogram, "GigawattHourPerKilogram", "GigawattHoursPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000000)
-                );
-                yield return new (SpecificEnergyUnit.GigawattHourPerPound, "GigawattHourPerPound", "GigawattHoursPerPound", BaseUnits.Undefined,
-                     new QuantityValue(1, 7936640000000)
-                );
-                yield return new (SpecificEnergyUnit.JoulePerKilogram, "JoulePerKilogram", "JoulesPerKilogram", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
-                yield return new (SpecificEnergyUnit.KilocaloriePerGram, "KilocaloriePerGram", "KilocaloriesPerGram", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184000)
-                );
-                yield return new (SpecificEnergyUnit.KilojoulePerKilogram, "KilojoulePerKilogram", "KilojoulesPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (SpecificEnergyUnit.KilowattDayPerKilogram, "KilowattDayPerKilogram", "KilowattDaysPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000)
-                );
-                yield return new (SpecificEnergyUnit.KilowattDayPerShortTon, "KilowattDayPerShortTon", "KilowattDaysPerShortTon", BaseUnits.Undefined,
-                     new QuantityValue(45359237, 4320000000000)
-                );
-                yield return new (SpecificEnergyUnit.KilowattDayPerTonne, "KilowattDayPerTonne", "KilowattDaysPerTonne", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400)
-                );
-                yield return new (SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHourPerKilogram", "KilowattHoursPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000)
-                );
-                yield return new (SpecificEnergyUnit.KilowattHourPerPound, "KilowattHourPerPound", "KilowattHoursPerPound", BaseUnits.Undefined,
-                     new QuantityValue(1, 7936640)
-                );
-                yield return new (SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulePerKilogram", "MegajoulesPerKilogram", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (SpecificEnergyUnit.MegajoulePerTonne, "MegajoulePerTonne", "MegajoulesPerTonne", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDayPerKilogram", "MegawattDaysPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000)
-                );
-                yield return new (SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDayPerShortTon", "MegawattDaysPerShortTon", BaseUnits.Undefined,
-                     new QuantityValue(45359237, 4320000000000000)
-                );
-                yield return new (SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDayPerTonne", "MegawattDaysPerTonne", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000)
-                );
-                yield return new (SpecificEnergyUnit.MegawattHourPerKilogram, "MegawattHourPerKilogram", "MegawattHoursPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000000)
-                );
-                yield return new (SpecificEnergyUnit.MegawattHourPerPound, "MegawattHourPerPound", "MegawattHoursPerPound", BaseUnits.Undefined,
-                     new QuantityValue(1, 7936640000)
-                );
-                yield return new (SpecificEnergyUnit.TerawattDayPerKilogram, "TerawattDayPerKilogram", "TerawattDaysPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000000000)
-                );
-                yield return new (SpecificEnergyUnit.TerawattDayPerShortTon, "TerawattDayPerShortTon", "TerawattDaysPerShortTon", BaseUnits.Undefined,
-                     new QuantityValue(45359237, new BigInteger(432) * QuantityValue.PowerOfTen(19))
-                );
-                yield return new (SpecificEnergyUnit.TerawattDayPerTonne, "TerawattDayPerTonne", "TerawattDaysPerTonne", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400000000000)
-                );
-                yield return new (SpecificEnergyUnit.WattDayPerKilogram, "WattDayPerKilogram", "WattDaysPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 86400)
-                );
-                yield return new (SpecificEnergyUnit.WattDayPerShortTon, "WattDayPerShortTon", "WattDaysPerShortTon", BaseUnits.Undefined,
-                     new QuantityValue(45359237, 4320000000)
-                );
-                yield return new (SpecificEnergyUnit.WattDayPerTonne, "WattDayPerTonne", "WattDaysPerTonne", BaseUnits.Undefined,
-                     new QuantityValue(5, 432)
-                );
-                yield return new (SpecificEnergyUnit.WattHourPerKilogram, "WattHourPerKilogram", "WattHoursPerKilogram", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600)
-                );
-                yield return new (SpecificEnergyUnit.WattHourPerPound, "WattHourPerPound", "WattHoursPerPound", BaseUnits.Undefined,
-                     new QuantityValue(25, 198416)
-                );
+                return new UnitDefinition<SpecificEnergyUnit>[]
+                {
+                    new (SpecificEnergyUnit.BtuPerPound, "BtuPerPound", "BtuPerPound", BaseUnits.Undefined,
+                         new QuantityValue(1, 2326)
+                    ),
+                    new (SpecificEnergyUnit.CaloriePerGram, "CaloriePerGram", "CaloriesPerGram", BaseUnits.Undefined,
+                         new QuantityValue(1, 4184)
+                    ),
+                    new (SpecificEnergyUnit.GigawattDayPerKilogram, "GigawattDayPerKilogram", "GigawattDaysPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000000)
+                    ),
+                    new (SpecificEnergyUnit.GigawattDayPerShortTon, "GigawattDayPerShortTon", "GigawattDaysPerShortTon", BaseUnits.Undefined,
+                         new QuantityValue(45359237, 4320000000000000000)
+                    ),
+                    new (SpecificEnergyUnit.GigawattDayPerTonne, "GigawattDayPerTonne", "GigawattDaysPerTonne", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000)
+                    ),
+                    new (SpecificEnergyUnit.GigawattHourPerKilogram, "GigawattHourPerKilogram", "GigawattHoursPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000000000)
+                    ),
+                    new (SpecificEnergyUnit.GigawattHourPerPound, "GigawattHourPerPound", "GigawattHoursPerPound", BaseUnits.Undefined,
+                         new QuantityValue(1, 7936640000000)
+                    ),
+                    new (SpecificEnergyUnit.JoulePerKilogram, "JoulePerKilogram", "JoulesPerKilogram", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new (SpecificEnergyUnit.KilocaloriePerGram, "KilocaloriePerGram", "KilocaloriesPerGram", BaseUnits.Undefined,
+                         new QuantityValue(1, 4184000)
+                    ),
+                    new (SpecificEnergyUnit.KilojoulePerKilogram, "KilojoulePerKilogram", "KilojoulesPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (SpecificEnergyUnit.KilowattDayPerKilogram, "KilowattDayPerKilogram", "KilowattDaysPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000)
+                    ),
+                    new (SpecificEnergyUnit.KilowattDayPerShortTon, "KilowattDayPerShortTon", "KilowattDaysPerShortTon", BaseUnits.Undefined,
+                         new QuantityValue(45359237, 4320000000000)
+                    ),
+                    new (SpecificEnergyUnit.KilowattDayPerTonne, "KilowattDayPerTonne", "KilowattDaysPerTonne", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400)
+                    ),
+                    new (SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHourPerKilogram", "KilowattHoursPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000)
+                    ),
+                    new (SpecificEnergyUnit.KilowattHourPerPound, "KilowattHourPerPound", "KilowattHoursPerPound", BaseUnits.Undefined,
+                         new QuantityValue(1, 7936640)
+                    ),
+                    new (SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulePerKilogram", "MegajoulesPerKilogram", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
+                         new QuantityValue(1, 1000000)
+                    ),
+                    new (SpecificEnergyUnit.MegajoulePerTonne, "MegajoulePerTonne", "MegajoulesPerTonne", BaseUnits.Undefined,
+                         new QuantityValue(1, 1000)
+                    ),
+                    new (SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDayPerKilogram", "MegawattDaysPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000)
+                    ),
+                    new (SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDayPerShortTon", "MegawattDaysPerShortTon", BaseUnits.Undefined,
+                         new QuantityValue(45359237, 4320000000000000)
+                    ),
+                    new (SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDayPerTonne", "MegawattDaysPerTonne", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000)
+                    ),
+                    new (SpecificEnergyUnit.MegawattHourPerKilogram, "MegawattHourPerKilogram", "MegawattHoursPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600000000)
+                    ),
+                    new (SpecificEnergyUnit.MegawattHourPerPound, "MegawattHourPerPound", "MegawattHoursPerPound", BaseUnits.Undefined,
+                         new QuantityValue(1, 7936640000)
+                    ),
+                    new (SpecificEnergyUnit.TerawattDayPerKilogram, "TerawattDayPerKilogram", "TerawattDaysPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000000000)
+                    ),
+                    new (SpecificEnergyUnit.TerawattDayPerShortTon, "TerawattDayPerShortTon", "TerawattDaysPerShortTon", BaseUnits.Undefined,
+                         new QuantityValue(45359237, new BigInteger(432) * QuantityValue.PowerOfTen(19))
+                    ),
+                    new (SpecificEnergyUnit.TerawattDayPerTonne, "TerawattDayPerTonne", "TerawattDaysPerTonne", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400000000000)
+                    ),
+                    new (SpecificEnergyUnit.WattDayPerKilogram, "WattDayPerKilogram", "WattDaysPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 86400)
+                    ),
+                    new (SpecificEnergyUnit.WattDayPerShortTon, "WattDayPerShortTon", "WattDaysPerShortTon", BaseUnits.Undefined,
+                         new QuantityValue(45359237, 4320000000)
+                    ),
+                    new (SpecificEnergyUnit.WattDayPerTonne, "WattDayPerTonne", "WattDaysPerTonne", BaseUnits.Undefined,
+                         new QuantityValue(5, 432)
+                    ),
+                    new (SpecificEnergyUnit.WattHourPerKilogram, "WattHourPerKilogram", "WattHoursPerKilogram", BaseUnits.Undefined,
+                         new QuantityValue(1, 3600)
+                    ),
+                    new (SpecificEnergyUnit.WattHourPerPound, "WattHourPerPound", "WattHoursPerPound", BaseUnits.Undefined,
+                         new QuantityValue(25, 198416)
+                    ),
+                };
             }
         }
 

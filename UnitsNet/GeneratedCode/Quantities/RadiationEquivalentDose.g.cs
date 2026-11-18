@@ -118,22 +118,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{RadiationEquivalentDoseUnit}"/> representing the default unit mappings for RadiationEquivalentDose.</returns>
             public static IEnumerable<UnitDefinition<RadiationEquivalentDoseUnit>> GetDefaultMappings()
             {
-                yield return new (RadiationEquivalentDoseUnit.Microsievert, "Microsievert", "Microsieverts", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, "MilliroentgenEquivalentMan", "MilliroentgensEquivalentMan", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (RadiationEquivalentDoseUnit.Millisievert, "Millisievert", "Millisieverts", BaseUnits.Undefined,
-                     1000
-                );
-                yield return new (RadiationEquivalentDoseUnit.Nanosievert, "Nanosievert", "Nanosieverts", BaseUnits.Undefined,
-                     1000000000
-                );
-                yield return new (RadiationEquivalentDoseUnit.RoentgenEquivalentMan, "RoentgenEquivalentMan", "RoentgensEquivalentMan", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (RadiationEquivalentDoseUnit.Sievert, "Sievert", "Sieverts", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                return new UnitDefinition<RadiationEquivalentDoseUnit>[]
+                {
+                    new (RadiationEquivalentDoseUnit.Microsievert, "Microsievert", "Microsieverts", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
+                         1000000
+                    ),
+                    new (RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, "MilliroentgenEquivalentMan", "MilliroentgensEquivalentMan", BaseUnits.Undefined,
+                         100000
+                    ),
+                    new (RadiationEquivalentDoseUnit.Millisievert, "Millisievert", "Millisieverts", BaseUnits.Undefined,
+                         1000
+                    ),
+                    new (RadiationEquivalentDoseUnit.Nanosievert, "Nanosievert", "Nanosieverts", BaseUnits.Undefined,
+                         1000000000
+                    ),
+                    new (RadiationEquivalentDoseUnit.RoentgenEquivalentMan, "RoentgenEquivalentMan", "RoentgensEquivalentMan", BaseUnits.Undefined,
+                         100
+                    ),
+                    new (RadiationEquivalentDoseUnit.Sievert, "Sievert", "Sieverts", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                };
             }
         }
 
