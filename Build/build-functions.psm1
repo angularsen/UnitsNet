@@ -24,11 +24,19 @@ function Remove-ArtifactsDir {
   Set-Content -LiteralPath (Join-Path $localNuGetFeedDir ".gitkeep") -Value ""
 }
 
-function Update-GeneratedCode {
-  write-host -foreground blue "Generate code...`n---"
-  dotnet run --project "$root/CodeGen"
+# The build regenerates code from the unit definitions (see Directory.Build.targets). On CI, fail if that changed any
+# files, since the committed generated code must match the unit definitions.
+function Assert-GeneratedCodeUpToDate {
+  if (-not $env:CI) { return }
+
+  write-host -foreground blue "Check generated code is up to date...`n---"
+  $changes = git -C $root status --porcelain -- '*/GeneratedCode/*' 'UnitsNet.Tests/CustomCode/*' 'Common/UnitEnumValues.g.json' 'Common/UnitRelations.json'
   if ($lastexitcode -ne 0) { exit 1 }
-  write-host -foreground blue "Generate code...END`n"
+  if ($changes) {
+    write-host -foreground red "Generated code is out of date. Build locally and commit the changes:`n$($changes -join "`n")"
+    exit 1
+  }
+  write-host -foreground blue "Check generated code is up to date...END`n"
 }
 
 function Start-Build {
@@ -140,4 +148,4 @@ function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
+export-modulemember -function Remove-ArtifactsDir, Assert-GeneratedCodeUpToDate, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip

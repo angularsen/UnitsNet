@@ -28,10 +28,17 @@ namespace CodeGen.Helpers
         }
 
         /// <summary>
-        ///     Writes all text to a generated or codegen-normalized file as UTF-8 without byte order mark.
+        ///     Writes all text to a generated or codegen-normalized file as UTF-8 without byte order mark. The file is
+        ///     only written if its contents changed, so unchanged generated files keep their timestamps and don't trigger
+        ///     rebuilds of the projects that compile them.
         /// </summary>
         public static void WriteAllText(string path, string contents)
         {
+            if (File.Exists(path) && File.ReadAllText(path, Utf8NoBom) == contents)
+            {
+                return;
+            }
+
             File.WriteAllText(path, contents, Utf8NoBom);
         }
 

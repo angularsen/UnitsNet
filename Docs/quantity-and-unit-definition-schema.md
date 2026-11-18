@@ -356,10 +356,9 @@ be copied into new definitions.
 
 After changing a definition:
 
-1. Run `generate-code.bat` or `dotnet run --project CodeGen`.
+1. Run `dotnet build UnitsNet.slnx`, which also regenerates the code.
 2. Inspect the generated changes.
 3. Add or update independently sourced conversion test values.
-4. Run `build.bat` or `dotnet build UnitsNet.slnx`.
-5. Run the relevant tests.
+4. Run the relevant tests.
 
 Generated files under `GeneratedCode` must not be edited manually.

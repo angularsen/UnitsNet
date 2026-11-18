@@ -7,7 +7,7 @@ So you want to add a quantity or unit that is not yet part of Units.NET?
 - [Quick Summary of Steps](#quick-summary-of-steps)
 - [Detailed steps](#detailed-steps)
   - [1. Add or modify JSON file for a quantity class](#1-add-or-modify-json-file-for-a-quantity-class)
-  - [2. Run generate-code.bat](#2-run-generate-codebat)
+  - [2. Build to generate code](#2-build-to-generate-code)
   - [3. Reopen solution to load all new files](#3-reopen-solution-to-load-all-new-files)
   - [4. Fix generated test stubs to resolve compile errors](#4-fix-generated-test-stubs-to-resolve-compile-errors)
   - [5. Run tests](#5-run-tests)
@@ -58,7 +58,7 @@ See the [Quantity and Unit Definition Schema](quantity-and-unit-definition-schem
 To add a quantity or a unit:
 
 - Add or change a quantity JSON file.
-- Run `generate-code.bat` file.
+- Build the solution, which generates the code.
 - Specify test values for the new units in the generated test code.
 
 Not too difficult. Below are the detailed steps.
@@ -139,9 +139,11 @@ The only consequence of not specifying `BaseUnits` is that you cannot construct 
 - `VolumeUnit.ImperialGallon` has no `BaseUnits`, because `Volume = Length^3` and there is no length unit that when multiplied three times would result in imperial gallon.
 - `RatioUnit.DecimalFraction` has no `BaseUnits`, because dimensionless units are not made up by any SI base units.
 
-### 2. Run [generate-code.bat](https://github.com/angularsen/UnitsNet/blob/master/generate-code.bat)
+### 2. Build to generate code
 
-To generate unit classes, unit enumerations and base class for tests.
+Build the solution with `dotnet build UnitsNet.slnx`, or from your IDE. Building runs CodeGen whenever the JSON files
+changed, which generates the quantities, unit enums and test base classes. To regenerate without building, run
+`dotnet run --project CodeGen`.
 
 ### 3. Reopen solution to load all new files
 

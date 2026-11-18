@@ -5,7 +5,11 @@ It is faster, easier to debug and more familiar to C# developers.
 
 ## Generating code
 
-Compile and run:
+The generator runs after it builds, when the unit definitions or the generator changed, see `CodeGen.csproj`. UnitsNet
+references it, so building the solution or any project with generated code runs it. Set `SkipUnitsNetCodeGen=true` to
+build without it.
+
+To run it on its own:
 ```cmd
 cd /dev/UnitsNet/CodeGen
 dotnet run

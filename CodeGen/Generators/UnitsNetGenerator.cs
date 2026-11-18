@@ -172,7 +172,7 @@ namespace CodeGen.Generators
                         $"{resourcesDirectory}/{quantity.Name}.restext" :
                         $"{resourcesDirectory}/{quantity.Name}.{culture}.restext";
 
-                    using var writer = CodeGenFile.CreateText(fileName);
+                    using var writer = new StringWriter();
 
                     foreach(Unit unit in quantity.Units)
                     {
@@ -197,6 +197,8 @@ namespace CodeGen.Generators
                             }
                         }
                     }
+
+                    CodeGenFile.WriteAllText(fileName, writer.ToString());
                 }
             }
         }

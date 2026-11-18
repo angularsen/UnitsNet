@@ -44,9 +44,6 @@ jobs:
     - name: Restore .NET tools
       run: dotnet tool restore
 
-    - name: Generate code
-      run: dotnet run --project CodeGen
-
     - name: Run the complete net48 test suite with coverage
       shell: pwsh
       run: |

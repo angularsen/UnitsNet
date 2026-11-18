@@ -58,6 +58,11 @@
     <EmbeddedResource Include="GeneratedCode\Resources\*.restext" />
   </ItemGroup>
 
+  <!-- Build CodeGen first, which regenerates the code from the unit definitions after it builds. -->
+  <ItemGroup>
+    <ProjectReference Include="../CodeGen/CodeGen.csproj" ReferenceOutputAssembly="false" SkipGetTargetFrameworkProperties="true" UndefineProperties="TargetFramework" />
+  </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
   </ItemGroup>
