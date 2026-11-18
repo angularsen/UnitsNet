@@ -82,9 +82,9 @@ namespace UnitsNet.Units
         TerawattHour = 31,
 
         /// <summary>
-        ///     The therm (symbol, thm) is a non-SI unit of heat energy equal to 100,000 British thermal units (BTU), and approximately 105 megajoules, 29.3 kilowatt-hours, 25,200 kilocalories and 25.2 thermies. One therm is the energy content of approximately 100 cubic feet (2.83 cubic metres) of natural gas at standard temperature and pressure. However, the BTU is not standardised worldwide, with slightly different values in the EU, UK, and United States, meaning that the energy content of the therm also varies by territory.
+        ///     The EC therm (symbol, thm) is a non-SI unit of heat energy, defined in the European Community as 100,000 ISO British thermal units, exactly 105,506,000 joules (NIST SP 811). One therm is the energy content of approximately 100 cubic feet (2.83 cubic metres) of natural gas at standard temperature and pressure. The US and UK therms differ slightly, because the BTU is not standardised worldwide.
         /// </summary>
-        /// <remarks>https://en.wikipedia.org/wiki/Therm</remarks>
+        /// <remarks>https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8</remarks>
         ThermEc = 32,
 
         /// <summary>

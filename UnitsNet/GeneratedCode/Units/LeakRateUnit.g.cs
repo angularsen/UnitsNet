@@ -28,6 +28,11 @@ namespace UnitsNet.Units
         AtmCubicCentimeterPerSecond = 10,
         MillibarLiterPerSecond = 7,
         PascalCubicMeterPerSecond = 2,
+
+        /// <summary>
+        ///     A leak rate of one liter per second at a pressure of one torr. The torr is exactly 101325/760 pascals (1/760 of a standard atmosphere), so one torr liter per second is about 0.1333224 Pa·m³/s.
+        /// </summary>
+        /// <remarks>https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8</remarks>
         TorrLiterPerSecond = 4,
     }
 

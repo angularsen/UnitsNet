@@ -148,7 +148,7 @@ namespace UnitsNet
                      new ConversionExpression(coefficient: new QuantityValue(1, 1000), constantTerm: new QuantityValue(5463, 20))
                 );
                 yield return new (TemperatureUnit.SolarTemperature, "SolarTemperature", "SolarTemperatures", new BaseUnits(temperature: TemperatureUnit.SolarTemperature),
-                     new QuantityValue(1, 5778)
+                     new QuantityValue(1, 5772)
                 );
             }
         }

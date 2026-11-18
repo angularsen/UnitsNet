@@ -244,10 +244,10 @@
       "BaseUnits": {
         "M": "SolarMass"
       },
-      "XmlDocSummary": "Solar mass is a ratio unit to the mass of the solar system star, the sun.",
+      "XmlDocSummary": "Solar mass is a ratio unit to the mass of the solar system star, the sun. This unit uses 1.98847×10^30 kg, within the uncertainty of the best estimate of (1.988475 ± 0.000092)×10^30 kg. The IAU defines only a nominal solar mass parameter (GM), so a nominal mass in kilograms depends on the measured gravitational constant.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Solar_mass",
-      "FromUnitToBaseFunc": "{x} * 1.98947e30",
-      "FromBaseToUnitFunc": "{x} / 1.98947e30",
+      "FromUnitToBaseFunc": "{x} * 1.98847e30",
+      "FromBaseToUnitFunc": "{x} / 1.98847e30",
       "Localization": [
         {
           "Culture": "en-US",
@@ -289,6 +289,6 @@
           "Abbreviations": [ "Da", "u" ]
         }
       ]
-    },
+    }
   ]
 }

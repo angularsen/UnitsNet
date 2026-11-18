@@ -136,7 +136,7 @@ namespace UnitsNet
                      new QuantityValue(125, 523)
                 );
                 yield return new (EnergyUnit.DecathermEc, "DecathermEc", "DecathermsEc", BaseUnits.Undefined,
-                     new QuantityValue(50, 52752792631)
+                     new QuantityValue(1, 1055060000)
                 );
                 yield return new (EnergyUnit.DecathermImperial, "DecathermImperial", "DecathermsImperial", BaseUnits.Undefined,
                      new QuantityValue(25000, 26376396314337)
@@ -233,7 +233,7 @@ namespace UnitsNet
                      new QuantityValue(1, 3600000000000000)
                 );
                 yield return new (EnergyUnit.ThermEc, "ThermEc", "ThermsEc", BaseUnits.Undefined,
-                     new QuantityValue(500, 52752792631)
+                     new QuantityValue(1, 105506000)
                 );
                 yield return new (EnergyUnit.ThermImperial, "ThermImperial", "ThermsImperial", BaseUnits.Undefined,
                      new QuantityValue(250000, 26376396314337)
