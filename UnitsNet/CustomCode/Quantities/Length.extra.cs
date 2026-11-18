@@ -1,19 +1,17 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading;
-using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct Length
     {
-        private static readonly QuantityValue InchesInOneFoot = 12;
+        internal static readonly QuantityValue InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -23,7 +21,7 @@ namespace UnitsNet
             get
             {
                 QuantityValue totalInches = Inches;
-                return new FeetInches((BigInteger) (totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
+                return new FeetInches((BigInteger)(totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
             }
         }
 
@@ -32,7 +30,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromFeetInches(QuantityValue feet, QuantityValue inches)
         {
-            return FromInches(InchesInOneFoot*feet + inches);
+            return FromInches(InchesInOneFoot * feet + inches);
         }
 
         /// <summary>
@@ -47,7 +45,8 @@ namespace UnitsNet
         /// <returns>Parsed length.</returns>
         public static Length ParseFeetInches(string str, IFormatProvider? formatProvider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
             {
                 // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
@@ -181,9 +180,34 @@ namespace UnitsNet
             var footUnit = Length.GetAbbreviation(LengthUnit.Foot, unitLocalizationCulture);
             var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, unitLocalizationCulture);
 
+
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches.ToDouble()), inchUnit);
+            // When we do this we check if we rounded inches to 12(InchesInOneFoot).
+            // If it does feet/inches are fixed something like 4 ft 0 in is displayed instead of 3ft 12 in for things very close to 4 e.g. 3.9999 ft 
+            BigInteger feet;
+            double inches;
+            var isNegative = Feet < 0 || Inches < 0;
+            var negativeSign = "";
+            if (isNegative)
+            {
+                feet = -Feet;
+                inches = Math.Round(-Inches);
+                negativeSign = (cultureInfo as CultureInfo)?.NumberFormat.NegativeSign ?? "-";
+            }
+            else
+            {
+                feet = Feet;
+                inches = Math.Round(Inches);
+            }
+
+            if (inches == Length.InchesInOneFoot)
+            {
+                feet++;
+                inches = 0;
+            }
+
+            return string.Format(cultureInfo, "{4}{0:n0} {1} {2:n0} {3}", feet, footUnit, inches, inchUnit, negativeSign);
         }
 
         /// <summary>
@@ -211,10 +235,19 @@ namespace UnitsNet
             {
                 throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
             }
-            
-            // TODO this could probably be done better with the fractions
-            var inchTrunc = (int)Math.Truncate(Inches.ToDouble());
-            var numerator = (int)Math.Round((Inches - inchTrunc).ToDouble() * fractionDenominator); 
+            var feet = Feet;
+            var inches = Inches;
+            //if negative value we record this and invert the values, at the end we add a negative sign as necessary, but all the calculations are done positive so rounding behavior is the same.
+            var isNegative = Feet < 0 || Inches < 0;
+            if (isNegative)
+            {
+                feet = -feet;
+                inches = -inches;
+            }
+
+            var inchTrunc = (int)Math.Truncate(inches);
+            var numerator = (int)Math.Round((inches - inchTrunc) * fractionDenominator);
+
 
             if (numerator == fractionDenominator)
             {
@@ -222,10 +255,17 @@ namespace UnitsNet
                 numerator = 0;
             }
 
+            if (inchTrunc == Length.InchesInOneFoot)
+            {
+                feet++;
+                inchTrunc = 0;
+            }
+
             var inchPart = new System.Text.StringBuilder();
 
             if (inchTrunc != 0 || numerator == 0)
             {
+
                 inchPart.Append(inchTrunc);
             }
 
@@ -256,12 +296,27 @@ namespace UnitsNet
 
             inchPart.Append('"');
 
-            if (Feet == 0)
+            if (feet == 0)
             {
+                if (isNegative)
+                {
+                    var negativeSign = CultureInfo.CurrentCulture.NumberFormat.NegativeSign;
+                    //negate inches so the output uses a culture correct negative sign.
+                    inchPart.Insert(0, negativeSign);
+                }
+
                 return inchPart.ToString();
             }
 
-            return $"{Feet}' - {inchPart}";
+            if (isNegative)
+            {
+                //re-negate feet so the output uses a culture correct negative sign.
+                //the behaviour different of feet = -feet  between .netframework and .netcore/.net runtimes,
+                //where newer runtimes support -0.0 is not an issue here because we do not emit the feet part if it is 0.
+                feet = -feet;
+            }
+
+            return $"{feet}' - {inchPart}";
         }
     }
 }
