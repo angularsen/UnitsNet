@@ -112,6 +112,20 @@ public static class QuantityExtensions
         return UnitConverter.Default.ConvertValue(quantity, unit);
     }
 
+    /// <summary>
+    ///     Gets the value of the quantity in a <see cref="UnitOf{TQuantity}" />, such as a furlong of <see cref="Length" />.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The unit to get the value in.</param>
+    /// <returns>The value in <paramref name="unit" />.</returns>
+    /// <exception cref="ArgumentNullException"><paramref name="unit" /> is <c>null</c>.</exception>
+    public static QuantityValue As<TQuantity>(this TQuantity quantity, UnitOf<TQuantity> unit)
+        where TQuantity : IQuantity
+    {
+        if (unit is null) throw new ArgumentNullException(nameof(unit));
+        return unit.ConversionFromBase.Evaluate(quantity.GetUnitInfo().ConvertValueToBaseUnit(quantity.Value));
+    }
+
     /// <inheritdoc cref="UnitConverter.ConvertValue{TQuantity,TUnit}" />
     /// <param name="quantity">The quantity to convert.</param>
     /// <param name="unit">The target unit.</param>
