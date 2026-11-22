@@ -20,9 +20,39 @@ jobs:
     permissions:
       actions: read
       checks: write
+    env:
+      NET48_RUN_ID: ${{ github.event.workflow_run.id }}
+      NET48_RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+      NET48_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}
 
     steps:
+    - name: Check for test result artifacts
+      id: artifacts
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        artifacts=$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$NET48_RUN_ID/artifacts?per_page=100" \
+          --jq '.artifacts[] | select(.expired == false) | .name | select(. == "net48-test-results" or . == "net48-event")')
+
+        if ! grep -Fxq 'net48-test-results' <<< "$artifacts"; then
+          if [[ "$NET48_RUN_CONCLUSION" == 'failure' ]]; then
+            echo "::notice::Skipping .NET Framework test result publication because $NET48_RUN_URL has no available net48-test-results artifact."
+            exit 0
+          fi
+          echo "::error::Successful run $NET48_RUN_URL has no available net48-test-results artifact."
+          exit 1
+        fi
+
+        if ! grep -Fxq 'net48-event' <<< "$artifacts"; then
+          echo "::error::Run $NET48_RUN_URL has test results but no available net48-event artifact."
+          exit 1
+        fi
+
+        echo 'available=true' >> "$GITHUB_OUTPUT"
+
     - name: Download test results
+      if: ${{ steps.artifacts.outputs.available == 'true' }}
       uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
       with:
         name: net48-test-results
@@ -30,7 +60,19 @@ jobs:
         github-token: ${{ github.token }}
         run-id: ${{ github.event.workflow_run.id }}
 
+    - name: Check for missing TRX files
+      if: ${{ steps.artifacts.outputs.available == 'true' && hashFiles('artifacts/net48-test-results/*.trx') == '' }}
+      shell: bash
+      run: |
+        if [[ "$NET48_RUN_CONCLUSION" == 'failure' ]]; then
+          echo "::notice::Skipping .NET Framework test result publication because the artifact from $NET48_RUN_URL contains no TRX files."
+          exit 0
+        fi
+        echo "::error::The test results artifact from successful run $NET48_RUN_URL contains no TRX files."
+        exit 1
+
     - name: Download workflow event
+      if: ${{ steps.artifacts.outputs.available == 'true' && hashFiles('artifacts/net48-test-results/*.trx') != '' }}
       uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
       with:
         name: net48-event
@@ -39,7 +81,7 @@ jobs:
         run-id: ${{ github.event.workflow_run.id }}
 
     - name: Publish test results
-      if: ${{ hashFiles('artifacts/net48-test-results/*.trx') != '' }}
+      if: ${{ steps.artifacts.outputs.available == 'true' && hashFiles('artifacts/net48-test-results/*.trx') != '' }}
       uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2
       with:
         check_name: ${{ github.event.workflow_run.event == 'pull_request' && 'PR net48 Test Results' || 'CI net48 Test Results' }}
